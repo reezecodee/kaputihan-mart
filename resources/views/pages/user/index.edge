@@ -1,778 +1,259 @@
 @layouts.user()
-  <section id="banner" style="background: #F9F3EC;">
+<section class="hero-slider">
+    <div class="hero-items owl-carousel">
+        <div class="single-slider-item set-bg" data-setbg="img/slider-1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>2019</h1>
+                        <h2>Lookbook.</h2>
+                        <a href="#" class="primary-btn">See More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-slider-item set-bg" data-setbg="img/slider-2.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>2019</h1>
+                        <h2>Lookbook.</h2>
+                        <a href="#" class="primary-btn">See More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-slider-item set-bg" data-setbg="img/slider-3.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>2019</h1>
+                        <h2>Lookbook.</h2>
+                        <a href="#" class="primary-btn">See More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-section spad">
+    <div class="features-ads">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-features-ads first">
+                        <img src="img/icons/f-delivery.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal
+                            esuada aliquet libero viverra cursus. </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-features-ads second">
+                        <img src="img/icons/coin.png" alt="">
+                        <h4>100% Money back </h4>
+                        <p>Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
+                            aliquet libero viverra cursus. </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-features-ads">
+                        <img src="img/icons/chat.png" alt="">
+                        <h4>Online support 24/7</h4>
+                        <p>Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
+                            aliquet libero viverra cursus. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="features-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="single-box-item first-box">
+                                <img src="img/f-box-1.jpg" alt="">
+                                <div class="box-text">
+                                    <span class="trend-year">2019 Party</span>
+                                    <h2>Jewelry</h2>
+                                    <span class="trend-alert">Trend Allert</span>
+                                    <a href="#" class="primary-btn">See More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="single-box-item second-box">
+                                <img src="img/f-box-2.jpg" alt="">
+                                <div class="box-text">
+                                    <span class="trend-year">2019 Trend</span>
+                                    <h2>Footwear</h2>
+                                    <span class="trend-alert">Bold & Black</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-box-item large-box">
+                        <img src="img/f-box-3.jpg" alt="">
+                        <div class="box-text">
+                            <span class="trend-year">2019 Party</span>
+                            <h2>Collection</h2>
+                            <div class="trend-alert">Trend Allert</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="latest-products spad">
     <div class="container">
-      <div class="swiper main-swiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide py-5">
-            <div class="row banner-content align-items-center">
-              <div class="img-wrapper col-md-5">
-                <img src="images/banner-img.png" class="img-fluid" />
-              </div>
-              <div class="content-wrapper col-md-7 p-5 mb-5">
-                <div class="secondary-font text-primary text-uppercase mb-4">
-                  Save 10 - 20 % off
+        <div class="product-filter">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Latest Products</h2>
+                    </div>
+                    <ul class="product-controls">
+                        <li data-filter="*">All</li>
+                        <li data-filter=".dresses">Dresses</li>
+                        <li data-filter=".bags">Bags</li>
+                        <li data-filter=".shoes">Shoes</li>
+                        <li data-filter=".accesories">Accesories</li>
+                    </ul>
                 </div>
-                <h2 class="banner-title display-1 fw-normal">
-                  Best destination for <span class="text-primary">your
-                    pets</span>
-                </h2>
-                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                  shop now
-                  <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                    <use xlink:href="#arrow-right" />
-
-                  </svg></a>
-              </div>
-
             </div>
-          </div>
         </div>
-
-        <div class="swiper-pagination mb-5">
+        <div class="row" id="product-list">
+            <div class="col-lg-3 col-sm-6 mix all dresses bags">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="img/products/img-1.jpg" alt=""></a>
+                        <div class="p-status">new</div>
+                    </figure>
+                    <div class="product-text">
+                        <h6>Green Dress with details</h6>
+                        <p>$22.90</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mix all dresses bags">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="img/products/img-2.jpg" alt=""></a>
+                        <div class="p-status sale">sale</div>
+                    </figure>
+                    <div class="product-text">
+                        <h6>Yellow Maxi Dress</h6>
+                        <p>$25.90</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mix all shoes accesories">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="img/products/img-3.jpg" alt=""></a>
+                        <div class="p-status">new</div>
+                    </figure>
+                    <div class="product-text">
+                        <h6>One piece bodysuit</h6>
+                        <p>$19.90</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mix all shoes accesories">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="img/products/img-4.jpg" alt=""></a>
+                        <div class="p-status popular">popular</div>
+                    </figure>
+                    <div class="product-text">
+                        <h6>Blue Dress with details</h6>
+                        <p>$35.50</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mix all dresses shoes">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="img/products/img-5.jpg" alt=""></a>
+                        <div class="p-status">new</div>
+                    </figure>
+                    <div class="product-text">
+                        <h6>Green Dress with details</h6>
+                        <p>$22.90</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mix all accesories bags">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="img/products/img-6.jpg" alt=""></a>
+                        <div class="p-status sale">sale</div>
+                    </figure>
+                    <div class="product-text">
+                        <h6>Yellow Maxi Dress</h6>
+                        <p>$25.90</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mix all dresses bags">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="img/products/img-7.jpg" alt=""></a>
+                    </figure>
+                    <div class="product-text">
+                        <h6>One piece bodysuit</h6>
+                        <p>$19.90</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mix all accesories bags">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="img/products/img-8.jpg" alt=""></a>
+                        <div class="p-status popular">popular</div>
+                    </figure>
+                    <div class="product-text">
+                        <h6>Blue Dress with details</h6>
+                        <p>$35.50</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-      </div>
     </div>
-  </section>
+</section>
 
-  <section id="clothing" class="my-5 overflow-hidden">
-    <div class="container pb-5">
-
-      <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-        <h2 class="display-3 fw-normal">
-          Pet Clothing
-        </h2>
-        <div>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            shop now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right" />
-
-            </svg></a>
+<section class="lookbok-section mb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-1">
+                <div class="lookbok-left">
+                    <div class="section-title">
+                        <h2>2019 <br />#lookbook</h2>
+                    </div>
+                    <p>Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vestibulum malesuada
+                        aliquet libero viverra cursus. Aliquam erat volutpat. Morbi id dictum quam, ut commodo
+                        lorem. In at nisi nec arcu porttitor aliquet vitae at dui. Sed sollicitudin nulla non leo
+                        viverra scelerisque. Phasellus facilisis lobortis metus, sit amet viverra lectus finibus ac.
+                        Aenean non felis dapibus, placerat libero auctor, ornare ante. Morbi quis ex eleifend,
+                        sodales nulla vitae, scelerisque ante. Nunc id vulputate dui. Suspendisse consectetur rutrum
+                        metus nec scelerisque. s</p>
+                    <a href="#" class="primary-btn look-btn">See More</a>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="lookbok-pic">
+                    <img src="img/lookbok.jpg" alt="">
+                    <div class="pic-text">fashion</div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="products-carousel swiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html">                <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" /></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">
-                    Grey hoodie
-                  </h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">
-                    $18.00
-                  </h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">
-                        Add to Cart
-                      </h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                      </iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html">                <img src="images/item2.jpg" class="img-fluid rounded-4" alt="image" /></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">
-                    Grey hoodie
-                  </h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">
-                    $18.00
-                  </h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">
-                        Add to Cart
-                      </h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                      </iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              -10%
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html">                <img src="images/item3.jpg" class="img-fluid rounded-4" alt="image" /></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">
-                    Grey hoodie
-                  </h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">
-                    $18.00
-                  </h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">
-                        Add to Cart
-                      </h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                      </iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html">                <img src="images/item4.jpg" class="img-fluid rounded-4" alt="image" /></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">
-                    Grey hoodie
-                  </h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">
-                    $18.00
-                  </h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">
-                        Add to Cart
-                      </h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                      </iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html">                <img src="images/item7.jpg" class="img-fluid rounded-4" alt="image" /></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">
-                    Grey hoodie
-                  </h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">
-                    $18.00
-                  </h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">
-                        Add to Cart
-                      </h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                      </iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html">                <img src="images/item8.jpg" class="img-fluid rounded-4" alt="image" /></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">
-                    Grey hoodie
-                  </h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary">
-                    </iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">
-                    $18.00
-                  </h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">
-                        Add to Cart
-                      </h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                      </iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- / products-carousel -->
-
     </div>
-  </section>
-
-  <section id="foodies" class="my-5">
-    <div class="container my-5 py-5">
-
-      <div class="section-header d-md-flex justify-content-between align-items-center">
-        <h2 class="display-3 fw-normal">
-          Pet Foodies
-        </h2>
-        <div class="mb-4 mb-md-0">
-          <p class="m-0">
-            <button class="filter-button me-4  active" data-filter="*">ALL</button>
-            <button class="filter-button me-4 " data-filter=".cat">CAT</button>
-            <button class="filter-button me-4 " data-filter=".dog">DOG</button>
-            <button class="filter-button me-4 " data-filter=".bird">BIRD</button>
-          </p>
-        </div>
-        <div>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            shop now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right" />
-
-            </svg></a>
-        </div>
-      </div>
-
-      <div class="isotope-container row">
-
-        <div class="item cat col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html">              <img src="images/item9.jpg" class="img-fluid rounded-4" alt="image" /></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">
-                  Grey hoodie
-                </h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">
-                  $18.00
-                </h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">
-                      Add to Cart
-                    </h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                    </iconify-icon>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item dog col-md-4 col-lg-3 my-4">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div>
-          <div class="card position-relative">
-            <a href="single-product.html">              <img src="images/item10.jpg" class="img-fluid rounded-4" alt="image" /></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">
-                  Grey hoodie
-                </h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">
-                  $18.00
-                </h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">
-                      Add to Cart
-                    </h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                    </iconify-icon>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item dog col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html">              <img src="images/item11.jpg" class="img-fluid rounded-4" alt="image" /></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">
-                  Grey hoodie
-                </h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">
-                  $18.00
-                </h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">
-                      Add to Cart
-                    </h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                    </iconify-icon>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item cat col-md-4 col-lg-3 my-4">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            Sold
-          </div>
-          <div class="card position-relative">
-            <a href="single-product.html">              <img src="images/item12.jpg" class="img-fluid rounded-4" alt="image" /></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">
-                  Grey hoodie
-                </h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">
-                  $18.00
-                </h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">
-                      Add to Cart
-                    </h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                    </iconify-icon>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item bird col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html">              <img src="images/item13.jpg" class="img-fluid rounded-4" alt="image" /></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">
-                  Grey hoodie
-                </h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">
-                  $18.00
-                </h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">
-                      Add to Cart
-                    </h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                    </iconify-icon>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item bird col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html">              <img src="images/item14.jpg" class="img-fluid rounded-4" alt="image" /></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">
-                  Grey hoodie
-                </h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">
-                  $18.00
-                </h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">
-                      Add to Cart
-                    </h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                    </iconify-icon>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item dog col-md-4 col-lg-3 my-4">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            Sale
-          </div>
-          <div class="card position-relative">
-            <a href="single-product.html">              <img src="images/item15.jpg" class="img-fluid rounded-4" alt="image" /></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">
-                  Grey hoodie
-                </h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">
-                  $18.00
-                </h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">
-                      Add to Cart
-                    </h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                    </iconify-icon>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item cat col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html">              <img src="images/item16.jpg" class="img-fluid rounded-4" alt="image" /></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">
-                  Grey hoodie
-                </h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary">
-                  </iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">
-                  $18.00
-                </h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">
-                      Add to Cart
-                    </h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5">
-                    </iconify-icon>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
+</section>
 @end
