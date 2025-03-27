@@ -175,6 +175,11 @@ h1,h2,h3,h4,h5,h6 {
 /* 6.1 Header
 --------------------------------------------------------------*/
 /* Preloader */
+
+.active{
+  color: #6BB252
+}
+
 .preloader-wrapper {
   width: 100%;
   height: 100vh;

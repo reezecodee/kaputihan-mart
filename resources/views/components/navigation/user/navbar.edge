@@ -19,15 +19,15 @@
         <div class="search-bar row bg-light p-2 rounded-4">
           <div class="col-md-4 d-none d-md-block">
             <select class="form-select border-0 bg-transparent">
-              <option>All Categories</option>
+              <option>Semua Kategori</option>
               <option>Groceries</option>
               <option>Drinks</option>
               <option>Chocolates</option>
             </select>
           </div>
           <div class="col-11 col-md-7">
-            <form id="search-form" class="text-center" action="index.html" method="post">
-              <input type="text" class="form-control border-0 bg-transparent" placeholder="Cari produk...">
+            <form id="search-form" class="text-center" action="" method="post">
+              <input type="search" name="search" class="form-control border-0 bg-transparent" placeholder="Cari produk...">
             </form>
           </div>
           <div class="col-1">
@@ -38,14 +38,14 @@
 
       <div class="col-lg-4">
         <ul class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
-          <li class="nav-item active">
-            <a href="" class="nav-link">Home</a>
+          <li class="nav-item {{ request.url() == '/' ? 'active' : '' }}">
+            <a href="{{ route('user.home') }}" class="nav-link">Home</a>
           </li>
-          <li class="nav-item active">
-            <a href="" class="nav-link">Tentang Kami</a>
+          <li class="nav-item {{ request.url() == '/tentang-kami' ? 'active' : '' }}">
+            <a href="{{ route('user.about') }}" class="nav-link">Tentang Kami</a>
           </li>
-          <li class="nav-item active">
-            <a href="" class="nav-link">Bantuan</a>
+          <li class="nav-item {{ request.url() == '/pusat-bantuan' ? 'active' : '' }}">
+            <a href="{{ route('user.help') }}" class="nav-link">Bantuan</a>
           </li>
         </ul>
       </div>
