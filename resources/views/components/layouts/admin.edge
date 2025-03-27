@@ -28,7 +28,9 @@
     <div class="page">
       @!component('components/navigation/admin/navbar')
       <div class="page-wrapper">
-        @!component('components/navigation/admin/page-header')
+        @if(pageHeader)
+          @!component('components/navigation/admin/page-header', headerData)
+        @endif
         <div class="page-body">
           <div class="container-xl">
             {{{ await $slots.main() }}}
@@ -36,11 +38,11 @@
         </div>
       </div>
     </div>
-      
-    </script>
-    <!-- Tabler Core -->
-    <script src="{{ asset('admin/js/tabler.min.js?1684106062') }}" defer>
-      
-    </script>
-  </body>
+
+  </script>
+  <!-- Tabler Core -->
+  <script src="{{ asset('admin/js/tabler.min.js?1684106062') }}" defer>
+    
+  </script>
+</body>
 </html>
