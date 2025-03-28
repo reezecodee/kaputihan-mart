@@ -24,6 +24,9 @@ export default class Product extends BaseModel {
   declare namaProduk: string
 
   @column()
+  declare slug: string
+
+  @column()
   declare deskripsi: string
 
   @column()
@@ -34,6 +37,9 @@ export default class Product extends BaseModel {
 
   @column()
   declare stok: 'Tersedia' | 'Tidak tersedia'
+
+  @column()
+  declare status: 'Disetujui' | 'Ditolak'
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

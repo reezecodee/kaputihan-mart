@@ -10,14 +10,17 @@ export default class extends BaseSchema {
       table
         .uuid('kategori_id')
         .notNullable()
+        .index()
         .references('id')
         .inTable('categories')
         .onDelete('CASCADE')
       table.string('nama_produk').notNullable()
+      table.string('slug').notNullable().index()
       table.text('deskripsi').notNullable()
       table.string('foto_produk').notNullable()
       table.string('harga').notNullable()
-      table.enum('stok', ['Tersedia', 'Tidak tersedia']).notNullable()
+      table.enum('stok', ['Tersedia', 'Tidak tersedia']).notNullable().index()
+      table.enum('status', ['Disetujui', 'Ditolak']).notNullable().index()
 
       table.timestamp('created_at')
       table.timestamp('updated_at')

@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.string('password').notNullable()
       table.text('alamat').nullable()
       table.string('foto').nullable()
-      table.enum('role', ['Admin', 'User', 'Seller']).notNullable()
+      table.enum('role', ['Admin', 'User', 'Seller']).notNullable().index()
 
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
