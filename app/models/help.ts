@@ -8,7 +8,7 @@ export default class Help extends BaseModel {
   declare id: string
 
   @belongsTo(() => User, {
-    localKey: 'uuid',
+    localKey: 'id',
     foreignKey: 'penggunaId',
   })
   declare user: BelongsTo<typeof User>

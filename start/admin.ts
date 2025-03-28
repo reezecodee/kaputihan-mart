@@ -32,6 +32,15 @@ router
 
 router
   .group(() => {
+    router
+      .post('store/user/:role', [ManageUsersController, 'store'])
+      .where('role', /^(Admin|User|Seller)$/)
+      .as('store.user')
+  })
+  .prefix('api/v1')
+
+router
+  .group(() => {
     router.delete('destroy/user/:id', [ManageUsersController, 'destroy']).as('destroy.user')
   })
   .prefix('api/v1')

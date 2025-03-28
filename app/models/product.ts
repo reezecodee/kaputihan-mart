@@ -9,13 +9,13 @@ export default class Product extends BaseModel {
   declare id: string
 
   @belongsTo(() => Store, {
-    localKey: 'uuid',
+    localKey: 'id',
     foreignKey: 'tokoId',
   })
   declare store: BelongsTo<typeof Store>
 
   @belongsTo(() => Category, {
-    localKey: 'uuid',
+    localKey: 'id',
     foreignKey: 'kategoriId',
   })
   declare category: BelongsTo<typeof Category>

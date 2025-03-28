@@ -1,11 +1,12 @@
 import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Store from '#models/store'
 import Help from '#models/help'
 import type { HasMany, HasOne } from '@adonisjs/lucid/types/relations'
+import { v4 as uuidv4 } from 'uuid'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -17,13 +18,18 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare id: string
 
   @hasOne(() => Store, {
-    localKey: 'uuid',
+    localKey: 'id',
     foreignKey: 'penjual_id',
   })
   declare store: HasOne<typeof Store>
 
+  @beforeCreate()
+  public static assignUuid(user: User) {
+    user.id = uuidv4()
+  }
+
   @hasMany(() => Help, {
-    localKey: 'uuid',
+    localKey: 'id',
     foreignKey: 'pengguna_id',
   })
   declare help: HasMany<typeof Help>

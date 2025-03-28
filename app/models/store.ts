@@ -12,13 +12,13 @@ export default class Store extends BaseModel {
   declare penjualId: string
 
   @belongsTo(() => User, {
-    localKey: 'uuid',
+    localKey: 'id',
     foreignKey: 'penjualId',
   })
   declare user: BelongsTo<typeof User>
 
   @hasMany(() => Product, {
-    localKey: 'uuid',
+    localKey: 'id',
     foreignKey: 'toko_id',
   })
   declare product: HasMany<typeof Product>

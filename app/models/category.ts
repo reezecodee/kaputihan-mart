@@ -8,7 +8,7 @@ export default class Category extends BaseModel {
   declare id: string
 
   @hasMany(() => Product, {
-    localKey: 'uuid',
+    localKey: 'id',
     foreignKey: 'kategori_id',
   })
   declare product: HasMany<typeof Product>
