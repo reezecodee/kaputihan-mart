@@ -1,3 +1,4 @@
+import User from '#models/user'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ManageUsersController {
@@ -29,5 +30,19 @@ export default class ManageUsersController {
     })
 
     return view.render('pages/admin/manage-user/list/seller')
+  }
+
+  public async destroy({ params, session, response }: HttpContext) {
+    try {
+      const user = await User.findOrFail(params.id)
+      await user.delete()
+
+      session.flash('success', { message: 'Berhasil menghapus data pengguna' })
+
+      return response.redirect().back()
+    } catch (error) {
+      session.flash('failed', { message: 'Gagal menghapus data pengguna' })
+      return response.redirect().back()
+    }
   }
 }

@@ -29,3 +29,9 @@ router
     router.get('bantuan', [HelpsController, 'help']).as('admin.help')
   })
   .prefix('admin')
+
+router
+  .group(() => {
+    router.delete('destroy/user/:id', [ManageUsersController, 'destroy']).as('destroy.user')
+  })
+  .prefix('api/v1')

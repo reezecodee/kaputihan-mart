@@ -10,3 +10,4 @@
 import './admin.ts'
 import './user.ts'
 import './auth.ts'
+import './datatable.ts'

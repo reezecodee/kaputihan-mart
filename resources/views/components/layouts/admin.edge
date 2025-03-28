@@ -7,7 +7,6 @@
     <title>
       {{ title }}
     </title>
-    <!-- CSS files -->
     <link href="{{ asset('admin/css/tabler.min.css?1684106062') }}" rel="stylesheet" />
     <style>
       @import url('https://rsms.me/inter/inter.css');
@@ -20,6 +19,13 @@
         font-feature-settings: "cv03", "cv04", "cv11";
       }
     </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+      
+    </script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
+      
+    </script>
   </head>
   <body>
     <script src="{{ asset('admin/js/demo-theme.min.js?1684106062') }}">
@@ -33,16 +39,30 @@
         @endif
         <div class="page-body">
           <div class="container-xl">
+            @flashMessage('success')
+              <div class="alert alert-success">
+                {{ $message.message }}
+              </div>
+            @end
+            @flashMessage('failed')
+              <div class="alert alert-danger">
+                {{ $message.message }}
+              </div>
+            @end
             {{{ await $slots.main() }}}
           </div>
         </div>
       </div>
     </div>
 
-  </script>
-  <!-- Tabler Core -->
-  <script src="{{ asset('admin/js/tabler.min.js?1684106062') }}" defer>
-    
-  </script>
-</body>
+    <script src="{{ asset('admin/js/tabler.min.js?1684106062') }}" defer>
+      
+    </script>
+    <script src="{{ asset('admin/js/sweet-alert.js') }}" defer>
+      
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+      
+    </script>
+  </body>
 </html>

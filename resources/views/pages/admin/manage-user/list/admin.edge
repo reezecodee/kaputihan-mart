@@ -1,3 +1,71 @@
 @layouts.admin()
+  <div class="card">
+    <div class="card-body">
+      <table id="usersTable" class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              No
+            </th>
+            <th>
+              Nama admin
+            </th>
+            <th>
+              Email
+            </th>
+            <th>
+              Telepon
+            </th>
+            <th>
+              Alamat
+            </th>
+            <th>
+              Action
+            </th>
+          </tr>
+        </thead>
+      </table>
 
+      <script>
+        $(document).ready(function() {
+          $("#usersTable").DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "/api/v1/user/Admin",
+            columns: [ {
+              data: null,
+              render: function(data, type, row, meta) {
+                return meta.row + 1;
+              },
+              orderable: false
+            }, {
+              data: "nama"
+            }, {
+              data: "email"
+            }, {
+              data: "telepon"
+            }, {
+              data: "alamat"
+            }, {
+              data: "id",
+              render: function(data, type, row) {
+                return `
+                    <div class="d-flex">
+                        <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                        <form method="POST" action="/api/v1/destroy/user/${data}?_method=DELETE" id="${data}">
+                            {{ csrfField() }}
+                            <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
+                                Hapus
+                            </button>
+                        </form>
+                    </div>
+                        `;
+              },
+              orderable: false
+            } ]
+          });
+        });
+      </script>
+    </div>
+  </div>
 @end
