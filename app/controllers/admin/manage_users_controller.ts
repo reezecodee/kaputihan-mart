@@ -6,7 +6,9 @@ export default class ManageUsersController {
     view.share({
       title: 'Daftar Admin',
       pageHeader: true,
-      headerData: {},
+      headerData: {
+        btnTitle: 'Tambah Admin',
+      },
     })
 
     return view.render('pages/admin/manage-user/list/admin')
