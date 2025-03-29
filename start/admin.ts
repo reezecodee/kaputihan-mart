@@ -36,11 +36,15 @@ router
       .post('store/user/:role', [ManageUsersController, 'store'])
       .where('role', /^(Admin|User|Seller)$/)
       .as('store.user')
+    router.post('store/category', [ManageUMKMsController, 'storeCategory']).as('store.category')
   })
   .prefix('api/v1')
 
 router
   .group(() => {
     router.delete('destroy/user/:id', [ManageUsersController, 'destroy']).as('destroy.user')
+    router
+      .delete('destroy/category/:id', [ManageUMKMsController, 'destroyCategory'])
+      .as('destroy.category')
   })
   .prefix('api/v1')

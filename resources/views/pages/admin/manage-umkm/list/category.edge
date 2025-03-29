@@ -1,3 +1,135 @@
 @layouts.admin()
+  <div class="card">
+    <div class="card-body">
+      <table id="usersTable" class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              No
+            </th>
+            <th>
+              Nama kategori
+            </th>
+            <th>
+              Ditambahkan pada
+            </th>
+            <th>
+              Action
+            </th>
+          </tr>
+        </thead>
+      </table>
 
+      <script>
+        $(document).ready(function() {
+          $("#usersTable").DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "/api/v1/categories",
+            columns: [ {
+              data: null,
+              render: function(data, type, row, meta) {
+                return meta.row + 1;
+              },
+              orderable: false
+            }, {
+              data: "nama_kategori"
+            }, {
+              data: "created_at"
+            }, {
+              data: "id",
+              render: function(data, type, row) {
+                return `
+                <div class="d-flex">
+                    <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                    <form method="POST" action="/api/v1/destroy/category/${data}?_method=DELETE" id="${data}">
+                        {{ csrfField() }}
+                        <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
+                            Hapus
+                        </button>
+                    </form>
+                </div>
+                    `;
+              },
+              orderable: false
+            } ]
+          });
+        });
+      </script>
+    </div>
+  </div>
+
+  <div
+    class="modal modal-blur fade"
+    id="modal-report"
+    tabindex="-1"
+    style="display: none;"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Tambah Kategori Baru
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/api/v1/store/category" method="post">
+          {{ csrfField() }}
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Nama kategori</label>
+                  <input
+                    type="text"
+                    class="form-control {{ errors.nama_kategori ? 'is-invalid' : '' }}"
+                    name="nama_kategori"
+                    placeholder="Masukkan nama kategori"
+                    required
+                    value="{{ old('nama_kategori') || '' }}"
+                  />
+                  @if(errors.nama_kategori)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Saya yakin bahwa data tersebut sudah benar.
+              </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+              Batalkan
+            </a>
+            <button href="#" class="btn btn-primary ms-auto" type="submit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 5l0 14" />
+                <path d="M5 12l14 0" />
+              </svg>
+              Tambahkan Kategori
+          </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @end
