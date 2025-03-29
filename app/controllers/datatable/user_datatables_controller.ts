@@ -2,7 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 
 export default class UserDatatablesController {
-  public async userDatatable({ request, response }: HttpContext) {
+  public async userDatatable({ params, request, response }: HttpContext) {
     const page = request.input('start', 0) / request.input('length', 10) + 1
     const length = request.input('length', 10)
     const searchValue = request.input('search[value]', '')
@@ -11,7 +11,7 @@ export default class UserDatatablesController {
 
     const columns: string[] = ['id', 'nama', 'email', 'telepon', 'alamat']
 
-    const query = User.query()
+    const query = User.query().where('role', params.role)
 
     if (searchValue) {
       query.where((builder) => {

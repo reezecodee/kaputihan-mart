@@ -5,8 +5,8 @@ const UserDatatablesController = () => import('#controllers/datatable/user_datat
 router
   .group(() => {
     router
-      .get('user/:type', [UserDatatablesController, 'userDatatable'])
-      .where('type', /^(Admin|User|Seller)$/)
+      .get('user/:role', [UserDatatablesController, 'userDatatable'])
+      .where('role', /^(Admin|User|Seller)$/)
       .as('datatable.user')
   })
   .prefix('api/v1')

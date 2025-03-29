@@ -10,6 +10,7 @@ export default class ManageUsersController {
       title: 'Daftar Admin',
       errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
+      btnModal: true,
       headerData: {
         btnTitle: 'Tambah Admin',
       },
@@ -18,21 +19,27 @@ export default class ManageUsersController {
     return view.render('pages/admin/manage-user/list/admin')
   }
 
-  public user({ view }: HttpContext) {
+  public user({ session, view }: HttpContext) {
     view.share({
       title: 'Daftar Pengguna',
+      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
+      btnModal: false,
       headerData: {},
     })
 
     return view.render('pages/admin/manage-user/list/user')
   }
 
-  public seller({ view }: HttpContext) {
+  public seller({ session, view }: HttpContext) {
     view.share({
       title: 'Daftar Penjual UMKM',
+      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
-      headerData: {},
+      btnModal: true,
+      headerData: {
+        btnTitle: 'Tambah Penjual',
+      },
     })
 
     return view.render('pages/admin/manage-user/list/seller')
