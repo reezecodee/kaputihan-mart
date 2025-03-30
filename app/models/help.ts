@@ -8,6 +8,9 @@ export default class Help extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
 
+  @column()
+  declare pengguna_id: string
+
   @beforeCreate()
   public static assignUuid(help: Help) {
     help.id = uuidv4()
