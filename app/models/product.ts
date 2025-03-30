@@ -14,6 +14,12 @@ export default class Product extends BaseModel {
     product.id = uuidv4()
   }
 
+  @column()
+  declare toko_id: string
+
+  @column()
+  declare kategori_id: string
+
   @belongsTo(() => Store, {
     localKey: 'id',
     foreignKey: 'toko_id',

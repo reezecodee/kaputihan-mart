@@ -9,7 +9,7 @@ export default class StoreDatatablesController {
     const orderColumn = request.input('order[0][column]', 'id')
     const orderDirection = request.input('order[0][dir]', 'asc')
 
-    const columns: string[] = ['id', 'nama_pemilik', 'nama_toko', 'status', 'created_at']
+    const columns: string[] = ['id', 'nama_pemilik', 'nama_toko', 'status']
 
     const query = Store.query().preload('user')
 
@@ -34,7 +34,6 @@ export default class StoreDatatablesController {
         nama_pemilik: store.user?.nama,
         nama_toko: store.nama_toko,
         status: store.status,
-        created_at: store.createdAt,
       })),
     })
   }

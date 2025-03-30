@@ -35,7 +35,6 @@ export default class UserDatatablesController {
         email: user.email,
         telepon: user.telepon,
         alamat: user.alamat,
-        created_at: user.createdAt,
       })),
     })
   }

@@ -20,7 +20,10 @@ export default class ManageUmkmsController {
     view.share({
       title: 'Daftar Produk UMKM',
       pageHeader: true,
-      headerData: {},
+      btnModal: true,
+      headerData: {
+        btnTitle: 'Tambah Produk',
+      },
     })
 
     return view.render('pages/admin/manage-umkm/list/product')

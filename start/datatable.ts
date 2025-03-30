@@ -4,6 +4,8 @@ const UserDatatablesController = () => import('#controllers/datatable/user_datat
 const CategoryDatatablesController = () =>
   import('#controllers/datatable/category_datatables_controller')
 const StoreDatatablesController = () => import('#controllers/datatable/store_datatables_controller')
+const ProductDatatablesController = () =>
+  import('#controllers/datatable/product_datatables_controller')
 
 router
   .group(() => {
@@ -17,5 +19,8 @@ router
       .as('datatable.categoy')
 
     router.get('stores', [StoreDatatablesController, 'storeDatatable']).as('datatable.store')
+    router
+      .get('products', [ProductDatatablesController, 'productDatatable'])
+      .as('datatable.product')
   })
   .prefix('api/v1')
