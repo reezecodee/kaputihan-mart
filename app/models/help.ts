@@ -1,15 +1,21 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, belongsTo, column } from '@adonisjs/lucid/orm'
 import User from '#models/user'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { v4 as uuidv4 } from 'uuid'
 
 export default class Help extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
 
+  @beforeCreate()
+  public static assignUuid(help: Help) {
+    help.id = uuidv4()
+  }
+
   @belongsTo(() => User, {
     localKey: 'id',
-    foreignKey: 'penggunaId',
+    foreignKey: 'pengguna_id',
   })
   declare user: BelongsTo<typeof User>
 

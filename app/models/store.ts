@@ -1,19 +1,25 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
 import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import User from '#models/user'
 import Product from '#models/product'
+import { v4 as uuidv4 } from 'uuid'
 
 export default class Store extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
 
+  @beforeCreate()
+  public static assignUuid(store: Store) {
+    store.id = uuidv4()
+  }
+
   @column()
-  declare penjualId: string
+  declare penjual_id: string
 
   @belongsTo(() => User, {
     localKey: 'id',
-    foreignKey: 'penjualId',
+    foreignKey: 'penjual_id',
   })
   declare user: BelongsTo<typeof User>
 
@@ -24,13 +30,13 @@ export default class Store extends BaseModel {
   declare product: HasMany<typeof Product>
 
   @column()
-  declare namaToko: string
+  declare nama_toko: string
 
   @column()
   declare deskripsi: string
 
   @column()
-  declare fotoToko: string
+  declare foto_toko: string
 
   @column()
   declare status: 'Aktif' | 'Nonaktif'

@@ -7,7 +7,10 @@ export default class ManageUmkmsController {
     view.share({
       title: 'Daftar Toko UMKM',
       pageHeader: true,
-      headerData: {},
+      btnModal: true,
+      headerData: {
+        btnTitle: 'Tambah Toko',
+      },
     })
 
     return view.render('pages/admin/manage-umkm/list/store')
