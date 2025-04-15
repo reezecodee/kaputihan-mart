@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, belongsTo, column } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, beforeSave, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Store from '#models/store'
 import Category from '#models/category'
 import { v4 as uuidv4 } from 'uuid'
+import slugifyImport from 'slugify'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -58,4 +59,15 @@ export default class Product extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @beforeSave()
+  public static async generateSlug(product: Product) {
+    const slugify = slugifyImport.default
+
+    if (product.$dirty.nama_produk) {
+      const uniqueSlug = slugify(product.nama_produk, { lower: true, strict: true })
+      const timestamp = Date.now()
+      product.slug = `${uniqueSlug}-${timestamp}`
+    }
+  }
 }

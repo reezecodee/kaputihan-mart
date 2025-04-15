@@ -1,7 +1,9 @@
 import Category from '#models/category'
+import Product from '#models/product'
 import Store from '#models/store'
 import User from '#models/user'
 import { createCategoryValidator } from '#validators/category'
+import { createProductValidator } from '#validators/product'
 import { createStoreValidator } from '#validators/store'
 import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -86,11 +88,44 @@ export default class ManageUmkmsController {
         status: payload.status as 'Aktif' | 'Nonaktif',
       })
 
-      session.flash('success', { message: `Berhasil menambahkan kategori baru.` })
+      session.flash('success', { message: `Berhasil menambahkan toko baru.` })
       return response.redirect().back()
     } catch (error) {
       session.flash('failed', {
-        message: `Gagal menambahkan kategori baru. Periksa kembali input Anda.`,
+        message: `Gagal menambahkan toko baru. Periksa kembali input Anda.`,
+      })
+
+      return response.redirect().back()
+    }
+  }
+
+  public async storeProduct({ session, request, response }: HttpContext) {
+    const payload = await request.validateUsing(createProductValidator)
+
+    try {
+      let fileName: string | null = null
+
+      if (payload.foto_produk) {
+        fileName = `${cuid()}.${payload.foto_produk.extname}`
+        await payload.foto_produk.move('public/uploads/foto_produk', { name: fileName })
+      }
+
+      await Product.create({
+        foto_produk: fileName ?? undefined,
+        toko_id: payload.toko_id,
+        kategori_id: payload.kategori_id,
+        nama_produk: payload.nama_produk,
+        deskripsi: payload.deskripsi,
+        harga: payload.harga,
+        stok: payload.stok,
+        status: 'Disetujui',
+      })
+
+      session.flash('success', { message: `Berhasil menambahkan produk baru.` })
+      return response.redirect().back()
+    } catch (error) {
+      session.flash('failed', {
+        message: `Gagal menambahkan produk baru. Periksa kembali input Anda.`,
       })
 
       return response.redirect().back()

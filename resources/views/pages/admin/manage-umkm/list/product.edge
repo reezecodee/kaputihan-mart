@@ -55,16 +55,16 @@
               data: "id",
               render: function(data, type, row) {
                 return `
-                        <div class="d-flex">
-                            <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
-                            <form method="POST" action="/api/v1/destroy/category/${data}?_method=DELETE" id="${data}">
-                                {{ csrfField() }}
-                                <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
-                                    Hapus
-                                </button>
-                            </form>
-                        </div>
-                            `;
+                                        <div class="d-flex">
+                                            <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                                            <form method="POST" action="/api/v1/destroy/category/${data}?_method=DELETE" id="${data}">
+                                                {{ csrfField() }}
+                                                <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </div>
+                                            `;
               },
               orderable: false
             } ]
@@ -95,7 +95,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Nama produk</label>
+                  <label class="form-label">Nama produk <span class="text-danger">*</span></label>
                   <input
                     type="text"
                     class="form-control {{ errors.nama_produk ? 'is-invalid' : '' }}"
@@ -111,12 +111,16 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Toko</label>
+                  <label class="form-label">Toko <span class="text-danger">*</span></label>
                   <select name="toko_id" class="form-select {{ errors.toko_id ? 'is-invalid' : '' }}" required>
                     @if(!old('toko_id'))
-                    <option selected>Pilih toko</option>
+                      <option selected>
+                        Pilih toko
+                      </option>
                     @else
-                    <option selected>Pilih toko</option>
+                      <option selected>
+                        Pilih toko
+                      </option>
                     @endif
                   </select>
                   @if(errors.toko_id)
@@ -126,12 +130,16 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Kategori produk</label>
+                  <label class="form-label">Kategori produk <span class="text-danger">*</span></label>
                   <select name="kategori_id" class="form-select {{ errors.kategori_id ? 'is-invalid' : '' }}" required>
                     @if(!old('kategori_id'))
-                    <option selected>Pilih kategori</option>
+                      <option selected>
+                        Pilih kategori
+                      </option>
                     @else
-                    <option selected>Pilih kategori</option>
+                      <option selected>
+                        Pilih kategori
+                      </option>
                     @endif
                   </select>
                   @if(errors.kategori_id)
@@ -141,8 +149,15 @@
               </div>
               <div class="col-md-12">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Deskripsi</label>
-                  <textarea name="deskripsi" class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}" placeholder="Masukkan deskripsi toko" required cols="20" rows="5">{{ old('deskripsi') || '' }}</textarea>
+                  <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
+                  <textarea
+                    name="deskripsi"
+                    class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}"
+                    placeholder="Masukkan deskripsi toko"
+                    required
+                    cols="20"
+                    rows="5"
+                  >{{ old('deskripsi') || '' }}</textarea>
                   @if(errors.deskripsi)
                     <span class="invalid-feedback">{{ errors.message }}</span>
                   @endif
@@ -150,7 +165,7 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Harga</label>
+                  <label class="form-label">Harga <span class="text-danger">*</span></label>
                   <input
                     type="number"
                     class="form-control {{ errors.harga ? 'is-invalid' : '' }}"
@@ -166,13 +181,19 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Stok</label>
+                  <label class="form-label">Stok <span class="text-danger">*</span></label>
                   <select name="status" class="form-select {{ errors.stok ? 'is-invalid' : '' }}" required>
                     @if(!old('stok'))
-                    <option selected>Pilih stok</option>
+                      <option selected>
+                        Pilih stok
+                      </option>
                     @else
-                    <option value="Tersedia">Tersedia</option>
-                    <option value="Tidak tersedia">Tidak tersedia</option>
+                      <option value="Tersedia">
+                        Tersedia
+                      </option>
+                      <option value="Tidak tersedia">
+                        Tidak tersedia
+                      </option>
                     @endif
                   </select>
                   @if(errors.stok)
@@ -181,9 +202,17 @@
                 </div>
               </div>
               <div class="col-md-12">
+                <div class="d-flex justify-content-center">
+                  <img src="/svg/preview-product.svg" id="img-preview" class="h-25 w-25 my-1" alt="" srcset="" />
+                </div>
                 <div class="mb-3 form-group">
-                  <label class="form-label">Foto produk</label>
-                  <input type="file" class="form-control {{ errors.foto_produk ? 'is-invalid' : '' }}" name="foto_produk">
+                  <label class="form-label">Foto produk <span class="text-danger">*</span></label>
+                  <input
+                    type="file"
+                    class="form-control {{ errors.foto_produk ? 'is-invalid' : '' }}"
+                    name="foto_produk" id="foto_produk"
+                    required
+                  />
                   @if(errors.foto_produk)
                     <span class="invalid-feedback">{{ errors.message }}</span>
                   @endif
@@ -227,4 +256,19 @@
       </div>
     </div>
   </div>
+  <script>
+    document.getElementById("foto_produk")?.addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById("img-preview");
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "/svg/preview-product.svg";
+      }
+    });
+  </script>
 @end

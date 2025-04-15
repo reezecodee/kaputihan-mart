@@ -90,7 +90,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Nama</label>
+                  <label class="form-label">Nama <span class="text-danger">*</span></label>
                   <input
                     type="text"
                     class="form-control {{ errors.nama ? 'is-invalid' : '' }}"
@@ -106,7 +106,7 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Email</label>
+                  <label class="form-label">Email <span class="text-danger">*</span></label>
                   <input
                     type="email"
                     class="form-control {{ errors.email ? 'is-invalid' : '' }}"
@@ -122,7 +122,7 @@
               </div>
               <div class="col-md-12">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Telepon</label>
+                  <label class="form-label">Telepon <span class="text-danger">*</span></label>
                   <input
                     type="text"
                     class="form-control {{ errors.telepon ? 'is-invalid' : '' }}"
@@ -138,7 +138,7 @@
               </div>
               <div class="col-md-12">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Alamat</label>
+                  <label class="form-label">Alamat <span class="text-danger">*</span></label>
                   <textarea
                     class="form-control {{ errors.alamat ? 'is-invalid' : '' }}"
                     name="alamat"
@@ -153,7 +153,7 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Password</label>
+                  <label class="form-label">Password <span class="text-danger">*</span></label>
                   <input
                     type="password"
                     class="form-control {{ errors.password ? 'is-invalid' : '' }}"
@@ -169,7 +169,7 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Konfirmasi Password</label>
+                  <label class="form-label">Konfirmasi Password <span class="text-danger">*</span></label>
                   <input
                     type="password"
                     class="form-control {{ errors.password_confirmation ? 'is-invalid' : '' }}"
