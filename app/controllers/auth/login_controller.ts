@@ -1,9 +1,9 @@
 import User from '#models/user'
+import { createLoginValidator } from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
-import hash from '@adonisjs/core/services/hash'
 
 export default class LoginController {
-  async show({ view }: HttpContext) {
+  public async show({ view }: HttpContext) {
     view.share({
       title: 'Login ke Aplikasi',
     })
@@ -11,8 +11,8 @@ export default class LoginController {
     return view.render('pages/auth/login')
   }
 
-  async store({ request, response, auth, session }: HttpContext) {
-    const { email, password } = request.only(['email', 'password'])
+  public async store({ request, response, auth, session }: HttpContext) {
+    const { email, password } = await request.validateUsing(createLoginValidator)
 
     try {
       const user = await User.verifyCredentials(email, password)

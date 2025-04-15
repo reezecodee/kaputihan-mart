@@ -6,88 +6,127 @@
           <h2 class="h2 text-center mb-4">
             Register Akun
           </h2>
-          <form action="./" method="post" autocomplete="off" novalidate>
+          <form action="{{ route('register.store') }}" method="post" autocomplete="off">
             {{ csrfField() }}
             <div class="mb-3">
               <label class="form-label">Email</label>
-              <input type="email" class="form-control" placeholder="example@email.com" autocomplete="off" name="email" />
+              <input
+                type="email"
+                class="form-control {{ errors.email ? 'is-invalid' : '' }}"
+                value="{{ old('email') || '' }}"
+                placeholder="Masukkan email Anda"
+                autocomplete="off"
+                name="email"
+              />
+              @if(errors.email)
+                <span class="invalid-feedback">{{ errors.message }}</span>
+              @endif
             </div>
             <div class="mb-3">
               <label class="form-label">Telepon</label>
-              <input type="number" class="form-control" placeholder="Masukkan nomor telepon" autocomplete="off" name="telepon" />
+              <input
+                type="number"
+                class="form-control {{ errors.telepon ? 'is-invalid' : '' }}"
+                value="{{ old('telepon') || '' }}"
+                placeholder="Masukkan nomor telepon"
+                autocomplete="off"
+                name="telepon"
+              />
+              @if(errors.telepon)
+                <span class="invalid-feedback">{{ errors.message }}</span>
+              @endif
             </div>
             <div class="mb-3">
               <label class="form-label">
                 Password
                 </span>
-              </label>
-              <div class="input-group input-group-flat">
-                <input type="password" class="form-control" placeholder="Masukkan password" autocomplete="off" name="password" />
-                <span class="input-group-text">
-                  <a href="#" class="link-secondary" title="Lihat password" data-bs-toggle="tooltip">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="icon"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                      <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                    </svg>
-                  </a>
-                </span>
-              </div>
-            </div>
-            <div class="mb-2">
-              <label class="form-label">
-                Konfirmasi Password
-                </span>
-              </label>
-              <div class="input-group input-group-flat">
-                <input type="password" class="form-control" placeholder="Masukkan password" autocomplete="off" name="confirm_password" />
-                <span class="input-group-text">
-                  <a href="#" class="link-secondary" title="Lihat password" data-bs-toggle="tooltip">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="icon"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                      <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                    </svg>
-                  </a>
-                </span>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end">
-                <a href="{{ route('login.show') }}">
-                    Sudah punya akun?
+            </label>
+            <div class="input-group input-group-flat">
+              <input
+                type="password"
+                class="form-control {{ errors.password ? 'is-invalid' : '' }}"
+                value="{{ old('password') || '' }}"
+                placeholder="Masukkan password"
+                autocomplete="off"
+                name="password"
+              />
+              @if(errors.password)
+                <span class="invalid-feedback">{{ errors.message }}</span>
+              @endif
+              <span class="input-group-text">
+                <a href="#" class="link-secondary" title="Lihat password" data-bs-toggle="tooltip">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                  </svg>
                 </a>
+              </span>
             </div>
-            <div class="form-footer">
-              <button type="submit" class="btn btn-primary w-100">Register</button>
-            </div>
-          </form>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">
+              Konfirmasi Password
+                </span>
+          </label>
+          <div class="input-group input-group-flat">
+            <input
+              type="password"
+              class="form-control {{ errors.password_confirmation ? 'is-invalid' : '' }}"
+              placeholder="Konfirmasi password"
+              autocomplete="off"
+              name="password_confirmation"
+            />
+            @if(errors.password_confirmation)
+              <span class="invalid-feedback">{{ errors.message }}</span>
+            @endif
+            <span class="input-group-text">
+              <a href="#" class="link-secondary" title="Lihat password" data-bs-toggle="tooltip">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                  <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                </svg>
+              </a>
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="text-center text-muted mt-3">
-        <a href="{{ route('user.home') }}" tabindex="-1">Kembali ke halaman utama</a>
-      </div>
+        <div class="d-flex justify-content-end">
+          <a href="{{ route('login.show') }}">
+            Sudah punya akun?
+                </a>
+        </div>
+        <div class="form-footer">
+          <button type="submit" class="btn btn-primary w-100">Register</button>
+        </div>
+      </form>
     </div>
   </div>
+  <div class="text-center text-muted mt-3">
+    <a href="{{ route('user.home') }}" tabindex="-1">Kembali ke halaman utama</a>
+  </div>
+</div>
+</div>
 @end
