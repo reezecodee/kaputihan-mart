@@ -45,22 +45,145 @@
               data: "id",
               render: function(data, type, row) {
                 return `
-                        <div class="d-flex">
-                            <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
-                            <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
-                                {{ csrfField() }}
-                                <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
-                                    Hapus
-                                </button>
-                            </form>
-                        </div>
-                            `;
+                                <div class="d-flex">
+                                    <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                                    <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
+                                        {{ csrfField() }}
+                                        <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                                    `;
               },
               orderable: false
             } ]
           });
         });
       </script>
+    </div>
+  </div>
+
+  <div
+    class="modal modal-blur fade"
+    id="modal-report"
+    tabindex="-1"
+    style="display: none;"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Tambah Toko Baru
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/api/v1/store/store" method="post">
+          {{ csrfField() }}
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Nama toko</label>
+                  <input
+                    type="text"
+                    class="form-control {{ errors.nama_toko ? 'is-invalid' : '' }}"
+                    name="nama_toko"
+                    placeholder="Masukkan nama toko"
+                    required
+                    value="{{ old('nama_toko') || '' }}"
+                  />
+                  @if(errors.nama_toko)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Pemilik</label>
+                  <select name="penjual_id" class="form-select {{ errors.penjual_id ? 'is-invalid' : '' }}" required>
+                    @if(!old('penjual_id'))
+                    <option selected>Pilih pemilik</option>
+                    @else
+                    <option selected>Pilih pemilik</option>
+                    @endif
+                  </select>
+                  @if(errors.penjual_id)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Deskripsi</label>
+                  <textarea name="deskripsi" class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}" placeholder="Masukkan deskripsi toko" required cols="20" rows="5">{{ old('deskripsi') || '' }}</textarea>
+                  @if(errors.deskripsi)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Status</label>
+                  <select name="status" class="form-select {{ errors.status ? 'is-invalid' : '' }}" required>
+                    @if(!old('status'))
+                    <option selected>Pilih status</option>
+                    @else
+                    <option value="Aktif">Aktif</option>
+                    <option value="Nonaktif">Nonaktif</option>
+                    @endif
+                  </select>
+                  @if(errors.status)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Foto toko</label>
+                  <input type="file" class="form-control {{ errors.foto_toko ? 'is-invalid' : '' }}" name="foto_toko">
+                  @if(errors.foto_toko)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Saya yakin bahwa data tersebut sudah benar.
+              </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+              Batalkan
+            </a>
+            <button href="#" class="btn btn-primary ms-auto" type="submit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 5l0 14" />
+                <path d="M5 12l14 0" />
+              </svg>
+              Tambah Toko
+          </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 @end

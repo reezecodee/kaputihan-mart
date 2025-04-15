@@ -3,9 +3,10 @@ import { createCategoryValidator } from '#validators/category'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ManageUmkmsController {
-  public store({ view }: HttpContext) {
+  public store({ view, session }: HttpContext) {
     view.share({
       title: 'Daftar Toko UMKM',
+      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnModal: true,
       headerData: {
@@ -16,9 +17,10 @@ export default class ManageUmkmsController {
     return view.render('pages/admin/manage-umkm/list/store')
   }
 
-  public product({ view }: HttpContext) {
+  public product({ view, session }: HttpContext) {
     view.share({
       title: 'Daftar Produk UMKM',
+      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnModal: true,
       headerData: {

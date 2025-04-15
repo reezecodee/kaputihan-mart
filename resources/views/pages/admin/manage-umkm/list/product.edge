@@ -73,4 +73,158 @@
       </script>
     </div>
   </div>
+
+  <div
+    class="modal modal-blur fade"
+    id="modal-report"
+    tabindex="-1"
+    style="display: none;"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Tambah Produk Baru
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/api/v1/store/product" method="post">
+          {{ csrfField() }}
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Nama produk</label>
+                  <input
+                    type="text"
+                    class="form-control {{ errors.nama_produk ? 'is-invalid' : '' }}"
+                    name="nama_produk"
+                    placeholder="Masukkan nama produk"
+                    required
+                    value="{{ old('nama_produk') || '' }}"
+                  />
+                  @if(errors.nama_produk)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Toko</label>
+                  <select name="toko_id" class="form-select {{ errors.toko_id ? 'is-invalid' : '' }}" required>
+                    @if(!old('toko_id'))
+                    <option selected>Pilih toko</option>
+                    @else
+                    <option selected>Pilih toko</option>
+                    @endif
+                  </select>
+                  @if(errors.toko_id)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Kategori produk</label>
+                  <select name="kategori_id" class="form-select {{ errors.kategori_id ? 'is-invalid' : '' }}" required>
+                    @if(!old('kategori_id'))
+                    <option selected>Pilih kategori</option>
+                    @else
+                    <option selected>Pilih kategori</option>
+                    @endif
+                  </select>
+                  @if(errors.kategori_id)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Deskripsi</label>
+                  <textarea name="deskripsi" class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}" placeholder="Masukkan deskripsi toko" required cols="20" rows="5">{{ old('deskripsi') || '' }}</textarea>
+                  @if(errors.deskripsi)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Harga</label>
+                  <input
+                    type="number"
+                    class="form-control {{ errors.harga ? 'is-invalid' : '' }}"
+                    name="harga"
+                    placeholder="Masukkan harga produk"
+                    required
+                    value="{{ old('harga') || '' }}"
+                  />
+                  @if(errors.harga)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Stok</label>
+                  <select name="status" class="form-select {{ errors.stok ? 'is-invalid' : '' }}" required>
+                    @if(!old('stok'))
+                    <option selected>Pilih stok</option>
+                    @else
+                    <option value="Tersedia">Tersedia</option>
+                    <option value="Tidak tersedia">Tidak tersedia</option>
+                    @endif
+                  </select>
+                  @if(errors.stok)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Foto produk</label>
+                  <input type="file" class="form-control {{ errors.foto_produk ? 'is-invalid' : '' }}" name="foto_produk">
+                  @if(errors.foto_produk)
+                    <span class="invalid-feedback">{{ errors.message }}</span>
+                  @endif
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Saya yakin bahwa data tersebut sudah benar.
+              </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+              Batalkan
+            </a>
+            <button href="#" class="btn btn-primary ms-auto" type="submit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 5l0 14" />
+                <path d="M5 12l14 0" />
+              </svg>
+              Tambah Produk
+          </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @end
