@@ -45,16 +45,16 @@
               data: "id",
               render: function(data, type, row) {
                 return `
-                                <div class="d-flex">
-                                    <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
-                                    <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
-                                        {{ csrfField() }}
-                                        <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                                    `;
+                  <div class="d-flex">
+                      <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                      <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
+                          {{ csrfField() }}
+                          <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
+                              Hapus
+                          </button>
+                      </form>
+                  </div>
+                      `;
               },
               orderable: false
             } ]
@@ -79,13 +79,13 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="/api/v1/store/store" method="post">
+        <form action="{{ route('store.store') }}" method="post">
           {{ csrfField() }}
           <div class="modal-body">
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Nama toko</label>
+                  <label class="form-label">Nama toko <span class="text-danger">*</span></label>
                   <input
                     type="text"
                     class="form-control {{ errors.nama_toko ? 'is-invalid' : '' }}"
@@ -101,13 +101,16 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Pemilik</label>
+                  <label class="form-label">Pemilik <span class="text-danger">*</span></label>
                   <select name="penjual_id" class="form-select {{ errors.penjual_id ? 'is-invalid' : '' }}" required>
-                    @if(!old('penjual_id'))
-                    <option selected>Pilih pemilik</option>
-                    @else
-                    <option selected>Pilih pemilik</option>
-                    @endif
+                    <option selected>
+                      Pilih pemilik
+                    </option>
+                    @each(owner in owners)
+                      <option value="{{ owner.id }}" @if(old('penjual_id') === owner.id) selected @end>
+                        {{ owner.nama }}
+                      </option>
+                    @end
                   </select>
                   @if(errors.penjual_id)
                     <span class="invalid-feedback">{{ errors.message }}</span>
@@ -116,8 +119,15 @@
               </div>
               <div class="col-md-12">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Deskripsi</label>
-                  <textarea name="deskripsi" class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}" placeholder="Masukkan deskripsi toko" required cols="20" rows="5">{{ old('deskripsi') || '' }}</textarea>
+                  <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
+                  <textarea
+                    name="deskripsi"
+                    class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}"
+                    placeholder="Masukkan deskripsi toko"
+                    required
+                    cols="20"
+                    rows="5"
+                  >{{ old('deskripsi') || '' }}</textarea>
                   @if(errors.deskripsi)
                     <span class="invalid-feedback">{{ errors.message }}</span>
                   @endif
@@ -125,14 +135,17 @@
               </div>
               <div class="col-md-12">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Status</label>
+                  <label class="form-label">Status <span class="text-danger">*</span></label>
                   <select name="status" class="form-select {{ errors.status ? 'is-invalid' : '' }}" required>
-                    @if(!old('status'))
-                    <option selected>Pilih status</option>
-                    @else
-                    <option value="Aktif">Aktif</option>
-                    <option value="Nonaktif">Nonaktif</option>
-                    @endif
+                    <option selected>
+                      Pilih status
+                    </option>
+                    <option value="Aktif" {{ old('status') === 'Aktif' ? 'selected' : '' }}>
+                      Aktif
+                    </option>
+                    <option value="Nonaktif" {{ old('status') === 'Nonaktif' ? 'selected' : '' }}>
+                      Nonaktif
+                    </option>
                   </select>
                   @if(errors.status)
                     <span class="invalid-feedback">{{ errors.message }}</span>
@@ -140,9 +153,23 @@
                 </div>
               </div>
               <div class="col-md-12">
+                <div class="d-flex justify-content-center">
+                  <img
+                    src="/svg/profile-preview.svg"
+                    id="img-preview"
+                    class="rounded-circle w-25 h-25 my-1"
+                    alt=""
+                    srcset=""
+                  />
+                </div>
                 <div class="mb-3 form-group">
                   <label class="form-label">Foto toko</label>
-                  <input type="file" class="form-control {{ errors.foto_toko ? 'is-invalid' : '' }}" name="foto_toko">
+                  <input
+                    type="file"
+                    class="form-control {{ errors.foto_toko ? 'is-invalid' : '' }}"
+                    name="foto_toko"
+                    id="foto_toko"
+                  />
                   @if(errors.foto_toko)
                     <span class="invalid-feedback">{{ errors.message }}</span>
                   @endif
@@ -186,4 +213,20 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById("foto_toko")?.addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById("img-preview");
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "/svg/profile-preview.svg";
+      }
+    });
+  </script>
 @end

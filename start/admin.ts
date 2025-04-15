@@ -40,6 +40,7 @@ router
           .where('role', /^(Admin|User|Seller)$/)
           .as('store.user')
         router.post('store/category', [ManageUMKMsController, 'storeCategory']).as('store.category')
+        router.post('store/store', [ManageUMKMsController, 'storeStore']).as('store.store')
       })
       .prefix('api/v1')
 
