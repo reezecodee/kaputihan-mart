@@ -14,3 +14,20 @@ function submitForm(form, message = null) {
     }
   })
 }
+
+function logout() {
+  Swal.fire({
+    title: 'Peringatan',
+    text: 'Apakah Anda logout dari aplikasi?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Logout',
+    cancelButtonText: 'Batal',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById('logout-form').submit()
+    }
+  })
+}

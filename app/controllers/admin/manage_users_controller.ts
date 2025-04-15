@@ -53,8 +53,6 @@ export default class ManageUsersController {
     const payload = await request.validateUsing(createUserValidator)
 
     try {
-      payload.password = await hash.make(payload.password)
-
       let fileName: string | null = null
 
       if (role === 'User' || role === 'Seller') {

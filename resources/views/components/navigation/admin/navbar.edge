@@ -66,10 +66,7 @@
           </svg>
         </a>
         <div class="nav-item dropdown d-none d-md-flex me-3">
-          <a
-            href="{{ route('admin.help') }}"
-            class="nav-link px-0"
-          >
+          <a href="{{ route('admin.help') }}" class="nav-link px-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon"
@@ -110,7 +107,10 @@
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
           <a href="{{ route('admin.profile') }}" class="dropdown-item">Profile</a>
           <a href="{{ route('admin.setting') }}" class="dropdown-item">Pengaturan</a>
-          <a href="" class="dropdown-item">Logout</a>
+          <form action="{{ route('auth.logout') }}" method="POST" id="logout-form">
+            {{ csrfField() }}
+            <button type="button" onclick="logout()" class="dropdown-item">Logout</button>
+          </form>
         </div>
       </div>
     </div>
@@ -197,7 +197,9 @@
               </div>
             </div>
           </li>
-          <li class="nav-item dropdown {{ request.url().startsWith('/admin/kelola-pengguna') ? 'active' : '' }}">
+          <li
+            class="nav-item dropdown {{ request.url().startsWith('/admin/kelola-pengguna') ? 'active' : '' }}"
+          >
             <a
               class="nav-link dropdown-toggle"
               href="#navbar-base"
@@ -269,7 +271,13 @@
                   <path d="M21 21l-6 -6" />
                 </svg>
               </span>
-              <input type="text" value="" class="form-control" placeholder="Cari produk…" aria-label="Search in website" />
+              <input
+                type="text"
+                value=""
+                class="form-control"
+                placeholder="Cari produk…"
+                aria-label="Search in website"
+              />
             </div>
           </form>
         </div>
