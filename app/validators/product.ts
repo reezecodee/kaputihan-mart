@@ -3,6 +3,8 @@ import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 vine.messagesProvider = new SimpleMessagesProvider({
   'toko_id.string': 'Toko tidak valid atau tidak ditemukan.',
   'kategori_id.string': 'Kategori tidak valid atau tidak ditemukan.',
+  'toko_id.unique': 'Toko tidak valid atau tidak ditemukan.',
+  'kategori_id.unique': 'Kategori tidak valid atau tidak ditemukan.',
   'nama_produk.string': 'Nama produk harus berupa teks.',
   'nama_produk.minLength': 'Nama produk harus terdiri dari minimal 5 karakter.',
   'nama_produk.maxLength': 'Nama produk tidak boleh lebih dari 255 karakter.',
@@ -22,13 +24,13 @@ vine.messagesProvider = new SimpleMessagesProvider({
 
 export const createProductValidator = vine.compile(
   vine.object({
-    toko_id: vine.string().unique(async (db, value) => {
+    toko_id: vine.string().exists(async (db, value) => {
       const exists = await db.from('stores').where('id', value).first()
-      return !exists
+      return !!exists
     }),
-    kategori_id: vine.string().unique(async (db, value) => {
+    kategori_id: vine.string().exists(async (db, value) => {
       const exists = await db.from('categories').where('id', value).first()
-      return !exists
+      return !!exists
     }),
     nama_produk: vine.string().minLength(5).maxLength(255).trim(),
     deskripsi: vine.string().minLength(10).maxLength(255).trim(),

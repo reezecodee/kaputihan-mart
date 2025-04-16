@@ -2,7 +2,7 @@ import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 
 vine.messagesProvider = new SimpleMessagesProvider({
   'penjual_id.string': 'Penjual tidak valid.',
-  'penjual_id.unique': 'Penjual tersebut sudah terdaftar.',
+  'penjual_id.unique': 'Penjual tersebut sudah memiliki toko.',
   'nama_toko.string': 'Nama toko harus berupa teks.',
   'nama_toko.minLength': 'Nama toko harus terdiri dari minimal 5 karakter.',
   'nama_toko.maxLength': 'Nama toko tidak boleh lebih dari 255 karakter.',
@@ -21,8 +21,8 @@ vine.messagesProvider = new SimpleMessagesProvider({
 export const createStoreValidator = vine.compile(
   vine.object({
     penjual_id: vine.string().unique(async (db, value) => {
-      const exists = await db.from('users').where('id', value).first()
-      return !exists
+      const hasStore = await db.from('stores').where('penjual_id', value).first()
+      return !hasStore
     }),
     nama_toko: vine.string().minLength(5).maxLength(255).trim(),
     deskripsi: vine.string().minLength(10).maxLength(255).trim(),

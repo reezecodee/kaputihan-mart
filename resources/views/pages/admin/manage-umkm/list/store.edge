@@ -45,16 +45,16 @@
               data: "id",
               render: function(data, type, row) {
                 return `
-                  <div class="d-flex">
-                      <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
-                      <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
-                          {{ csrfField() }}
-                          <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
-                              Hapus
-                          </button>
-                      </form>
-                  </div>
-                      `;
+                          <div class="d-flex">
+                              <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                              <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
+                                  {{ csrfField() }}
+                                  <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
+                                      Hapus
+                                  </button>
+                              </form>
+                          </div>
+                              `;
               },
               orderable: false
             } ]
@@ -79,7 +79,7 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{ route('store.store') }}" method="post">
+        <form action="{{ route('store.store') }}" method="post" enctype="multipart/form-data">
           {{ csrfField() }}
           <div class="modal-body">
             <div class="row">
@@ -95,7 +95,7 @@
                     value="{{ old('nama_toko') || '' }}"
                   />
                   @if(errors.nama_toko)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.nama_toko }}</span>
                   @endif
                 </div>
               </div>
@@ -103,17 +103,17 @@
                 <div class="mb-3 form-group">
                   <label class="form-label">Pemilik <span class="text-danger">*</span></label>
                   <select name="penjual_id" class="form-select {{ errors.penjual_id ? 'is-invalid' : '' }}" required>
-                    <option selected>
+                    <option {{ !old('penjual_id') ? 'selected' : '' }}>
                       Pilih pemilik
                     </option>
-                    @each(owner in owners)
-                      <option value="{{ owner.id }}" @if(old('penjual_id') === owner.id) selected @end>
+                    @each((owner) in owners)
+                      <option value="{{ owner.id }}" {{ old('penjual_id') == owner.id ? 'selected' : '' }}>
                         {{ owner.nama }}
                       </option>
-                    @end
+                    @endeach
                   </select>
                   @if(errors.penjual_id)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.penjual_id }}</span>
                   @endif
                 </div>
               </div>
@@ -129,7 +129,7 @@
                     rows="5"
                   >{{ old('deskripsi') || '' }}</textarea>
                   @if(errors.deskripsi)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.deskripsi }}</span>
                   @endif
                 </div>
               </div>
@@ -148,7 +148,7 @@
                     </option>
                   </select>
                   @if(errors.status)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.status }}</span>
                   @endif
                 </div>
               </div>
@@ -171,7 +171,7 @@
                     id="foto_toko"
                   />
                   @if(errors.foto_toko)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.foto_toko }}</span>
                   @endif
                 </div>
               </div>

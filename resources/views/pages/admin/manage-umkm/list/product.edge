@@ -55,16 +55,16 @@
               data: "id",
               render: function(data, type, row) {
                 return `
-                                        <div class="d-flex">
-                                            <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
-                                            <form method="POST" action="/api/v1/destroy/category/${data}?_method=DELETE" id="${data}">
-                                                {{ csrfField() }}
-                                                <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
-                                                    Hapus
-                                                </button>
-                                            </form>
-                                        </div>
-                                            `;
+                                                                <div class="d-flex">
+                                                                    <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                                                                    <form method="POST" action="/api/v1/destroy/category/${data}?_method=DELETE" id="${data}">
+                                                                        {{ csrfField() }}
+                                                                        <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
+                                                                            Hapus
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                                    `;
               },
               orderable: false
             } ]
@@ -89,7 +89,7 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="/api/v1/store/product" method="post">
+        <form action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
           {{ csrfField() }}
           <div class="modal-body">
             <div class="row">
@@ -105,7 +105,7 @@
                     value="{{ old('nama_produk') || '' }}"
                   />
                   @if(errors.nama_produk)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.nama_produk }}</span>
                   @endif
                 </div>
               </div>
@@ -113,18 +113,17 @@
                 <div class="mb-3 form-group">
                   <label class="form-label">Toko <span class="text-danger">*</span></label>
                   <select name="toko_id" class="form-select {{ errors.toko_id ? 'is-invalid' : '' }}" required>
-                    @if(!old('toko_id'))
-                      <option selected>
-                        Pilih toko
+                    <option {{ !old('toko_id') ? 'selected' : '' }}>
+                      Pilih toko
+                    </option>
+                    @each((store) in stores)
+                      <option value="{{ store.id }}" {{ old('toko_id') == store.id ? 'selected' : '' }}>
+                        {{ store.nama_toko }}
                       </option>
-                    @else
-                      <option selected>
-                        Pilih toko
-                      </option>
-                    @endif
+                    @endeach
                   </select>
                   @if(errors.toko_id)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.toko_id }}</span>
                   @endif
                 </div>
               </div>
@@ -132,18 +131,17 @@
                 <div class="mb-3 form-group">
                   <label class="form-label">Kategori produk <span class="text-danger">*</span></label>
                   <select name="kategori_id" class="form-select {{ errors.kategori_id ? 'is-invalid' : '' }}" required>
-                    @if(!old('kategori_id'))
-                      <option selected>
-                        Pilih kategori
+                    <option {{ !old('kategori_id') ? 'selected' : '' }}>
+                      Pilih kategori
+                    </option>
+                    @each((category) in categories)
+                      <option value="{{ category.id }}" {{ old('kategori_id') == category.id ? 'selected' : '' }}>
+                        {{ category.nama_kategori }}
                       </option>
-                    @else
-                      <option selected>
-                        Pilih kategori
-                      </option>
-                    @endif
+                    @endeach
                   </select>
                   @if(errors.kategori_id)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.kategori_id }}</span>
                   @endif
                 </div>
               </div>
@@ -159,7 +157,7 @@
                     rows="5"
                   >{{ old('deskripsi') || '' }}</textarea>
                   @if(errors.deskripsi)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.deskripsi }}</span>
                   @endif
                 </div>
               </div>
@@ -175,29 +173,26 @@
                     value="{{ old('harga') || '' }}"
                   />
                   @if(errors.harga)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.harga }}</span>
                   @endif
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
                   <label class="form-label">Stok <span class="text-danger">*</span></label>
-                  <select name="status" class="form-select {{ errors.stok ? 'is-invalid' : '' }}" required>
-                    @if(!old('stok'))
-                      <option selected>
-                        Pilih stok
-                      </option>
-                    @else
-                      <option value="Tersedia">
-                        Tersedia
-                      </option>
-                      <option value="Tidak tersedia">
-                        Tidak tersedia
-                      </option>
-                    @endif
+                  <select name="stok" class="form-select {{ errors.stok ? 'is-invalid' : '' }}" required>
+                    <option {{ !old('stok') ? 'selected' : '' }}>
+                      Pilih stok
+                    </option>
+                    <option value="Tersedia" {{ old('stok') == 'Tersedia' ? 'selected' : '' }}>
+                      Tersedia
+                    </option>
+                    <option value="Tidak tersedia" {{ old('stok') == 'Tidak tersedia' ? 'selected' : '' }}>
+                      Tidak tersedia
+                    </option>
                   </select>
                   @if(errors.stok)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.stok }}</span>
                   @endif
                 </div>
               </div>
@@ -210,11 +205,12 @@
                   <input
                     type="file"
                     class="form-control {{ errors.foto_produk ? 'is-invalid' : '' }}"
-                    name="foto_produk" id="foto_produk"
+                    name="foto_produk"
+                    id="foto_produk"
                     required
                   />
                   @if(errors.foto_produk)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
+                    <span class="invalid-feedback">{{ errors.foto_produk }}</span>
                   @endif
                 </div>
               </div>

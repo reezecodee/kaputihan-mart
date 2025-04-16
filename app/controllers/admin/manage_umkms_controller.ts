@@ -24,7 +24,7 @@ export default class ManageUmkmsController {
     return view.render('pages/admin/manage-umkm/list/store')
   }
 
-  public product({ view, session }: HttpContext) {
+  public async product({ view, session }: HttpContext) {
     view.share({
       title: 'Daftar Produk UMKM',
       errors: session.flashMessages.get('errors') || {},
@@ -33,6 +33,8 @@ export default class ManageUmkmsController {
       headerData: {
         btnTitle: 'Tambah Produk',
       },
+      stores: await Store.query().exec(),
+      categories: await Category.query().exec(),
     })
 
     return view.render('pages/admin/manage-umkm/list/product')

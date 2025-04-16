@@ -41,6 +41,7 @@ router
           .as('store.user')
         router.post('store/category', [ManageUMKMsController, 'storeCategory']).as('store.category')
         router.post('store/store', [ManageUMKMsController, 'storeStore']).as('store.store')
+        router.post('store/product', [ManageUMKMsController, 'storeProduct']).as('store.product')
       })
       .prefix('api/v1')
 
