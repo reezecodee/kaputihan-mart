@@ -64,6 +64,8 @@ router
         router
           .put('update/category/:id', [ManageUMKMsController, 'updateCategory'])
           .as('update.category')
+        router.put('update/profile', [ProfilesController, 'updateProfile']).as('update.profile')
+        router.put('update/password', [ProfilesController, 'updatePassword']).as('update.password')
       })
       .prefix('api/v1')
 

@@ -1,0 +1,141 @@
+@layouts.admin()
+  <div class="card">
+    <div class="card-body">
+      <h3>
+        Detail profile
+      </h3>
+      <form action="{{ route('update.profile') }}?_method=PUT" method="post">
+        {{ csrfField() }}
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Nama <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ errors.nama ? 'is-invalid' : '' }}"
+                name="nama"
+                placeholder="Masukkan nama Anda"
+                required
+                value="{{ old('nama') || auth.user.nama }}"
+              />
+              @if(errors.nama)
+                <span class="invalid-feedback">{{ errors.nama }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Email <span class="text-danger">*</span></label>
+              <input
+                type="email"
+                class="form-control {{ errors.email ? 'is-invalid' : '' }}"
+                name="email"
+                placeholder="Masukkan email Anda"
+                required
+                value="{{ old('email') || auth.user.email }}"
+              />
+              @if(errors.email)
+                <span class="invalid-feedback">{{ errors.email }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Telepon <span class="text-danger">*</span></label>
+              <input
+                type="number"
+                class="form-control {{ errors.telepon ? 'is-invalid' : '' }}"
+                name="telepon"
+                placeholder="Masukkan telepon Anda"
+                required
+                value="{{ old('telepon') || auth.user.telepon }}"
+              />
+              @if(errors.telepon)
+                <span class="invalid-feedback">{{ errors.telepon }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="mb-3 form-group">
+              <label class="form-label">Alamat <span class="text-danger">*</span></label>
+              <textarea
+                name="alamat"
+                class="form-control {{ errors.alamat ? 'is-invalid' : '' }}"
+                placeholder="Masukkan alamat Anda"
+                required
+                cols="20"
+                rows="5"
+              >{{ old('alamat') || auth.user.alamat }}</textarea>
+              @if(errors.alamat)
+                <span class="invalid-feedback">{{ errors.alamat }}</span>
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary">Perbarui</button>
+        </div>
+      </form>
+      <br>
+      <h3>
+        Ganti password
+      </h3>
+      <form action="{{ route('update.password') }}?_method=PUT" method="post">
+        {{ csrfField() }}
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Password lama <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ errors.password ? 'is-invalid' : '' }}"
+                name="password"
+                placeholder="Masukkan password lama Anda"
+                required
+                value="{{ old('password') || '' }}"
+              />
+              @if(errors.password)
+                <span class="invalid-feedback">{{ errors.password }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Password baru <span class="text-danger">*</span></label>
+              <input
+                type="password"
+                class="form-control {{ errors.new_password ? 'is-invalid' : '' }}"
+                name="new_password"
+                placeholder="Masukkan password baru Anda"
+                required
+                value="{{ old('new_password') || '' }}"
+              />
+              @if(errors.new_password)
+                <span class="invalid-feedback">{{ errors.new_password }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Konfirmasi password <span class="text-danger">*</span></label>
+              <input
+                type="password"
+                class="form-control {{ errors.password_confirmation ? 'is-invalid' : '' }}"
+                name="password_confirmation"
+                placeholder="Konfirmasi password baru Anda"
+                required
+                value="{{ old('password_confirmation') || '' }}"
+              />
+              @if(errors.password_confirmation)
+                <span class="invalid-feedback">{{ errors.password_confirmation }}</span>
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary">Ganti Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+@end
