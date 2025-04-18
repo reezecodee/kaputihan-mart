@@ -9,7 +9,15 @@ export default class ProductDatatablesController {
     const orderColumn = request.input('order[0][column]', 'id')
     const orderDirection = request.input('order[0][dir]', 'asc')
 
-    const columns: string[] = ['id', 'nama_produk', 'kategori', 'nama_toko', 'stok', 'harga']
+    const columns: string[] = [
+      'id',
+      'slug',
+      'nama_produk',
+      'kategori',
+      'nama_toko',
+      'stok',
+      'harga',
+    ]
 
     const query = Product.query().preload('category').preload('store')
 
@@ -31,6 +39,7 @@ export default class ProductDatatablesController {
       recordsFiltered: products.total,
       data: products.all().map((product) => ({
         id: product.id,
+        slug: product.slug,
         nama_produk: product.nama_produk,
         kategori: product.category?.nama_kategori,
         nama_toko: product.store?.nama_toko,

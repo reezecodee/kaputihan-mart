@@ -17,6 +17,14 @@ router
             router.get('toko', [ManageUMKMsController, 'store']).as('admin.store-umkm')
             router.get('produk', [ManageUMKMsController, 'product']).as('admin.product')
             router.get('kategori', [ManageUMKMsController, 'category']).as('admin.category')
+
+            router.get('edit-toko/:id', [ManageUMKMsController, 'editStore']).as('admin.editStore')
+            router
+              .get('edit-produk/:slug', [ManageUMKMsController, 'editProduct'])
+              .as('admin.editProduct')
+            router
+              .get('edit-kategori/:id', [ManageUMKMsController, 'editCategory'])
+              .as('admin.editCategory')
           })
           .prefix('kelola-umkm')
 
@@ -49,6 +57,13 @@ router
         router.post('store/product', [ManageUMKMsController, 'storeProduct']).as('store.product')
 
         router.put('update/seller/:id', [ManageUsersController, 'updateSeller']).as('update.seller')
+        router.put('update/store/:id', [ManageUMKMsController, 'updateStore']).as('update.store')
+        router
+          .put('update/product/:id', [ManageUMKMsController, 'updateProduct'])
+          .as('update.product')
+        router
+          .put('update/category/:id', [ManageUMKMsController, 'updateCategory'])
+          .as('update.category')
       })
       .prefix('api/v1')
 

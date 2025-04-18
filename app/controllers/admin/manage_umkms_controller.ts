@@ -134,6 +134,59 @@ export default class ManageUmkmsController {
     }
   }
 
+  public async editStore({ view, session, params }: HttpContext) {
+    view.share({
+      title: 'Edit Toko UMKM',
+      errors: session.flashMessages.get('errors') || {},
+      pageHeader: true,
+      btnBack: true,
+      headerData: {
+        btnTitle: 'Kembali',
+      },
+      url: '/admin/kelola-umkm/toko',
+      store: await Store.findOrFail(params.id),
+    })
+
+    return view.render('pages/admin/manage-umkm/edit/edit-store')
+  }
+
+  public async editProduct({ view, session, params }: HttpContext) {
+    view.share({
+      title: 'Edit Produk UMKM',
+      errors: session.flashMessages.get('errors') || {},
+      pageHeader: true,
+      btnBack: true,
+      headerData: {
+        btnTitle: 'Kembali',
+      },
+      url: '/admin/kelola-umkm/produk',
+      product: await Product.query().where('slug', params.slug).firstOrFail(),
+      categories: await Category.query().exec(),
+    })
+
+    return view.render('pages/admin/manage-umkm/edit/edit-product')
+  }
+
+  public async editCategory({ view, session, params }: HttpContext) {
+    view.share({
+      title: 'Edit Kategori Produk',
+      errors: session.flashMessages.get('errors') || {},
+      pageHeader: true,
+      btnBack: true,
+      headerData: {
+        btnTitle: 'Kembali',
+      },
+      url: '/admin/kelola-umkm/kategori',
+      category: await Category.findOrFail(params.id),
+    })
+
+    return view.render('pages/admin/manage-umkm/edit/edit-category')
+  }
+
+  public async updateStore() {}
+  public async updateProduct() {}
+  public async updateCategory() {}
+
   public async destroyCategory({ params, session, response }: HttpContext) {
     try {
       const category = await Category.findOrFail(params.id)

@@ -46,7 +46,9 @@
               render: function(data, type, row) {
                 return `
                           <div class="d-flex">
+                              <a href="/admin/kelola-umkm/edit-toko/${data}">
                               <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                              </a>
                               <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
                                   {{ csrfField() }}
                                   <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
@@ -154,13 +156,9 @@
               </div>
               <div class="col-md-12">
                 <div class="d-flex justify-content-center">
-                  <img
-                    src="/svg/profile-preview.svg"
-                    id="img-preview"
-                    class="rounded-circle w-25 h-25 my-1"
-                    alt=""
-                    srcset=""
-                  />
+                  <div class="circle-wrapper">
+                    <img src="/svg/profile-preview.svg" id="img-preview" alt="Foto Toko" />
+                  </div>
                 </div>
                 <div class="mb-3 form-group">
                   <label class="form-label">Foto toko</label>

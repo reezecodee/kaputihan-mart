@@ -1,0 +1,141 @@
+@layouts.admin()
+  <div class="card">
+    <div class="card-body">
+      <form action="{{ route('update.product', {id: product.id}) }}?_method=PUT" method="post">
+        {{ csrfField() }}
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label class="form-label">Nama produk <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ errors.nama_produk ? 'is-invalid' : '' }}"
+                name="nama_produk"
+                placeholder="Masukkan nama produk"
+                required
+                value="{{ old('nama_produk') || product.nama_produk }}"
+              />
+              @if(errors.nama_produk)
+                <span class="invalid-feedback">{{ errors.nama_produk }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label class="form-label">Kategori produk <span class="text-danger">*</span></label>
+              <select name="kategori_id" class="form-select {{ errors.kategori_id ? 'is-invalid' : '' }}" required>
+                <option {{ !old('kategori_id') ? 'selected' : '' }}>
+                  Pilih kategori
+                </option>
+                @each((category) in categories)
+                <option value="{{ category.id }}" {{ (old('kategori_id') === category.id || product?.kategori_id === category.id) ? 'selected' : '' }}>
+                    {{ category.nama_kategori }}
+                  </option>
+                @endeach
+              </select>
+              @if(errors.kategori_id)
+                <span class="invalid-feedback">{{ errors.kategori_id }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label class="form-label">Harga <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ errors.harga ? 'is-invalid' : '' }}"
+                name="harga"
+                placeholder="Masukkan nama toko"
+                required
+                value="{{ old('harga') || product.harga }}"
+              />
+              @if(errors.harga)
+                <span class="invalid-feedback">{{ errors.harga }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label class="form-label">Stok <span class="text-danger">*</span></label>
+              <select name="stok" class="form-select {{ errors.stok ? 'is-invalid' : '' }}" required>
+                <option selected>
+                  Pilih stok
+                </option>
+                <option value="Tersedia" {{ old('stok') || product.stok === 'Tersedia' ? 'selected' : '' }}>
+                  Tersedia
+                </option>
+                <option value="Tidak tersedia" {{ old('stok') || product.stok === 'Tidak tersedia' ? 'selected' : '' }}>
+                  Tidak tersedia
+                </option>
+              </select>
+              @if(errors.stok)
+                <span class="invalid-feedback">{{ errors.stok }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="mb-3 form-group">
+              <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
+              <textarea
+                name="deskripsi"
+                class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}"
+                placeholder="Masukkan deskripsi toko"
+                required
+                cols="20"
+                rows="5"
+              >{{ old('deskripsi') || product.deskripsi }}</textarea>
+              @if(errors.deskripsi)
+                <span class="invalid-feedback">{{ errors.deskripsi }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="d-flex justify-content-center">
+                <img src="/uploads/foto_produk/{{ product.foto_produk }}" class="w-25 rounded" id="img-preview" alt="Foto Produk" />
+            </div>
+            <div class="mb-3 form-group">
+              <label class="form-label">Foto produk <span class="text-danger">*</span></label>
+              <input
+                type="file"
+                class="form-control {{ errors.foto_produk ? 'is-invalid' : '' }}"
+                name="foto_produk"
+                id="foto_produk"
+                required
+              />
+              @if(errors.foto_produk)
+                <span class="invalid-feedback">{{ errors.foto_produk }}</span>
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required />
+            <label class="form-check-label" for="flexCheckDefault">
+              Saya yakin bahwa data tersebut sudah benar.
+          </label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary">Edit Produk</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  document.getElementById("foto_produk")?.addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById("img-preview");
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = "/svg/profile-preview.svg";
+    }
+  });
+</script>
+@end

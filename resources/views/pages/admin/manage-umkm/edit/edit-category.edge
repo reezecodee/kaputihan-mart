@@ -1,0 +1,39 @@
+@layouts.admin()
+  <div class="card">
+    <div class="card-body">
+      <form action="{{ route('update.category', {id: category.id}) }}?_method=PUT" method="post">
+        {{ csrfField() }}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mb-3 form-group">
+              <label class="form-label">Nama kategori <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ errors.nama_kategori ? 'is-invalid' : '' }}"
+                name="nama_kategori"
+                placeholder="Masukkan nama kategori"
+                required
+                value="{{ old('nama_kategori') || category.nama_kategori }}"
+              />
+              @if(errors.nama_kategori)
+                <span class="invalid-feedback">{{ errors.nama_kategori }}</span>
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required />
+            <label class="form-check-label" for="flexCheckDefault">
+              Saya yakin bahwa data tersebut sudah benar.
+          </label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary">Edit Kategori</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+@end
