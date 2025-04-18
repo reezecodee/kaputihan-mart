@@ -1,0 +1,87 @@
+@layouts.admin()
+  <div class="card">
+    <div class="card-body">
+      <form action="{{ route('update.seller', {id: seller.id}) }}?_method=PUT" method="POST">
+        {{ csrfField() }}
+        <div class="row">
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Nama penjual <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ errors.nama ? 'is-invalid' : '' }}"
+                name="nama"
+                placeholder="Masukkan nama penjual"
+                required
+                value="{{ old('nama') || seller.nama }}"
+              />
+              @if(errors.nama)
+                <span class="invalid-feedback">{{ errors.nama }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Email <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ errors.email ? 'is-invalid' : '' }}"
+                name="email"
+                placeholder="Masukkan email penjual"
+                required
+                value="{{ old('email') || seller.email }}"
+              />
+              @if(errors.email)
+                <span class="invalid-feedback">{{ errors.email }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3 form-group">
+              <label class="form-label">Telepon <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ errors.telepon ? 'is-invalid' : '' }}"
+                name="telepon"
+                placeholder="Masukkan telepon penjual"
+                required
+                value="{{ old('telepon') || seller.telepon }}"
+              />
+              @if(errors.telepon)
+                <span class="invalid-feedback">{{ errors.telepon }}</span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="mb-3 form-group">
+              <label class="form-label">Alamat <span class="text-danger">*</span></label>
+              <textarea
+                name="alamat"
+                placeholder="Masukkan alamat"
+                class="form-control {{ errors.alamat ? 'is-invalid' : '' }}"
+                cols="10"
+                rows="5"
+                autocomplete="off"
+                required
+              >{{ old('alamat') || seller.alamat }}</textarea>
+              @if(errors.alamat)
+                <span class="invalid-feedback">{{ errors.alamat }}</span>
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required />
+            <label class="form-check-label" for="flexCheckDefault">
+              Saya yakin bahwa data tersebut sudah benar.
+            </label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary">Edit Penjual</button>
+        </div>
+      </form>
+    </div>
+  </div>
+@end

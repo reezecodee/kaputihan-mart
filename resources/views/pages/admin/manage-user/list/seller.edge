@@ -51,7 +51,9 @@
               render: function(data, type, row) {
                 return `
                 <div class="d-flex">
-                    <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                    <a href="/admin/kelola-pengguna/edit-penjual/${data}">
+                      <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                    </a>
                     <form method="POST" action="/api/v1/destroy/user/${data}?_method=DELETE" id="${data}">
                         {{ csrfField() }}
                         <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">

@@ -32,7 +32,12 @@ export default class CategoryDatatablesController {
       data: categories.all().map((category) => ({
         id: category.id,
         nama_kategori: category.nama_kategori,
-        created_at: category.createdAt,
+        created_at: category.createdAt.toJSDate().toLocaleDateString('id-ID', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+        }),
       })),
     })
   }

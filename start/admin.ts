@@ -25,8 +25,13 @@ router
             router.get('admin', [ManageUsersController, 'admin']).as('admin.admin')
             router.get('pengguna', [ManageUsersController, 'user']).as('admin.user')
             router.get('penjual', [ManageUsersController, 'seller']).as('admin.seller')
+
+            router
+              .get('edit-penjual/:id', [ManageUsersController, 'editSeller'])
+              .as('admin.editSeller')
           })
           .prefix('kelola-pengguna')
+
         router.get('pengaturan', [SettingsController, 'setting']).as('admin.setting')
         router.get('profile', [ProfilesController, 'profile']).as('admin.profile')
         router.get('bantuan', [HelpsController, 'help']).as('admin.help')
@@ -42,6 +47,8 @@ router
         router.post('store/category', [ManageUMKMsController, 'storeCategory']).as('store.category')
         router.post('store/store', [ManageUMKMsController, 'storeStore']).as('store.store')
         router.post('store/product', [ManageUMKMsController, 'storeProduct']).as('store.product')
+
+        router.put('update/seller/:id', [ManageUsersController, 'updateSeller']).as('update.seller')
       })
       .prefix('api/v1')
 

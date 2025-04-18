@@ -19,9 +19,6 @@
             <th>
               Alamat
             </th>
-            <th>
-              Action
-            </th>
           </tr>
         </thead>
       </table>
@@ -46,22 +43,6 @@
               data: "telepon"
             }, {
               data: "alamat"
-            }, {
-              data: "id",
-              render: function(data, type, row) {
-                return `
-                <div class="d-flex">
-                    <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
-                    <form method="POST" action="/api/v1/destroy/user/${data}?_method=DELETE" id="${data}">
-                        {{ csrfField() }}
-                        <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
-                            Hapus
-                        </button>
-                    </form>
-                </div>
-                    `;
-              },
-              orderable: false
             } ]
           });
         });
