@@ -1,7 +1,9 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 const DashboardController = () => import('#controllers/admin/dashboard_controller')
-const ManageUMKMsController = () => import('#controllers/admin/manage_umkms_controller')
+const StoresController = () => import('#controllers/admin/stores_controller')
+const ProductsController = () => import('#controllers/admin/products_controller')
+const CategoriesController = () => import('#controllers/admin/categories_controller')
 const ManageUsersController = () => import('#controllers/admin/manage_users_controller')
 const SettingsController = () => import('#controllers/admin/settings_controller')
 const ProfilesController = () => import('#controllers/admin/profiles_controller')
@@ -14,16 +16,16 @@ router
         router.get('dashboard', [DashboardController, 'dashboard']).as('admin.dashboard')
         router
           .group(() => {
-            router.get('toko', [ManageUMKMsController, 'store']).as('admin.store-umkm')
-            router.get('produk', [ManageUMKMsController, 'product']).as('admin.product')
-            router.get('kategori', [ManageUMKMsController, 'category']).as('admin.category')
+            router.get('toko', [StoresController, 'store']).as('admin.store-umkm')
+            router.get('produk', [ProductsController, 'product']).as('admin.product')
+            router.get('kategori', [CategoriesController, 'category']).as('admin.category')
 
-            router.get('edit-toko/:id', [ManageUMKMsController, 'editStore']).as('admin.editStore')
+            router.get('edit-toko/:id', [StoresController, 'editStore']).as('admin.editStore')
             router
-              .get('edit-produk/:slug', [ManageUMKMsController, 'editProduct'])
+              .get('edit-produk/:slug', [ProductsController, 'editProduct'])
               .as('admin.editProduct')
             router
-              .get('edit-kategori/:id', [ManageUMKMsController, 'editCategory'])
+              .get('edit-kategori/:id', [CategoriesController, 'editCategory'])
               .as('admin.editCategory')
           })
           .prefix('kelola-umkm')
@@ -52,17 +54,15 @@ router
           .post('store/user/:role', [ManageUsersController, 'store'])
           .where('role', /^(Admin|User|Seller)$/)
           .as('store.user')
-        router.post('store/category', [ManageUMKMsController, 'storeCategory']).as('store.category')
-        router.post('store/store', [ManageUMKMsController, 'storeStore']).as('store.store')
-        router.post('store/product', [ManageUMKMsController, 'storeProduct']).as('store.product')
+        router.post('store/category', [CategoriesController, 'storeCategory']).as('store.category')
+        router.post('store/store', [StoresController, 'storeStore']).as('store.store')
+        router.post('store/product', [ProductsController, 'storeProduct']).as('store.product')
 
         router.put('update/seller/:id', [ManageUsersController, 'updateSeller']).as('update.seller')
-        router.put('update/store/:id', [ManageUMKMsController, 'updateStore']).as('update.store')
+        router.put('update/store/:id', [StoresController, 'updateStore']).as('update.store')
+        router.put('update/product/:id', [ProductsController, 'updateProduct']).as('update.product')
         router
-          .put('update/product/:id', [ManageUMKMsController, 'updateProduct'])
-          .as('update.product')
-        router
-          .put('update/category/:id', [ManageUMKMsController, 'updateCategory'])
+          .put('update/category/:id', [CategoriesController, 'updateCategory'])
           .as('update.category')
         router.put('update/profile', [ProfilesController, 'updateProfile']).as('update.profile')
         router.put('update/password', [ProfilesController, 'updatePassword']).as('update.password')
@@ -73,7 +73,7 @@ router
       .group(() => {
         router.delete('destroy/user/:id', [ManageUsersController, 'destroy']).as('destroy.user')
         router
-          .delete('destroy/category/:id', [ManageUMKMsController, 'destroyCategory'])
+          .delete('destroy/category/:id', [CategoriesController, 'destroyCategory'])
           .as('destroy.category')
       })
       .prefix('api/v1')
