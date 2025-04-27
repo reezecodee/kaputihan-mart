@@ -4,7 +4,7 @@
       <h3>
         Detail profile
       </h3>
-      <form action="{{ route('update.profile') }}?_method=PUT" method="post">
+      <form action="{{ route('update.profile') }}?_method=PUT" method="post" autocomplete="off">
         {{ csrfField() }}
         <div class="row g-3">
           <div class="col-md-4">
@@ -76,11 +76,11 @@
           <button type="submit" class="btn btn-primary">Perbarui</button>
         </div>
       </form>
-      <br>
+      <br />
       <h3>
         Ganti password
       </h3>
-      <form action="{{ route('update.password') }}?_method=PUT" method="post">
+      <form action="{{ route('update.password') }}?_method=PUT" method="post" autocomplete="off">
         {{ csrfField() }}
         <div class="row g-3">
           <div class="col-md-4">
@@ -88,14 +88,14 @@
               <label class="form-label">Password lama <span class="text-danger">*</span></label>
               <input
                 type="text"
-                class="form-control {{ errors.password ? 'is-invalid' : '' }}"
-                name="password"
+                class="form-control {{ errors.old_password ? 'is-invalid' : '' }}"
+                name="old_password"
                 placeholder="Masukkan password lama Anda"
                 required
-                value="{{ old('password') || '' }}"
+                value="{{ old('old_password') || '' }}"
               />
-              @if(errors.password)
-                <span class="invalid-feedback">{{ errors.password }}</span>
+              @if(errors.old_password)
+                <span class="invalid-feedback">{{ errors.old_password }}</span>
               @endif
             </div>
           </div>
@@ -120,14 +120,14 @@
               <label class="form-label">Konfirmasi password <span class="text-danger">*</span></label>
               <input
                 type="password"
-                class="form-control {{ errors.password_confirmation ? 'is-invalid' : '' }}"
-                name="password_confirmation"
+                class="form-control {{ errors.new_password_confirmation ? 'is-invalid' : '' }}"
+                name="new_password_confirmation"
                 placeholder="Konfirmasi password baru Anda"
                 required
-                value="{{ old('password_confirmation') || '' }}"
+                value="{{ old('new_password_confirmation') || '' }}"
               />
-              @if(errors.password_confirmation)
-                <span class="invalid-feedback">{{ errors.password_confirmation }}</span>
+              @if(errors.new_password_confirmation)
+                <span class="invalid-feedback">{{ errors.new_password_confirmation }}</span>
               @endif
             </div>
           </div>

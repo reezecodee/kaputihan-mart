@@ -3,8 +3,8 @@ import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 vine.messagesProvider = new SimpleMessagesProvider({
   'toko_id.string': 'Toko tidak valid atau tidak ditemukan.',
   'kategori_id.string': 'Kategori tidak valid atau tidak ditemukan.',
-  'toko_id.unique': 'Toko tidak valid atau tidak ditemukan.',
-  'kategori_id.unique': 'Kategori tidak valid atau tidak ditemukan.',
+  'toko_id.exists': 'Toko tidak valid atau tidak ditemukan.',
+  'kategori_id.exists': 'Kategori tidak valid atau tidak ditemukan.',
   'nama_produk.string': 'Nama produk harus berupa teks.',
   'nama_produk.minLength': 'Nama produk harus terdiri dari minimal 5 karakter.',
   'nama_produk.maxLength': 'Nama produk tidak boleh lebih dari 255 karakter.',
