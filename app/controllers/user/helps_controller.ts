@@ -8,4 +8,12 @@ export default class HelpsController {
 
     return view.render('pages/user/help')
   }
+
+  public helpDetail({ view }: HttpContext) {
+    view.share({
+      title: 'Detail Bantuan',
+    })
+
+    return view.render('pages/user/help-detail')
+  }
 }
