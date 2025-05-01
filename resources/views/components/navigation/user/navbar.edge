@@ -1,31 +1,47 @@
-<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
-  <div class="offcanvas-header justify-content-end">
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div class="order-md-last">
-      <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-primary">Keranjang Kamu</span>
-        <span class="badge bg-primary rounded-pill">3</span>
-      </h4>
-      <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-          <div>
-            <h6 class="my-0">Growers cider</h6>
-            <small class="text-body-secondary">Brief description</small>
-          </div>
-          <span class="text-body-secondary">$12</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Total (Rp)</span>
-          <strong>Rp. 20</strong>
-        </li>
-      </ul>
+@if(auth.user)
+  <div
+    class="offcanvas offcanvas-end"
+    data-bs-scroll="true"
+    tabindex="-1"
+    id="offcanvasCart"
+    aria-labelledby="My Cart"
+  >
+    <div class="offcanvas-header justify-content-end">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Keranjang Kamu</span>
+          <span class="badge bg-primary rounded-pill">3</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">
+                Growers cider
+              </h6>
+              <small class="text-body-secondary">Brief description</small>
+            </div>
+            <span class="text-body-secondary">$12</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (Rp)</span>
+            <strong>Rp. 20</strong>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+@endif
 
-<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
+<div
+  class="offcanvas offcanvas-end"
+  data-bs-scroll="true"
+  tabindex="-1"
+  id="offcanvasSearch"
+  aria-labelledby="Search"
+>
   <div class="offcanvas-header justify-content-center">
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
@@ -34,8 +50,13 @@
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-primary">Cari</span>
       </h4>
-      <form role="search" action="index.html" method="get" class="d-flex mt-3 gap-0">
-        <input class="form-control rounded-start rounded-0 bg-light" type="email" placeholder="What are you looking for?" aria-label="What are you looking for?">
+      <form role="search" action="" method="get" class="d-flex mt-3 gap-0">
+        <input
+          class="form-control rounded-start rounded-0 bg-light"
+          type="email"
+          placeholder="Cari produk desa..."
+          aria-label="Cari produk desa..."
+        />
         <button class="btn btn-dark rounded-end rounded-0" type="submit">Cari</button>
       </form>
     </div>
@@ -44,116 +65,190 @@
 
 <header>
   <div class="container-fluid">
+
     <div class="row py-3 border-bottom">
-      
+
       <div class="col-sm-4 col-lg-3 text-center text-sm-start">
         <div class="main-logo">
           <a href="/">
-            <img src="{{ asset('images/logo-ecommerce.png') }}" alt="logo" class="img-fluid">
+            <img src="{{ asset('images/logo-ecommerce.png') }}" alt="logo" class="img-fluid" />
           </a>
         </div>
       </div>
-      
+
       <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-        <div class="search-bar row bg-light p-2 my-2 rounded-4">
-          <div class="col-md-4 d-none d-md-block">
-            <select class="form-select border-0 bg-transparent">
-              <option>Semua Kategori</option>
-              <option>Groceries</option>
-              <option>Drinks</option>
-              <option>Chocolates</option>
-            </select>
+        <form id="search-form" class="text-center" action="" method="get">
+          {{ csrfField() }}
+          <div class="search-bar row bg-light p-2 my-2 rounded-4">
+            <div class="col-md-4 d-none d-md-block">
+              <select name="category" class="form-select border-0 bg-transparent">
+                <option value="all">
+                  Semua Kategori
+                </option>
+                <option value="organik">
+                  Organik
+                </option>
+                <option value="kerajinan">
+                  Kerajinan tangan
+                </option>
+                <option value="makanan">
+                  Makanan
+                </option>
+              </select>
+            </div>
+            <div class="col-11 col-md-7">
+              <input
+                name="q"
+                type="text"
+                class="form-control border-0 bg-transparent"
+                placeholder="Cari produk desa..."
+              />
+            </div>
+            <div class="col-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"
+                />
+              </svg>
+            </div>
           </div>
-          <div class="col-11 col-md-7">
-            <form id="search-form" class="text-center" action="index.html" method="post">
-              <input type="text" class="form-control border-0 bg-transparent" placeholder="Cari produk desa..." />
-            </form>
-          </div>
-          <div class="col-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
-          </div>
-        </div>
+        </form>
       </div>
-      
-      <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+
+      <div
+        class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-end justify-content-sm-end"
+      >
         <ul class="d-flex justify-content-end list-unstyled m-0">
-          <li>
-            <a href="#" class="rounded-circle bg-light p-2 mx-1">
-              <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="rounded-circle bg-light p-2 mx-1">
-              <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-shield-exclamation"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.04 19.745c-.942 .551 -1.964 .976 -3.04 1.255a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 .195 6.015" /><path d="M19 16v3" /><path d="M19 22v.01" /></svg>
-            </a>
-          </li>
+          @if(auth.user)
+            <li>
+              <a href="#" class="rounded-circle bg-light p-2 mx-1">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                  <use xlink:href="#user" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="rounded-circle bg-light p-2 mx-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-shield-exclamation"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M15.04 19.745c-.942 .551 -1.964 .976 -3.04 1.255a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 .195 6.015"
+                  />
+                  <path d="M19 16v3" />
+                  <path d="M19 22v.01" />
+                </svg>
+              </a>
+            </li>
+          @endif
+          @if(auth.user)
+            <li class="d-lg-none">
+              <a
+                href="#"
+                class="rounded-circle bg-light p-2 mx-1"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasCart"
+                aria-controls="offcanvasCart"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                  <use xlink:href="#cart" />
+                </svg>
+              </a>
+            </li>
+          @endif
           <li class="d-lg-none">
-            <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-              <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
-            </a>
-          </li>
-          <li class="d-lg-none">
-            <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
-              <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#search"></use></svg>
+            <a
+              href="#"
+              class="rounded-circle bg-light p-2 mx-1"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasSearch"
+              aria-controls="offcanvasSearch"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#search" />
+              </svg>
             </a>
           </li>
         </ul>
 
-        <div class="cart text-end d-none d-lg-block dropdown">
-          <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-            <span class="fs-6 text-muted dropdown-toggle">Total keranjang</span>
-            <span class="cart-total fs-5 fw-bold">Rp.20.000</span>
-          </button>
-        </div>
+        @if(auth.user)
+          <div class="cart text-end d-none d-lg-block dropdown">
+            <button
+              class="border-0 bg-transparent d-flex flex-column gap-2 lh-1"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCart"
+              aria-controls="offcanvasCart"
+            >
+              <span class="fs-6 text-muted dropdown-toggle">Total keranjang</span>
+              <span class="cart-total fs-5 fw-bold">Rp.20.000</span>
+            </button>
+          </div>
+        @endif
+        @if(!auth.user)
+          <div class="text-end">
+            <a href="{{ route('login.show') }}">
+              <button
+                class="me-2"
+                style="padding: 10px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
+              >
+                Login
+            </button>
+            </a>
+          </div>
+        @endif
       </div>
 
     </div>
   </div>
   <div class="container-fluid">
     <div class="row py-3">
-      <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
+      <div class="d-flex  justify-content-end justify-content-sm-between align-items-center">
         <nav class="main-menu d-flex navbar navbar-expand-lg">
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
 
-            <div class="offcanvas-header justify-content-center">
+            <div class="offcanvas-header justify-content-end">
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
 
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-                <li class="nav-item active">
-                  <a href="#women" class="nav-link">Women</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a href="#men" class="nav-link">Men</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#kids" class="nav-link">Kids</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#accessories" class="nav-link">Accessories</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#brand" class="nav-link">Brand</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#sale" class="nav-link">Sale</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#blog" class="nav-link">Blog</a>
-                </li>
+                @each(category in navCategories)
+                  <li class="nav-item {{ request.param('id') == category.id ? 'active' : '' }}">
+                    <a href="{{ route('user.productList', { id: category.id }) }}" class="nav-link">{{ category.nama_kategori }}</a>
+                  </li>
+                @endeach
               </ul>
-            
             </div>
-
           </div>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>

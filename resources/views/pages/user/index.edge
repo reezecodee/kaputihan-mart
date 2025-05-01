@@ -1,912 +1,247 @@
 @layouts.user()
-@!component('components/partials/user/banner')
+  @!component('components/partials/user/banner')
 
-<section class="py-2 overflow-hidden">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="section-header d-flex flex-wrap justify-content-between mb-5">
-          <h2 class="section-title">Kategori</h2>
-
-          <div class="d-flex align-items-center">
-            <a href="#" class="btn-link text-decoration-none">Lihat semua kategori →</a>
-            <div class="swiper-buttons">
-              <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
-              <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
+  <section class="py-2 overflow-hidden">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+            <h2 class="section-title">
+              Kategori
+            </h2>
+            <div class="d-flex align-items-center">
+              <a href="#" class="btn-link text-decoration-none">Lihat semua kategori →</a>
+              <div class="swiper-buttons">
+                <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
+                <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
+              </div>
             </div>
           </div>
         </div>
-        
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-
-        <div class="category-carousel swiper">
-          <div class="swiper-wrapper">
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Breads & Sweets</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-2">
-  <div class="container-fluid">
-    
-    <div class="row">
-      <div class="col-md-12">
-
-        <div class="bootstrap-tabs product-tabs">
-          <div class="tabs-header d-flex justify-content-between border-bottom my-5">
-            <h3>Produk Terbaru</h3>
-          </div>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
-
-              <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-              
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="product-item">
-    
-                    <figure>
-                      <a href="index.html" title="Product Title">
-                        <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                      </a>
-                    </figure>
-                    <h3>Sunstar Fresh Melon Juice</h3>
-                    <span class="qty">Stok: Tersedia</span>
-                    <span class="price">Rp.12.000</span>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="input-group product-qty">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                                <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                              </button>
-                          </span>
-                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                          <span class="input-group-btn">
-                              <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                  <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                              </button>
-                          </span>
-                      </div>
-                      <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <!-- / product-grid -->
-              
+      <div class="row">
+        <div class="col-md-12">
+          <div class="category-carousel swiper">
+            <div class="swiper-wrapper">
+              @each(category in allCategories)
+                <a
+                  href="{{ route('user.productList', {id: category.id}) }}"
+                  class="nav-link category-item swiper-slide"
+                >
+                  <img src="{{ asset('user/images/icon-vegetables-broccoli.png') }}" alt="Category Thumbnail" />
+                  <h3 class="category-title">
+                    {{ category.nama_kategori }}
+                  </h3>
+                </a>
+              @endeach
             </div>
           </div>
         </div>
-
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="py-2 overflow-hidden">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-
-        <div class="section-header d-flex justify-content-between">
-          
-          <h2 class="section-title">Produk 100% organik</h2>
-
-          <div class="d-flex align-items-center">
-            <a href="#" class="btn-link text-decoration-none">Lihat semua →</a>
-            <div class="swiper-buttons">
-              <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
-              <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
-            </div>  
+  <section class="py-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="bootstrap-tabs product-tabs">
+            <div class="tabs-header d-flex justify-content-between border-bottom my-5">
+              <h3>
+                Produk Terbaru
+              </h3>
+            </div>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+                <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                  @each(product in latestProducts)
+                    <div class="col">
+                      <div class="product-item">
+                        <figure>
+                          <a href="{{ route('user.productDetail', {slug: product.slug}) }}" title="{{ product.nama_produk }}">
+                            <img src="{{ asset('user/images/thumb-bananas.png') }}" class="tab-image" />
+                          </a>
+                        </figure>
+                        <h3>
+                          {{ product.nama_produk }}
+                        </h3>
+                        <span class="qty">Stok: {{ product.stok }}</span>
+                        <span class="price">{{ formatRupiah(product.harga) }}</span>
+                        <form action="" method="post">
+                          {{ csrfField() }}
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="input-group product-qty">
+                              <span class="input-group-btn">
+                                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
+                                  <svg width="16" height="16">
+                                    <use xlink:href="#minus" />
+                                  </svg>
+                                </button>
+                              </span>
+                              <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" />
+                              <span class="input-group-btn">
+                                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
+                                  <svg width="16" height="16">
+                                    <use xlink:href="#plus" />
+                                  </svg>
+                                </button>
+                              </span>
+                            </div>
+                            <button type="submit" class="nav-link">Keranjang
+                              <iconify-icon icon="uil:shopping-cart">
+                              </iconify-icon>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  @endeach
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
+  </section>
 
-        <div class="products-carousel swiper">
-          <div class="swiper-wrapper">
-            
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
+  <section class="py-2 overflow-hidden">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-header d-flex justify-content-between">
+            <h2 class="section-title">
+              Produk 100% organik
+            </h2>
+            <div class="d-flex align-items-center">
+              <a href="#" class="btn-link text-decoration-none">Lihat semua →</a>
+              <div class="swiper-buttons">
+                <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
+                <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
               </div>
             </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-            
           </div>
         </div>
-        <!-- / products-carousel -->
-
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-2 overflow-hidden">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-
-        <div class="section-header d-flex justify-content-between">
-          
-          <h2 class="section-title">Produk kerajinan tangan</h2>
-
-          <div class="d-flex align-items-center">
-            <a href="#" class="btn-link text-decoration-none">Lihat semua →</a>
-            <div class="swiper-buttons">
-              <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
-              <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
-            </div>  
+      <div class="row">
+        <div class="col-md-12">
+          <div class="products-carousel swiper">
+            <div class="swiper-wrapper">
+              @each(product in latestProducts)
+                <div class="product-item swiper-slide">
+                  <figure>
+                    <a href="{{ route('user.productDetail', {slug: product.slug}) }}" title="{{ product.nama_produk }}">
+                      <img src="{{ asset('user/images/thumb-bananas.png') }}" class="tab-image" />
+                    </a>
+                  </figure>
+                  <h3>
+                    {{ product.nama_produk }}
+                  </h3>
+                  <span class="qty">Stok: {{ product.stok }}</span>
+                  <span class="price">{{ formatRupiah(product.harga) }}</span>
+                  <form action="" method="post">
+                    {{ csrfField() }}
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="input-group product-qty">
+                        <span class="input-group-btn">
+                          <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
+                            <svg width="16" height="16">
+                              <use xlink:href="#minus" />
+                            </svg>
+                          </button>
+                        </span>
+                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" />
+                        <span class="input-group-btn">
+                          <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
+                            <svg width="16" height="16">
+                              <use xlink:href="#plus" />
+                            </svg>
+                          </button>
+                        </span>
+                      </div>
+                      <button type="submit" class="nav-link">Keranjang
+                        <iconify-icon icon="uil:shopping-cart">
+                        </iconify-icon>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              @endeach
+            </div>
           </div>
         </div>
-        
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
+  </section>
 
-        <div class="products-carousel swiper">
-          <div class="swiper-wrapper">
-            
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
+  <section class="py-2 overflow-hidden">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-header d-flex justify-content-between">
+            <h2 class="section-title">
+              Produk kerajinan tangan
+            </h2>
+            <div class="d-flex align-items-center">
+              <a href="#" class="btn-link text-decoration-none">Lihat semua →</a>
+              <div class="swiper-buttons">
+                <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
+                <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
               </div>
             </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-
-            <div class="product-item swiper-slide">
-              <figure>
-                <a href="index.html" title="Product Title">
-                  <img src="{{ asset('user/images/thumb-bananas.png') }}"  class="tab-image">
-                </a>
-              </figure>
-              <h3>Sunstar Fresh Melon Juice</h3>
-              <span class="qty">Stok: Tersedia</span>
-              <span class="price">Rp.12.000</span>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="input-group product-qty">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                            <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                        </button>
-                    </span>
-                </div>
-                <a href="#" class="nav-link">Keranjang <iconify-icon icon="uil:shopping-cart"></a>
-              </div>
-            </div>
-            
           </div>
         </div>
-        <!-- / products-carousel -->
-
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="products-carousel swiper">
+            <div class="swiper-wrapper">
+              @each(product in latestProducts)
+                <div class="product-item swiper-slide">
+                  <figure>
+                    <a href="{{ route('user.productDetail', {slug: product.slug}) }}" title="{{ product.nama_produk }}">
+                      <img src="{{ asset('user/images/thumb-bananas.png') }}" class="tab-image" />
+                    </a>
+                  </figure>
+                  <h3>
+                    {{ product.nama_produk }}
+                  </h3>
+                  <span class="qty">Stok: {{ product.stok }}</span>
+                  <span class="price">{{ formatRupiah(product.harga) }}</span>
+                  <form action="" method="post">
+                    {{ csrfField() }}
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="input-group product-qty">
+                        <span class="input-group-btn">
+                          <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
+                            <svg width="16" height="16">
+                              <use xlink:href="#minus" />
+                            </svg>
+                          </button>
+                        </span>
+                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" />
+                        <span class="input-group-btn">
+                          <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
+                            <svg width="16" height="16">
+                              <use xlink:href="#plus" />
+                            </svg>
+                          </button>
+                        </span>
+                      </div>
+                      <button type="submit" class="nav-link">Keranjang
+                        <iconify-icon icon="uil:shopping-cart">
+                        </iconify-icon>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              @endeach
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-@!component('components/partials/user/process-information')
+  @!component('components/partials/user/process-information')
 @end
