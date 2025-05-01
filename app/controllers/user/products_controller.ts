@@ -16,9 +16,22 @@ export default class ProductsController {
     return view.render('pages/user/product-list')
   }
 
-  public async productDetail({ view }: HttpContext) {
+  public async productDetail({ view, params }: HttpContext) {
     view.share({
       title: 'Detail Produk',
+      product: await Product.query()
+        .select([
+          'nama_produk',
+          'deskripsi',
+          'foto_produk',
+          'harga',
+          'stok',
+          'toko_id',
+          'kategori_id',
+        ])
+        .where('slug', params.slug)
+        .preload('store')
+        .firstOrFail(),
       latestProducts: await Product.query()
         .select(['slug', 'nama_produk', 'stok', 'harga', 'foto_produk', 'kategori_id'])
         .where('status', 'Disetujui')

@@ -45,6 +45,8 @@ router.use([
  * the routes or the routes group.
  */
 export const middleware = router.named({
+  userGlobalVariable: () => import('#middleware/user_global_variable_middleware'),
   guest: () => import('#middleware/guest_middleware'),
   auth: () => import('#middleware/auth_middleware'),
+  restrictUser: () => import('#middleware/restricting_user_middleware'),
 })

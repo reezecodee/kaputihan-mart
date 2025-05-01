@@ -5,21 +5,20 @@
         <div class="col-lg-6">
           <img
             src="{{ asset('user/images/thumb-bananas.png') }}"
-            alt="Alpukat Manis Khas Tasikmalaya"
+            alt="{{ product.nama_produk }}"
             class="mb-3"
             style="width: 100%; max-width: 450px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
           />
         </div>
         <div class="col-lg-6">
           <h2 style="font-weight: bold; font-size: 2rem;">
-            Pisang Manis Khas Tasikmalaya
+            {{ product.nama_produk }}
           </h2>
           <p style="font-size: 1.1rem; color: #555; line-height: 1.6;">
-            Nikmati kelezatan pisang manis langsung dari kebun terbaik di Tasikmalaya. 
-          Teksturnya lembut, rasa manis alami, dan cocok dijadikan jus, campuran salad, atau disantap langsung.
+            {{ product.deskripsi }}
           </p>
           <p style="margin-top: 0.2rem; font-size: 1.2rem; color: #d32f2f;">
-            <strong>Harga: Rp45.000 / kg</strong>
+            <strong>Harga: {{ formatRupiah(product.harga) }}</strong>
           </p>
           <div class="d-flex align-items-start mt-1">
             <img
@@ -29,11 +28,13 @@
               style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #2ecc71;"
             />
             <div>
-              <h5 style="margin-bottom: 1px; font-weight: bold;">
-                Toko Pisang Desa
-              </h5>
+              <a style="text-decoration: none" href="{{ route('user.storeProfile', {id: product.store.id}) }}">
+                <h5 style="margin-bottom: 1px; font-weight: bold;">
+                  {{ product.store.nama_toko }}
+                </h5>
+              </a>
               <p class="text-muted mb-0" style="font-size: 0.95rem;">
-                Pisang segar langsung dari kebun Tasikmalaya. 100% organik!
+                {{ product.store.deskripsi }}
               </p>
               <div class="mb-2" style="color: #f1c40f; font-size: 0.9rem;">
                 ★ ★ ★ ★ ☆ <small class="text-muted">(4.5 / 200 ulasan)</small>

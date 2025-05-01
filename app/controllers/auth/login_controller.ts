@@ -18,7 +18,11 @@ export default class LoginController {
       const user = await User.verifyCredentials(email, password)
       await auth.use('web').login(user)
 
-      return response.redirect().toRoute('admin.dashboard')
+      if (auth.user?.role === 'Admin' || auth.user?.role === 'Seller') {
+        return response.redirect().toRoute('admin.dashboard')
+      } else {
+        return response.redirect().toRoute('user.home')
+      }
     } catch (error) {
       session.flash('errors', { login: 'Email atau password salah' })
       return response.redirect().back()
