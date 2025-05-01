@@ -21,44 +21,19 @@
 
           <div class="d-flex flex-column gap-3">
 
-            <!-- Card Laporan 1 -->
+            @each(help in helps)
             <div class="card shadow-sm">
               <div class="card-body">
                 <h5 class="card-title">
-                  Judul Laporan 1
+                  {{ help.judul }}
                 </h5>
                 <p class="mb-1 text-muted">
-                  📅 29 April 2025
+                  📅 {{ help.created_at.setLocale('id').toFormat("cccc, d LLLL yyyy") }}
                 </p>
-                <span class="badge bg-success">Selesai</span>
+                <span class="badge bg-success">{{ help.status }}</span>
               </div>
             </div>
-
-            <!-- Card Laporan 2 -->
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title">
-                  Judul Laporan 2
-                </h5>
-                <p class="mb-1 text-muted">
-                  📅 27 April 2025
-                </p>
-                <span class="badge bg-warning text-dark">Sedang Diproses</span>
-              </div>
-            </div>
-
-            <!-- Card Laporan 3 -->
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title">
-                  Judul Laporan 3
-                </h5>
-                <p class="mb-1 text-muted">
-                  📅 25 April 2025
-                </p>
-                <span class="badge bg-danger">Ditolak</span>
-              </div>
-            </div>
+            @endeach
 
           </div>
         </div>
