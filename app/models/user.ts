@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, beforeCreate, beforeSave, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Store from '#models/store'
 import Help from '#models/help'
@@ -18,7 +18,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare id: string
 
   @hasOne(() => Store, {
-    localKey: 'id',
     foreignKey: 'penjual_id',
   })
   declare store: HasOne<typeof Store>
@@ -29,7 +28,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
   }
 
   @hasMany(() => Help, {
-    localKey: 'id',
     foreignKey: 'pengguna_id',
   })
   declare help: HasMany<typeof Help>
@@ -50,7 +48,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare foto: string | null
 
   @column()
-  declare role: 'Admin' | 'User' | 'Seller'
+  declare role: 'Super Admin' | 'Admin' | 'User'
 
   @column({ serializeAs: null })
   declare password: string

@@ -15,7 +15,8 @@ vine.messagesProvider = new SimpleMessagesProvider({
   'deskripsi.trim': 'Deskripsi produk tidak boleh mengandung spasi di awal atau akhir.',
   'harga.string': 'Harga produk harus berupa teks.',
   'harga.trim': 'Harga produk tidak boleh mengandung spasi di awal atau akhir.',
-  'stok.enum': 'Pilih status stok produk dengan benar (Tersedia/Tidak tersedia).',
+  'status.enum': 'Pilih status produk dengan benar (Tersedia/Tidak tersedia).',
+  'stok.number': 'Harap isi stok dalam bentuk angka',
   'foto_produk.file':
     'Foto produk harus berupa file dengan ekstensi jpg atau png dan ukuran maksimal 1MB.',
   'foto_produk.optional':
@@ -35,7 +36,8 @@ export const createProductValidator = vine.compile(
     nama_produk: vine.string().minLength(5).maxLength(255).trim(),
     deskripsi: vine.string().minLength(10).maxLength(255).trim(),
     harga: vine.string().trim(),
-    stok: vine.enum(['Tersedia', 'Tidak tersedia']),
+    status: vine.enum(['Tersedia', 'Tidak tersedia']),
+    stok: vine.number(),
     foto_produk: vine
       .file({ size: '1mb', extnames: ['jpg', 'png'] })
       .optional()

@@ -14,7 +14,6 @@ export default class Category extends BaseModel {
   }
 
   @hasMany(() => Product, {
-    localKey: 'id',
     foreignKey: 'kategori_id',
   })
   declare product: HasMany<typeof Product>

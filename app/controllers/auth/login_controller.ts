@@ -18,7 +18,7 @@ export default class LoginController {
       const user = await User.verifyCredentials(email, password)
       await auth.use('web').login(user)
 
-      if (auth.user?.role === 'Admin' || auth.user?.role === 'Seller') {
+      if (auth.user?.role === 'Super Admin' || auth.user?.role === 'Admin') {
         return response.redirect().toRoute('admin.dashboard')
       } else {
         return response.redirect().toRoute('user.home')

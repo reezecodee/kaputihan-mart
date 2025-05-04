@@ -1,14 +1,26 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, beforeSave, belongsTo, column } from '@adonisjs/lucid/orm'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import {
+  BaseModel,
+  beforeCreate,
+  beforeSave,
+  belongsTo,
+  column,
+  hasMany,
+} from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import Store from '#models/store'
 import Category from '#models/category'
 import { v4 as uuidv4 } from 'uuid'
 import slugifyImport from 'slugify'
-
+import Transaction from '#models/transaction'
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
+
+  @hasMany(() => Transaction, {
+    foreignKey: 'produk_id',
+  })
+  declare transaction: HasMany<typeof Transaction>
 
   @beforeCreate()
   public static assignUuid(product: Product) {
@@ -22,13 +34,11 @@ export default class Product extends BaseModel {
   declare kategori_id: string
 
   @belongsTo(() => Store, {
-    localKey: 'id',
     foreignKey: 'toko_id',
   })
   declare store: BelongsTo<typeof Store>
 
   @belongsTo(() => Category, {
-    localKey: 'id',
     foreignKey: 'kategori_id',
   })
   declare category: BelongsTo<typeof Category>
@@ -46,13 +56,13 @@ export default class Product extends BaseModel {
   declare foto_produk: string
 
   @column()
-  declare harga: string
+  declare harga: number
 
   @column()
-  declare stok: 'Tersedia' | 'Tidak tersedia'
+  declare status: 'Tersedia' | 'Tidak tersedia'
 
   @column()
-  declare status: 'Disetujui' | 'Ditolak'
+  declare stok: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
