@@ -5,16 +5,6 @@ const fields = {
   foto_kategori: 'Foto kategori',
 }
 
-export const categoryValidator = vine.compile(
-  vine.object({
-    nama_kategori: vine.string().trim().minLength(2).maxLength(20),
-    foto_kategori: vine
-      .file({ size: '1mb', extnames: ['jpg', 'png'] })
-      .optional()
-      .nullable(),
-  })
-)
-
 vine.messagesProvider = new SimpleMessagesProvider(
   {
     'nama_kategori.required': '{{ field }} wajib diisi.',
@@ -24,4 +14,14 @@ vine.messagesProvider = new SimpleMessagesProvider(
     'foto_kategori.file.extnames': '{{ field }} hanya boleh berformat JPG atau PNG.',
   },
   fields
+)
+
+export const categoryValidator = vine.compile(
+  vine.object({
+    nama_kategori: vine.string().trim().minLength(2).maxLength(20),
+    foto_kategori: vine
+      .file({ size: '1mb', extnames: ['jpg', 'png'] })
+      .optional()
+      .nullable(),
+  })
 )

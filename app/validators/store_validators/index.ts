@@ -11,34 +11,6 @@ const fields = {
   foto_toko: 'Foto toko',
 }
 
-export const storeValidator = vine.compile(
-  vine.object({
-    nama_toko: vine.string().trim().minLength(2).maxLength(20),
-    deskripsi: vine.string().trim().minLength(5).maxLength(30),
-    alamat: vine.string().trim().minLength(20).maxLength(255),
-    no_telepon: vine
-      .string()
-      .trim()
-      .minLength(12)
-      .maxLength(15)
-      .regex(/^(08)\d+/)
-      .regex(/^\d+$/)
-      .use(uniqueRule({ table: 'stores', column: 'no_telepon' })),
-    email: vine
-      .string()
-      .trim()
-      .email()
-      .minLength(12)
-      .maxLength(15)
-      .use(uniqueRule({ table: 'stores', column: 'email' })),
-    status: vine.string().in(['Aktif', 'Nonaktif']).trim(),
-    foto_toko: vine
-      .file({ size: '1mb', extnames: ['jpg', 'png'] })
-      .optional()
-      .nullable(),
-  })
-)
-
 vine.messagesProvider = new SimpleMessagesProvider(
   {
     'nama_toko.required': '{{ field }} wajib diisi.',
@@ -74,4 +46,32 @@ vine.messagesProvider = new SimpleMessagesProvider(
     'foto_toko.file.extnames': '{{ field }} hanya boleh berupa file JPG atau PNG.',
   },
   fields
+)
+
+export const storeValidator = vine.compile(
+  vine.object({
+    nama_toko: vine.string().trim().minLength(2).maxLength(20),
+    deskripsi: vine.string().trim().minLength(5).maxLength(30),
+    alamat: vine.string().trim().minLength(20).maxLength(255),
+    no_telepon: vine
+      .string()
+      .trim()
+      .minLength(12)
+      .maxLength(15)
+      .regex(/^(08)\d+/)
+      .regex(/^\d+$/)
+      .use(uniqueRule({ table: 'stores', column: 'no_telepon' })),
+    email: vine
+      .string()
+      .trim()
+      .email()
+      .minLength(12)
+      .maxLength(15)
+      .use(uniqueRule({ table: 'stores', column: 'email' })),
+    status: vine.string().in(['Aktif', 'Nonaktif']).trim(),
+    foto_toko: vine
+      .file({ size: '1mb', extnames: ['jpg', 'png'] })
+      .optional()
+      .nullable(),
+  })
 )

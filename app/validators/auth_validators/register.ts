@@ -8,29 +8,6 @@ const fields = {
   password: 'Password',
 }
 
-export const registerValidator = vine.compile(
-  vine.object({
-    nama: vine.string().trim().minLength(2).maxLength(100),
-    email: vine
-      .string()
-      .trim()
-      .toLowerCase()
-      .email()
-      .minLength(5)
-      .maxLength(255)
-      .use(uniqueRule({ table: 'users', column: 'email' })),
-    telepon: vine
-      .string()
-      .trim()
-      .minLength(12)
-      .maxLength(15)
-      .regex(/^(08)\d+/)
-      .regex(/^\d+$/)
-      .use(uniqueRule({ table: 'users', column: 'telepon' })),
-    password: vine.string().trim().minLength(8).maxLength(20),
-  })
-)
-
 vine.messagesProvider = new SimpleMessagesProvider(
   {
     'nama.required': '{{ field }} wajib diisi.',
@@ -56,4 +33,27 @@ vine.messagesProvider = new SimpleMessagesProvider(
     'password.maxLength': '{{ field }} maksimal berisi 20 digit angka.',
   },
   fields
+)
+
+export const registerValidator = vine.compile(
+  vine.object({
+    nama: vine.string().trim().minLength(2).maxLength(100),
+    email: vine
+      .string()
+      .trim()
+      .toLowerCase()
+      .email()
+      .minLength(5)
+      .maxLength(255)
+      .use(uniqueRule({ table: 'users', column: 'email' })),
+    telepon: vine
+      .string()
+      .trim()
+      .minLength(12)
+      .maxLength(15)
+      .regex(/^(08)\d+/)
+      .regex(/^\d+$/)
+      .use(uniqueRule({ table: 'users', column: 'telepon' })),
+    password: vine.string().trim().minLength(8).maxLength(20),
+  })
 )

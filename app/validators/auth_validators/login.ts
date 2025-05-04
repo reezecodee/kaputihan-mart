@@ -5,13 +5,6 @@ const fields = {
   password: 'Password',
 }
 
-export const loginValidator = vine.compile(
-  vine.object({
-    email: vine.string().trim().toLowerCase().email(),
-    password: vine.string().trim().minLength(8),
-  })
-)
-
 vine.messagesProvider = new SimpleMessagesProvider(
   {
     'email.required': '{{ field }} wajib diisi.',
@@ -20,4 +13,11 @@ vine.messagesProvider = new SimpleMessagesProvider(
     'password.minLength': '{{ field }} minimal harus 8 karakter.',
   },
   fields
+)
+
+export const loginValidator = vine.compile(
+  vine.object({
+    email: vine.string().trim().toLowerCase().email(),
+    password: vine.string().trim().minLength(8),
+  })
 )

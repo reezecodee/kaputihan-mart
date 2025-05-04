@@ -6,15 +6,6 @@ const fields = {
   new_password: 'Password baru',
 }
 
-export function passwordValidator(userId: string) {
-  vine.compile(
-    vine.object({
-      old_password: vine.string().use(oldPasswordRule({ userId: userId })),
-      new_password: vine.string().minLength(8).maxLength(20).confirmed(),
-    })
-  )
-}
-
 vine.messagesProvider = new SimpleMessagesProvider(
   {
     'old_password.required': '{{ field }} wajib diisi.',
@@ -27,3 +18,12 @@ vine.messagesProvider = new SimpleMessagesProvider(
   },
   fields
 )
+
+export function passwordValidator(userId: string) {
+  vine.compile(
+    vine.object({
+      old_password: vine.string().use(oldPasswordRule({ userId: userId })),
+      new_password: vine.string().minLength(8).maxLength(20).confirmed(),
+    })
+  )
+}

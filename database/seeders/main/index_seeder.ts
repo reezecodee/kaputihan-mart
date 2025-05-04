@@ -24,5 +24,6 @@ export default class IndexSeeder extends BaseSeeder {
     await this.seed(await import('#database/seeders/transaction_seeder'))
     await this.seed(await import('#database/seeders/rating_seeder'))
     await this.seed(await import('#database/seeders/cart_seeder'))
+    await this.seed(await import('#database/seeders/setting_seeder'))
   }
 }

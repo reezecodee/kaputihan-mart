@@ -12,28 +12,6 @@ const fields = {
   foto_produk: 'Foto produk',
 }
 
-export const productValidator = vine.compile(
-  vine.object({
-    toko_id: vine
-      .string()
-      .trim()
-      .use(existRule({ table: 'stores', column: 'id' })),
-    kategori_id: vine
-      .string()
-      .trim()
-      .use(existRule({ table: 'stores', column: 'id' })),
-    nama_produk: vine.string().trim().minLength(5).maxLength(255),
-    deskripsi: vine.string().trim().minLength(20).maxLength(425),
-    harga: vine.number().min(0),
-    status: vine.string().in(['Tersedia', 'Tidak tersedia']).trim(),
-    stok: vine.number().min(10).max(5000),
-    foto_produk: vine
-      .file({ size: '1mb', extnames: ['jpg', 'png'] })
-      .optional()
-      .nullable(),
-  })
-)
-
 vine.messagesProvider = new SimpleMessagesProvider(
   {
     'toko_id.required': '{{ field }} wajib diisi.',
@@ -64,4 +42,26 @@ vine.messagesProvider = new SimpleMessagesProvider(
     'foto_produk.file.extnames': '{{ field }} hanya boleh berupa file JPG atau PNG.',
   },
   fields
+)
+
+export const productValidator = vine.compile(
+  vine.object({
+    toko_id: vine
+      .string()
+      .trim()
+      .use(existRule({ table: 'stores', column: 'id' })),
+    kategori_id: vine
+      .string()
+      .trim()
+      .use(existRule({ table: 'stores', column: 'id' })),
+    nama_produk: vine.string().trim().minLength(5).maxLength(255),
+    deskripsi: vine.string().trim().minLength(20).maxLength(425),
+    harga: vine.number().min(0),
+    status: vine.string().in(['Tersedia', 'Tidak tersedia']).trim(),
+    stok: vine.number().min(10).max(5000),
+    foto_produk: vine
+      .file({ size: '1mb', extnames: ['jpg', 'png'] })
+      .optional()
+      .nullable(),
+  })
 )

@@ -11,35 +11,6 @@ const fields = {
   foto: 'Foto',
 }
 
-export const createUserValidator = vine.compile(
-  vine.object({
-    nama: vine.string().trim().minLength(2).maxLength(100),
-    email: vine
-      .string()
-      .trim()
-      .toLowerCase()
-      .email()
-      .minLength(5)
-      .maxLength(255)
-      .use(uniqueRule({ table: 'users', column: 'email' })),
-    telepon: vine
-      .string()
-      .trim()
-      .minLength(12)
-      .maxLength(15)
-      .regex(/^(08)\d+/)
-      .regex(/^\d+$/)
-      .use(uniqueRule({ table: 'users', column: 'telepon' })),
-    password: vine.string().trim().minLength(8).maxLength(20),
-    alamat: vine.string().trim().minLength(20).maxLength(255),
-    role: vine.string().in(['User', 'Admin']).trim(),
-    foto: vine
-      .file({ size: '1mb', extnames: ['jpg', 'png'] })
-      .optional()
-      .nullable(),
-  })
-)
-
 vine.messagesProvider = new SimpleMessagesProvider(
   {
     'nama.required': '{{ field }} wajib diisi.',
@@ -75,4 +46,33 @@ vine.messagesProvider = new SimpleMessagesProvider(
     'foto.file.extnames': '{{ field }} hanya boleh berupa file JPG atau PNG.',
   },
   fields
+)
+
+export const createUserValidator = vine.compile(
+  vine.object({
+    nama: vine.string().trim().minLength(2).maxLength(100),
+    email: vine
+      .string()
+      .trim()
+      .toLowerCase()
+      .email()
+      .minLength(5)
+      .maxLength(255)
+      .use(uniqueRule({ table: 'users', column: 'email' })),
+    telepon: vine
+      .string()
+      .trim()
+      .minLength(12)
+      .maxLength(15)
+      .regex(/^(08)\d+/)
+      .regex(/^\d+$/)
+      .use(uniqueRule({ table: 'users', column: 'telepon' })),
+    password: vine.string().trim().minLength(8).maxLength(20),
+    alamat: vine.string().trim().minLength(20).maxLength(255),
+    role: vine.string().in(['User', 'Admin']).trim(),
+    foto: vine
+      .file({ size: '1mb', extnames: ['jpg', 'png'] })
+      .optional()
+      .nullable(),
+  })
 )
