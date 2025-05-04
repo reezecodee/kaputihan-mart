@@ -9,7 +9,7 @@ export default class HomeController {
       allCategories: await Category.query().select(['id', 'nama_kategori']),
       latestProducts: await Product.query()
         .select(['slug', 'nama_produk', 'stok', 'harga', 'foto_produk', 'kategori_id'])
-        .where('status', 'Disetujui')
+        .where('status', 'Tersedia')
         .preload('category')
         .orderBy('created_at', 'asc')
         .limit(10),

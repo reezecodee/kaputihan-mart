@@ -5,6 +5,8 @@ import { BaseModel, beforeCreate, column, hasMany, hasOne } from '@adonisjs/luci
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Store from '#models/store'
 import Help from '#models/help'
+import Transaction from '#models/transaction'
+import Cart from '#models/cart'
 import type { HasMany, HasOne } from '@adonisjs/lucid/types/relations'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -31,6 +33,16 @@ export default class User extends compose(BaseModel, AuthFinder) {
     foreignKey: 'pengguna_id',
   })
   declare help: HasMany<typeof Help>
+
+  @hasMany(() => Transaction, {
+    foreignKey: 'pengguna_id',
+  })
+  declare transaction: HasMany<typeof Transaction>
+
+  @hasMany(() => Cart, {
+    foreignKey: 'pengguna_id',
+  })
+  declare cart: HasMany<typeof Cart>
 
   @column()
   declare nama: string | null
