@@ -17,7 +17,6 @@ export default class Help extends BaseModel {
   }
 
   @belongsTo(() => User, {
-    localKey: 'id',
     foreignKey: 'pengguna_id',
   })
   declare user: BelongsTo<typeof User>

@@ -3,9 +3,6 @@ import app from '@adonisjs/core/services/app'
 
 export default class IndexSeeder extends BaseSeeder {
   private async seed(Seeder: { default: typeof BaseSeeder }) {
-    /**
-     * Do not run when not in a environment specified in Seeder
-     */
     if (
       !Seeder.default.environment ||
       (!Seeder.default.environment.includes('development') && app.inDev) ||

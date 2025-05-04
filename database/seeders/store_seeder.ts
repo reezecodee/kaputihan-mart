@@ -2,6 +2,8 @@ import Store from '#models/store'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class extends BaseSeeder {
+  public static environment = ['development', 'testing']
+
   async run() {
     await Store.createMany([
       {

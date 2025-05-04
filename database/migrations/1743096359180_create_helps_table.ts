@@ -14,7 +14,7 @@ export default class extends BaseSchema {
         .inTable('users')
         .onDelete('CASCADE')
       table.string('judul').notNullable()
-      table.string('penjelasan').notNullable()
+      table.text('penjelasan').notNullable()
       table.string('lampiran').notNullable()
       table.enum('status', ['Diproses', 'Selesai', 'Ditutup']).notNullable().index()
 

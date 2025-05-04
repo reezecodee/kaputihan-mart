@@ -4,14 +4,19 @@ import Store from '#models/store'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class extends BaseSeeder {
+  public static environment = ['development', 'testing']
+
   async run() {
     const stores = await Store.query().select(['id']).where('status', 'Aktif')
     const categories = await Category.query().select(['id'])
 
+    const storeIds = stores.map((store) => store.id)
+    const categoryIds = categories.map((category) => category.id)
+
     await Product.createMany([
       {
-        toko_id: stores[0].id,
-        kategori_id: categories[1].id,
+        toko_id: storeIds[0],
+        kategori_id: categoryIds[1],
         nama_produk: 'Pisang Asem Tanpa Biji',
         slug: 'pisang-asem-tanpa-biji',
         deskripsi:
@@ -22,8 +27,8 @@ export default class extends BaseSeeder {
         stok: 200,
       },
       {
-        toko_id: stores[0].id,
-        kategori_id: categories[1].id,
+        toko_id: storeIds[0],
+        kategori_id: categoryIds[1],
         nama_produk: 'Pisang Ambon Budidaya Desa Kaputihan',
         slug: 'pisang-ambon-budidaya-desa-kaputihan',
         deskripsi:
@@ -34,8 +39,8 @@ export default class extends BaseSeeder {
         stok: 200,
       },
       {
-        toko_id: stores[1].id,
-        kategori_id: categories[0].id,
+        toko_id: storeIds[1],
+        kategori_id: categoryIds[0],
         nama_produk: 'Sayur Kangkung Budidaya Desa Kaputihan',
         slug: 'sayur-kangkung-budidaya-desa-kaputihan',
         deskripsi:
@@ -46,8 +51,8 @@ export default class extends BaseSeeder {
         stok: 200,
       },
       {
-        toko_id: stores[1].id,
-        kategori_id: categories[0].id,
+        toko_id: storeIds[1],
+        kategori_id: categoryIds[0],
         nama_produk: 'Wortel Budidaya Desa Kaputihan',
         slug: 'wortel-budidaya-desa-kaputihan',
         deskripsi:
