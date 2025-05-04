@@ -3,6 +3,9 @@ import { createRegisterValidator } from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class RegisterController {
+  /**
+   * Fungsi untuk menampilkan halaman register
+   */
   public async show({ view, session }: HttpContext) {
     view.share({
       title: 'Register Akun',
@@ -12,6 +15,9 @@ export default class RegisterController {
     return view.render('pages/auth/register')
   }
 
+  /**
+   * Fungsi untuk menyimpan data register
+   */
   public async store({ request, response, session }: HttpContext) {
     const payload = await request.validateUsing(createRegisterValidator)
 

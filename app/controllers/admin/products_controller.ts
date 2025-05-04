@@ -6,6 +6,9 @@ import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ProductsController {
+  /**
+   * Fungsi untuk menampilkan halaman daftar produk UMKM
+   */
   public async product({ view, session }: HttpContext) {
     view.share({
       title: 'Daftar Produk UMKM',
@@ -22,6 +25,9 @@ export default class ProductsController {
     return view.render('pages/admin/manage-umkm/list/product')
   }
 
+  /**
+   * Fungsi untuk menampilkan halaman edit produk UMKM
+   */
   public async editProduct({ view, session, params }: HttpContext) {
     view.share({
       title: 'Edit Produk UMKM',
@@ -39,6 +45,9 @@ export default class ProductsController {
     return view.render('pages/admin/manage-umkm/edit/edit-product')
   }
 
+  /**
+   * Fungsi untuk menyimpan data produk
+   */
   public async storeProduct({ session, request, response }: HttpContext) {
     const payload = await request.validateUsing(createProductValidator)
 
@@ -72,5 +81,13 @@ export default class ProductsController {
     }
   }
 
+  /**
+   * Fungsi untuk memperbarui data produk
+   */
   public async updateProduct() {}
+
+  /**
+   * Fungsi untuk menghapus data produk
+   */
+  public async deleteProduct() {}
 }

@@ -3,6 +3,9 @@ import { createLoginValidator } from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class LoginController {
+  /**
+   * Fungsi untuk menampilkan halaman login
+   */
   public async show({ view }: HttpContext) {
     view.share({
       title: 'Login ke Aplikasi',
@@ -11,6 +14,9 @@ export default class LoginController {
     return view.render('pages/auth/login')
   }
 
+  /**
+   * Fungsi untuk memproses data login yang disubmit
+   */
   public async store({ request, response, auth, session }: HttpContext) {
     const { email, password } = await request.validateUsing(createLoginValidator)
 

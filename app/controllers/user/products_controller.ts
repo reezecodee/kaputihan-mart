@@ -2,6 +2,9 @@ import Product from '#models/product'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ProductsController {
+  /**
+   * Fungsi untuk menampilkan halaman daftar produk
+   */
   public async productList({ view }: HttpContext) {
     view.share({
       title: 'Daftar Produk',
@@ -16,6 +19,9 @@ export default class ProductsController {
     return view.render('pages/user/product-list')
   }
 
+  /**
+   * Fungsi untuk menampilkan halaman detail produk
+   */
   public async productDetail({ view, params }: HttpContext) {
     view.share({
       title: 'Detail Produk',

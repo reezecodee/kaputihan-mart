@@ -5,6 +5,9 @@ import type { HttpContext } from '@adonisjs/core/http'
 import hash from '@adonisjs/core/services/hash'
 
 export default class ProfilesController {
+  /**
+   * Fungsi untuk menampilkan halaman profile
+   */
   public profile({ view, session }: HttpContext) {
     view.share({
       title: 'Profile Saya',
@@ -16,6 +19,9 @@ export default class ProfilesController {
     return view.render('pages/admin/profile/index')
   }
 
+  /**
+   * Fungsi untuk memperbarui profile
+   */
   public async updateProfile({ request, response, session, auth }: HttpContext) {
     const profile = await User.findOrFail(auth.user?.id)
 
@@ -39,6 +45,9 @@ export default class ProfilesController {
     }
   }
 
+  /**
+   * Fungsi untuk memperbarui password
+   */
   public async updatePassword({ auth, request, session, response }: HttpContext) {
     const payload = await request.validateUsing(createPasswordValidator)
     const user = auth.user!

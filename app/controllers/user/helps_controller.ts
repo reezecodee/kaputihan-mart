@@ -3,6 +3,9 @@ import User from '#models/user'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class HelpsController {
+  /**
+   * Fungsi untuk menampilkan halaman pusat bantuan
+   */
   public async help({ view, auth }: HttpContext) {
     const profile = await User.findOrFail(auth.user?.id)
 
@@ -17,6 +20,9 @@ export default class HelpsController {
     return view.render('pages/user/help')
   }
 
+  /**
+   * Fungsi untuk menampilkan halaman detail laporan bantuan
+   */
   public helpDetail({ view }: HttpContext) {
     view.share({
       title: 'Detail Bantuan',

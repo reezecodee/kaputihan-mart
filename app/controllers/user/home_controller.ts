@@ -3,6 +3,9 @@ import Product from '#models/product'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class HomeController {
+  /**
+   * Fungsi untuk menampilkan halaman home pada aplikasi
+   */
   async home({ view }: HttpContext) {
     view.share({
       title: 'Selamat Datang di Toko UMKM Desa Kaputihan',

@@ -5,6 +5,9 @@ import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class StoresController {
+  /**
+   * Fungsi untuk menampilkan daftar toko
+   */
   public async store({ view, session }: HttpContext) {
     view.share({
       title: 'Daftar Toko UMKM',
@@ -20,6 +23,9 @@ export default class StoresController {
     return view.render('pages/admin/manage-umkm/list/store')
   }
 
+  /**
+   * Fungsi untuk menampilkan halaman edit toko
+   */
   public async editStore({ view, session, params }: HttpContext) {
     view.share({
       title: 'Edit Toko UMKM',
@@ -36,6 +42,9 @@ export default class StoresController {
     return view.render('pages/admin/manage-umkm/edit/edit-store')
   }
 
+  /**
+   * Fungsi untuk menyimpan data toko
+   */
   public async storeStore({ session, request, response }: HttpContext) {
     const payload = await request.validateUsing(createStoreValidator)
 
@@ -66,5 +75,13 @@ export default class StoresController {
     }
   }
 
+  /**
+   * Fungsi untuk memperbarui data toko
+   */
   public async updateStore() {}
+
+  /**
+   * Fungsi untuk menghapus data toko
+   */
+  public async deleteStore() {}
 }

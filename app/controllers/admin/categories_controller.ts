@@ -3,6 +3,9 @@ import { createCategoryValidator } from '#validators/category'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class CategoriesController {
+  /**
+   * Fungsi untuk menampilkan halaman daftar kategori.
+   */
   public category({ session, view }: HttpContext) {
     view.share({
       title: 'Daftar Kategori Produk',
@@ -17,6 +20,9 @@ export default class CategoriesController {
     return view.render('pages/admin/manage-umkm/list/category')
   }
 
+  /**
+   * Fungsi untuk menampilkan halaman edit kategori
+   */
   public async editCategory({ view, session, params }: HttpContext) {
     view.share({
       title: 'Edit Kategori Produk',
@@ -33,6 +39,9 @@ export default class CategoriesController {
     return view.render('pages/admin/manage-umkm/edit/edit-category')
   }
 
+  /**
+   * Fungsi untuk menyimpan kategori baru
+   */
   public async storeCategory({ session, request, response }: HttpContext) {
     const payload = await request.validateUsing(createCategoryValidator)
 
@@ -50,8 +59,14 @@ export default class CategoriesController {
     }
   }
 
+  /**
+   * Fungsi untuk memperbarui kategori
+   */
   public async updateCategory() {}
 
+  /**
+   * Fungsi untuk menghapus kategori
+   */
   public async destroyCategory({ params, session, response }: HttpContext) {
     try {
       const category = await Category.findOrFail(params.id)

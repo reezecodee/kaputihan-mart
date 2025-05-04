@@ -3,6 +3,9 @@ import Store from '#models/store'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class StoreProfilesController {
+  /**
+   * Fungsi untuk menampilkan halaman profile toko
+   */
   public async storeProfile({ view, params }: HttpContext) {
     view.share({
       title: 'Profile Toko UMKM',

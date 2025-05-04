@@ -5,6 +5,9 @@ import { cuid } from '@adonisjs/core/helpers'
 import { type HttpContext } from '@adonisjs/core/http'
 
 export default class ManageUsersController {
+  /**
+   * Fungsi untuk menampilkan halaman daftar admin
+   */
   public admin({ view, session }: HttpContext) {
     view.share({
       title: 'Daftar Admin',
@@ -19,6 +22,9 @@ export default class ManageUsersController {
     return view.render('pages/admin/manage-user/list/admin')
   }
 
+  /**
+   * Fungsi untuk menampilkan halaman daftar pengguna
+   */
   public user({ session, view }: HttpContext) {
     view.share({
       title: 'Daftar Pengguna',
@@ -31,36 +37,9 @@ export default class ManageUsersController {
     return view.render('pages/admin/manage-user/list/user')
   }
 
-  public seller({ session, view }: HttpContext) {
-    view.share({
-      title: 'Daftar Penjual UMKM',
-      errors: session.flashMessages.get('errors') || {},
-      pageHeader: true,
-      btnModal: true,
-      headerData: {
-        btnTitle: 'Tambah Penjual',
-      },
-    })
-
-    return view.render('pages/admin/manage-user/list/seller')
-  }
-
-  public async editSeller({ view, session, params }: HttpContext) {
-    view.share({
-      title: 'Edit Penjual UMKM',
-      errors: session.flashMessages.get('errors') || {},
-      pageHeader: true,
-      btnBack: true,
-      headerData: {
-        btnTitle: 'Kembali',
-      },
-      url: '/admin/kelola-pengguna/penjual',
-      seller: await User.findOrFail(params.id),
-    })
-
-    return view.render('pages/admin/manage-user/edit/edit-seller')
-  }
-
+  /**
+   * Fungsi untuk menyimpan data pengguna
+   */
   public async store({ request, params, session, response }: HttpContext) {
     const role =
       params.role === 'Admin' || params.role === 'Seller' || params.role === 'User'
@@ -97,29 +76,9 @@ export default class ManageUsersController {
     }
   }
 
-  public async updateSeller({ request, response, params, session }: HttpContext) {
-    const seller = await User.findOrFail(params.id)
-
-    const payload = await request.validateUsing(createEditSellerValidator, {
-      meta: {
-        extras: {
-          id: seller.id,
-        },
-      },
-    })
-
-    try {
-      seller.merge(payload)
-      await seller.save()
-
-      session.flash('success', { message: 'Berhasil memperbarui data seller' })
-      return response.redirect().back()
-    } catch (error) {
-      session.flash('failed', { message: 'Gagal memperbarui data pengguna' })
-      return response.redirect().back()
-    }
-  }
-
+  /**
+   * Fungsi untuk menghapus data pengguna
+   */
   public async destroy({ params, session, response }: HttpContext) {
     try {
       const user = await User.findOrFail(params.id)
