@@ -1,6 +1,9 @@
 import Category from '#models/category'
-import { createCategoryValidator } from '#validators/category'
+import { categoryValidator } from '#validators/category_validators/index'
+import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
+import app from '@adonisjs/core/services/app'
+import fs from 'node:fs'
 
 export default class CategoriesController {
   /**
@@ -43,16 +46,33 @@ export default class CategoriesController {
    * Fungsi untuk menyimpan kategori baru
    */
   public async storeCategory({ session, request, response }: HttpContext) {
-    const payload = await request.validateUsing(createCategoryValidator)
-
     try {
-      await Category.create(payload)
+      const payload = await request.validateUsing(categoryValidator)
+      let catgoryPhoto: string | null = null
 
-      session.flash('success', { message: `Berhasil menambahkan kategori baru.` })
+      if (payload.foto_kategori) {
+        catgoryPhoto = `${cuid()}.${payload.foto_kategori.extname}`
+        await payload.foto_kategori.move('public/uploads/foto_kategori', { name: catgoryPhoto })
+      }
+
+      const category = await Category.create({
+        nama_kategori: payload.nama_kategori,
+        foto_kategori: catgoryPhoto,
+      })
+
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil menambahkan kategori baru ${category.nama_kategori}.`,
+      })
+
       return response.redirect().back()
-    } catch (error) {
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flashAll()
       session.flash('failed', {
-        message: `Gagal menambahkan kategori baru. Periksa kembali input Anda.`,
+        type: 'alert-danger',
+        message: `Gagal menambahkan kategori baru.`,
       })
 
       return response.redirect().back()
@@ -62,21 +82,80 @@ export default class CategoriesController {
   /**
    * Fungsi untuk memperbarui kategori
    */
-  public async updateCategory() {}
+  public async updateCategory({ session, request, response, params }: HttpContext) {
+    const category = await Category.findOrFail(params.id)
+
+    try {
+      const payload = await request.validateUsing(categoryValidator)
+      let categoryPhoto: string | null = null
+
+      if (payload.foto_kategori) {
+        if (category.foto_kategori) {
+          const oldPhotoPath = app.publicPath(`uploads/foto_kategori/${category.foto_kategori}`)
+          if (fs.existsSync(oldPhotoPath)) {
+            fs.unlinkSync(oldPhotoPath)
+          }
+        }
+
+        categoryPhoto = `${cuid()}.${payload.foto_kategori.extname}`
+        await payload.foto_kategori.move('public/uploads/foto_kategori', { name: categoryPhoto })
+
+        category.foto_kategori = categoryPhoto
+      }
+
+      category.nama_kategori = payload.nama_kategori
+
+      await category.save()
+
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil memperbarui kategori ${category.nama_kategori}.`,
+      })
+      return response.redirect().back()
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flashAll()
+      session.flash('failed', {
+        type: 'alert-danger',
+        message: `Gagal memperbarui kategori ${category.nama_kategori}.`,
+      })
+
+      return response.redirect().back()
+    }
+  }
 
   /**
    * Fungsi untuk menghapus kategori
    */
   public async destroyCategory({ params, session, response }: HttpContext) {
+    const category = await Category.findOrFail(params.id)
+    const categoryName = category.nama_kategori
+
     try {
-      const category = await Category.findOrFail(params.id)
+      if (category.foto_kategori) {
+        const oldPhotoPath = app.publicPath(`uploads/foto_kategori/${category.foto_kategori}`)
+        if (fs.existsSync(oldPhotoPath)) {
+          fs.unlinkSync(oldPhotoPath)
+        }
+      }
+
       await category.delete()
 
-      session.flash('success', { message: 'Berhasil menghapus data kategori produk' })
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil menghapus kategori ${categoryName}`,
+      })
 
       return response.redirect().back()
-    } catch (error) {
-      session.flash('failed', { message: 'Gagal menghapus data kategori produk' })
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flash('failed', {
+        type: 'alert-danger',
+        message: `Gagal menghapus kategori ${category.nama_kategori}`,
+      })
+
       return response.redirect().back()
     }
   }

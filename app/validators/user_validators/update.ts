@@ -49,7 +49,7 @@ vine.messagesProvider = new SimpleMessagesProvider(
 )
 
 export function updateUserValidator(userId: string) {
-  vine.compile(
+  return vine.compile(
     vine.object({
       nama: vine.string().trim().minLength(2).maxLength(100),
       email: vine

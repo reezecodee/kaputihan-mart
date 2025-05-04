@@ -22,7 +22,7 @@ export default class Category extends BaseModel {
   declare nama_kategori: string
 
   @column()
-  declare foto_kategori: string
+  declare foto_kategori: string | null
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

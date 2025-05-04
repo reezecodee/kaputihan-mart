@@ -1,8 +1,10 @@
 import User from '#models/user'
-import { createEditSellerValidator } from '#validators/edit_seller'
-import { createUserValidator } from '#validators/user'
+import { createUserValidator } from '#validators/user_validators/create'
+import { updateUserValidator } from '#validators/user_validators/update'
 import { cuid } from '@adonisjs/core/helpers'
 import { type HttpContext } from '@adonisjs/core/http'
+import app from '@adonisjs/core/services/app'
+import fs from 'node:fs'
 
 export default class ManageUsersController {
   /**
@@ -41,35 +43,89 @@ export default class ManageUsersController {
    * Fungsi untuk menyimpan data pengguna
    */
   public async store({ request, params, session, response }: HttpContext) {
-    const role =
-      params.role === 'Admin' || params.role === 'Seller' || params.role === 'User'
-        ? params.role
-        : 'User'
-    const payload = await request.validateUsing(createUserValidator)
+    try {
+      const payload = await request.validateUsing(createUserValidator)
+      let profilePhoto: string | null = null
+
+      if (payload.foto) {
+        profilePhoto = `${cuid()}.${payload.foto.extname}`
+        await payload.foto.move('public/uploads/foto_profile', { name: profilePhoto })
+      }
+
+      const user = await User.create({
+        nama: payload.nama,
+        email: payload.email,
+        telepon: payload.telepon,
+        password: payload.password,
+        alamat: payload.alamat,
+        role: params.role,
+        foto: profilePhoto,
+      })
+
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil menambahkan ${user.role} baru ${user.nama}.`,
+      })
+
+      return response.redirect().back()
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flashAll()
+      session.flash('failed', {
+        type: 'alert-danger',
+        message: `Gagal menambahkan ${params.role} baru.`,
+      })
+
+      return response.redirect().back()
+    }
+  }
+
+  /**
+   * Fungsi untuk memperbarui data pengguna
+   */
+  public async update({ request, params, session, response }: HttpContext) {
+    const user = await User.findOrFail(params.id)
 
     try {
-      let fileName: string | null = null
+      const payload = await request.validateUsing(updateUserValidator(user.id))
+      let profilePhoto: string | null = null
 
-      if (role === 'User' || role === 'Seller') {
-        if (payload.foto) {
-          fileName = `${cuid()}.${payload.foto.extname}`
-          await payload.foto.move('public/uploads/foto_profil', { name: fileName })
+      if (payload.foto) {
+        if (user.foto) {
+          const oldPhotoPath = app.publicPath(`uploads/foto_profile/${user.foto}`)
+          if (fs.existsSync(oldPhotoPath)) {
+            fs.unlinkSync(oldPhotoPath)
+          }
         }
+
+        profilePhoto = `${cuid()}.${payload.foto.extname}`
+        await payload.foto.move('public/uploads/foto_profile', { name: profilePhoto })
+
+        user.foto = profilePhoto
       }
 
-      const userData = {
-        ...payload,
-        foto: fileName,
-        role,
-      }
+      user.nama = payload.nama
+      user.email = payload.email
+      user.telepon = payload.telepon
+      user.password = payload.password
+      user.alamat = payload.alamat
+      user.role = params.role
 
-      await User.create(userData)
+      await user.save()
 
-      session.flash('success', { message: `Berhasil menambahkan ${role} baru.` })
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil memperbarui ${user.role} ${user.nama}.`,
+      })
       return response.redirect().back()
-    } catch (error) {
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flashAll()
       session.flash('failed', {
-        message: `Gagal menambahkan ${role} baru. Periksa kembali input Anda.`,
+        type: 'alert-danger',
+        message: `Gagal memperbarui ${user.role} ${user.nama}.`,
       })
 
       return response.redirect().back()
@@ -80,15 +136,33 @@ export default class ManageUsersController {
    * Fungsi untuk menghapus data pengguna
    */
   public async destroy({ params, session, response }: HttpContext) {
+    const user = await User.findOrFail(params.id)
+    const name = user.nama
+
     try {
-      const user = await User.findOrFail(params.id)
+      if (user.foto) {
+        const oldPhotoPath = app.publicPath(`uploads/foto_profile/${user.foto}`)
+        if (fs.existsSync(oldPhotoPath)) {
+          fs.unlinkSync(oldPhotoPath)
+        }
+      }
+
       await user.delete()
 
-      session.flash('success', { message: 'Berhasil menghapus data pengguna' })
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil menghapus data ${name}`,
+      })
 
       return response.redirect().back()
-    } catch (error) {
-      session.flash('failed', { message: 'Gagal menghapus data pengguna' })
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flash('failed', {
+        type: 'alert-danger',
+        message: `Gagal menghapus data ${user.nama}`,
+      })
+
       return response.redirect().back()
     }
   }
