@@ -12,6 +12,7 @@ export default class extends BaseSchema {
       table.string('no_telepon').notNullable()
       table.string('email').notNullable()
       table.enum('status', ['Aktif', 'Nonaktif']).notNullable().index()
+      table.string('foto_toko').notNullable()
 
       table.timestamp('created_at')
       table.timestamp('updated_at')

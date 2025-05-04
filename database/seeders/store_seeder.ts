@@ -13,6 +13,7 @@ export default class extends BaseSeeder {
         no_telepon: '081298897000',
         email: 'pakslamet@gmail.com',
         status: 'Aktif',
+        foto_toko: '/foto_toko/contoh.jpg',
       },
       {
         nama_toko: 'Toko Sayuran Pak Budi',
@@ -21,6 +22,7 @@ export default class extends BaseSeeder {
         no_telepon: '081298897001',
         email: 'pakbudi@gmail.com',
         status: 'Aktif',
+        foto_toko: '/foto_toko/contoh.jpg',
       },
       {
         nama_toko: 'Toko Manggis Pak Ambajat',
@@ -29,6 +31,7 @@ export default class extends BaseSeeder {
         no_telepon: '081298897002',
         email: 'pakambajat@gmail.com',
         status: 'Nonaktif',
+        foto_toko: '/foto_toko/contoh.jpg',
       },
     ])
   }
