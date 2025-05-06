@@ -60,7 +60,7 @@ export default class CategoriesController {
         foto_kategori: catgoryPhoto,
       })
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil menambahkan kategori baru ${category.nama_kategori}.`,
       })
@@ -70,7 +70,7 @@ export default class CategoriesController {
       console.log(error)
 
       session.flashAll()
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal menambahkan kategori baru.`,
       })
@@ -107,7 +107,7 @@ export default class CategoriesController {
 
       await category.save()
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil memperbarui kategori ${category.nama_kategori}.`,
       })
@@ -116,7 +116,7 @@ export default class CategoriesController {
       console.log(error)
 
       session.flashAll()
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal memperbarui kategori ${category.nama_kategori}.`,
       })
@@ -142,7 +142,7 @@ export default class CategoriesController {
 
       await category.delete()
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil menghapus kategori ${categoryName}.`,
       })
@@ -151,7 +151,7 @@ export default class CategoriesController {
     } catch (error: unknown) {
       console.log(error)
 
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal menghapus kategori ${category.nama_kategori}`,
       })

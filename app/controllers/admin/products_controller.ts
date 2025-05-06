@@ -72,7 +72,7 @@ export default class ProductsController {
         stok: payload.stok,
       })
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil menambahkan produk baru ${product.nama_produk}.`,
       })
@@ -82,7 +82,7 @@ export default class ProductsController {
       console.log(error)
 
       session.flashAll()
-      session.flash('failed', { type: 'alert-danger', maessage: 'Gagal menambahkan produk baru.' })
+      session.flash('info', { type: 'alert-danger', maessage: 'Gagal menambahkan produk baru.' })
 
       return response.redirect().back()
     }
@@ -124,7 +124,7 @@ export default class ProductsController {
 
       await product.save()
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil memperbarui produk ${product.nama_produk}.`,
       })
@@ -133,7 +133,7 @@ export default class ProductsController {
       console.log(error)
 
       session.flashAll()
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal memperbarui produk ${product.nama_produk}.`,
       })
@@ -159,7 +159,7 @@ export default class ProductsController {
 
       await product.delete()
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil menghapus produk ${productName}.`,
       })
@@ -168,7 +168,7 @@ export default class ProductsController {
     } catch (error: unknown) {
       console.log(error)
 
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal menghapus produk ${product.nama_produk}.`,
       })

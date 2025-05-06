@@ -3,6 +3,11 @@
     <div class="container container-tight py-4">
       <div class="card card-md">
         <div class="card-body">
+          @flashMessage('info')
+            <div class="alert {{ $message.type }}">
+              {{ $message.message }}
+            </div>
+          @end
           <h2 class="h2 text-center mb-4">
             Register Akun
           </h2>
@@ -12,29 +17,37 @@
               <label class="form-label">Email</label>
               <input
                 type="email"
-                class="form-control {{ errors.email ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.email') ? 'is-invalid' : '' }}"
                 value="{{ old('email') || '' }}"
                 placeholder="Masukkan email Anda"
                 autocomplete="off"
                 name="email"
               />
-              @if(errors.email)
-                <span class="invalid-feedback">{{ errors.message }}</span>
-              @endif
+              @inputError('email')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
             <div class="mb-3">
               <label class="form-label">Telepon</label>
               <input
                 type="number"
-                class="form-control {{ errors.telepon ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.telepon') ? 'is-invalid' : '' }}"
                 value="{{ old('telepon') || '' }}"
                 placeholder="Masukkan nomor telepon"
                 autocomplete="off"
                 name="telepon"
               />
-              @if(errors.telepon)
-                <span class="invalid-feedback">{{ errors.message }}</span>
-              @endif
+              @inputError('email')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
             <div class="mb-3">
               <label class="form-label">
@@ -44,15 +57,12 @@
             <div class="input-group input-group-flat">
               <input
                 type="password"
-                class="form-control {{ errors.password ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.password') ? 'is-invalid' : '' }}"
                 value="{{ old('password') || '' }}"
                 placeholder="Masukkan password"
                 autocomplete="off"
                 name="password"
               />
-              @if(errors.password)
-                <span class="invalid-feedback">{{ errors.message }}</span>
-              @endif
               <span class="input-group-text">
                 <a href="#" class="link-secondary" title="Lihat password" data-bs-toggle="tooltip">
                   <svg
@@ -73,6 +83,13 @@
                   </svg>
                 </a>
               </span>
+              @inputError('password')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="mb-2">
@@ -83,14 +100,19 @@
           <div class="input-group input-group-flat">
             <input
               type="password"
-              class="form-control {{ errors.password_confirmation ? 'is-invalid' : '' }}"
+              class="form-control {{ flashMessages.has('errors.password_confirmation') ? 'is-invalid' : '' }}"
               placeholder="Konfirmasi password"
               autocomplete="off"
               name="password_confirmation"
+              value="{{ old('password_confirmation') || '' }}"
             />
-            @if(errors.password_confirmation)
-              <span class="invalid-feedback">{{ errors.message }}</span>
-            @endif
+            @inputError('password_confirmation')
+              @each(message in $messages)
+                <div class="invalid-feedback">
+                  {{ message }}
+                </div>
+              @end
+            @end
             <span class="input-group-text">
               <a href="#" class="link-secondary" title="Lihat password" data-bs-toggle="tooltip">
                 <svg

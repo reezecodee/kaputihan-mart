@@ -67,7 +67,7 @@ export default class StoresController {
         foto_toko: storePhoto,
       })
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil menambahkan toko baru ${store.nama_toko}.`,
       })
@@ -77,7 +77,7 @@ export default class StoresController {
       console.log(error)
 
       session.flashAll()
-      session.flash('failed', { type: 'alert-danger', message: 'Gagal menambahkan toko baru.' })
+      session.flash('info', { type: 'alert-danger', message: 'Gagal menambahkan toko baru.' })
       return response.redirect().back()
     }
   }
@@ -115,7 +115,7 @@ export default class StoresController {
 
       await store.save()
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil memperbarui toko ${store.nama_toko}.`,
       })
@@ -124,7 +124,7 @@ export default class StoresController {
       console.log(error)
 
       session.flashAll()
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal memperbarui toko ${store.nama_toko}.`,
       })
@@ -150,7 +150,7 @@ export default class StoresController {
 
       await store.delete()
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil menghapus toko ${storeName}`,
       })
@@ -159,7 +159,7 @@ export default class StoresController {
     } catch (error: unknown) {
       console.log(error)
 
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal menghapus toko ${store.nama_toko}`,
       })

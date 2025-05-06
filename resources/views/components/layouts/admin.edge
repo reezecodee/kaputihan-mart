@@ -52,14 +52,9 @@
         @endif
         <div class="page-body">
           <div class="container-xl">
-            @flashMessage('success')
-              <div class="alert alert-success">
-                {{ $message.message }}
-              </div>
-            @end
-            @flashMessage('failed')
-              <div class="alert alert-danger">
-                {{ $message.message }}
+            @flashMessage('info')
+              <div class="alert {{ $message.type }}">
+                {{ {{ $message.message }} }}
               </div>
             @end
             {{{ await $slots.main() }}}

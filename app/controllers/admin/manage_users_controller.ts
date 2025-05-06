@@ -62,7 +62,7 @@ export default class ManageUsersController {
         foto: profilePhoto,
       })
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil menambahkan ${user.role} baru ${user.nama}.`,
       })
@@ -72,7 +72,7 @@ export default class ManageUsersController {
       console.log(error)
 
       session.flashAll()
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal menambahkan ${params.role} baru.`,
       })
@@ -114,7 +114,7 @@ export default class ManageUsersController {
 
       await user.save()
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil memperbarui ${user.role} ${user.nama}.`,
       })
@@ -123,7 +123,7 @@ export default class ManageUsersController {
       console.log(error)
 
       session.flashAll()
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal memperbarui ${user.role} ${user.nama}.`,
       })
@@ -149,7 +149,7 @@ export default class ManageUsersController {
 
       await user.delete()
 
-      session.flash('success', {
+      session.flash('info', {
         type: 'alert-success',
         message: `Berhasil menghapus data ${name}`,
       })
@@ -158,7 +158,7 @@ export default class ManageUsersController {
     } catch (error: unknown) {
       console.log(error)
 
-      session.flash('failed', {
+      session.flash('info', {
         type: 'alert-danger',
         message: `Gagal menghapus data ${user.nama}`,
       })

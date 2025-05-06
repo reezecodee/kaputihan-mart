@@ -1,15 +1,14 @@
 import User from '#models/user'
-import { createRegisterValidator } from '#validators/auth'
+import { registerValidator } from '#validators/auth_validators/register'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class RegisterController {
   /**
    * Fungsi untuk menampilkan halaman register
    */
-  public async show({ view, session }: HttpContext) {
+  public async show({ view }: HttpContext) {
     view.share({
       title: 'Register Akun',
-      errors: session.flashMessages.get('errors') || {},
     })
 
     return view.render('pages/auth/register')
@@ -19,7 +18,7 @@ export default class RegisterController {
    * Fungsi untuk menyimpan data register
    */
   public async store({ request, response, session }: HttpContext) {
-    const payload = await request.validateUsing(createRegisterValidator)
+    const payload = await request.validateUsing(registerValidator)
 
     type UserType = {
       email: string
