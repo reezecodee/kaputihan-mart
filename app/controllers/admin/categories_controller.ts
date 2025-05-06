@@ -9,10 +9,9 @@ export default class CategoriesController {
   /**
    * Fungsi untuk menampilkan halaman daftar kategori.
    */
-  public category({ session, view }: HttpContext) {
+  public category({ view }: HttpContext) {
     view.share({
       title: 'Daftar Kategori Produk',
-      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnModal: true,
       headerData: {
@@ -26,10 +25,9 @@ export default class CategoriesController {
   /**
    * Fungsi untuk menampilkan halaman edit kategori
    */
-  public async editCategory({ view, session, params }: HttpContext) {
+  public async editCategory({ view, params }: HttpContext) {
     view.share({
       title: 'Edit Kategori Produk',
-      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnBack: true,
       headerData: {

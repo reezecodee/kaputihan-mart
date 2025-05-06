@@ -19,11 +19,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })
   declare id: string
 
-  @hasOne(() => Store, {
-    foreignKey: 'penjual_id',
-  })
-  declare store: HasOne<typeof Store>
-
   @beforeCreate()
   public static assignUuid(user: User) {
     user.id = uuidv4()

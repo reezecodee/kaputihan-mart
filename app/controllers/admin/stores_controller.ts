@@ -1,5 +1,4 @@
 import Store from '#models/store'
-import User from '#models/user'
 import { storeValidator } from '#validators/store_validators/index'
 import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -10,16 +9,14 @@ export default class StoresController {
   /**
    * Fungsi untuk menampilkan daftar toko
    */
-  public async store({ view, session }: HttpContext) {
+  public async store({ view }: HttpContext) {
     view.share({
       title: 'Daftar Toko UMKM',
-      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnModal: true,
       headerData: {
         btnTitle: 'Tambah Toko',
       },
-      owners: await User.query().where('role', 'Seller').doesntHave('store'),
     })
 
     return view.render('pages/admin/manage-umkm/list/store')
@@ -28,10 +25,9 @@ export default class StoresController {
   /**
    * Fungsi untuk menampilkan halaman edit toko
    */
-  public async editStore({ view, session, params }: HttpContext) {
+  public async editStore({ view, params }: HttpContext) {
     view.share({
       title: 'Edit Toko UMKM',
-      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnBack: true,
       headerData: {

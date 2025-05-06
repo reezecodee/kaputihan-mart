@@ -20,8 +20,8 @@ export default class ProductsController {
       headerData: {
         btnTitle: 'Tambah Produk',
       },
-      stores: await Store.query().exec(),
-      categories: await Category.query().exec(),
+      stores: await Store.query().select(['id', 'nama_toko']),
+      categories: await Category.query().select(['id', 'nama_kategori']),
     })
 
     return view.render('pages/admin/manage-umkm/list/product')
@@ -30,10 +30,9 @@ export default class ProductsController {
   /**
    * Fungsi untuk menampilkan halaman edit produk UMKM
    */
-  public async editProduct({ view, session, params }: HttpContext) {
+  public async editProduct({ view, params }: HttpContext) {
     view.share({
       title: 'Edit Produk UMKM',
-      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnBack: true,
       headerData: {
@@ -41,7 +40,7 @@ export default class ProductsController {
       },
       url: '/admin/kelola-umkm/produk',
       product: await Product.query().where('slug', params.slug).firstOrFail(),
-      categories: await Category.query().exec(),
+      categories: await Category.query().select(['id', 'nama_kategori']),
     })
 
     return view.render('pages/admin/manage-umkm/edit/edit-product')

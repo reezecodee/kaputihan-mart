@@ -10,10 +10,9 @@ export default class ManageUsersController {
   /**
    * Fungsi untuk menampilkan halaman daftar admin
    */
-  public admin({ view, session }: HttpContext) {
+  public admin({ view }: HttpContext) {
     view.share({
       title: 'Daftar Admin',
-      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnModal: true,
       headerData: {
@@ -27,10 +26,9 @@ export default class ManageUsersController {
   /**
    * Fungsi untuk menampilkan halaman daftar pengguna
    */
-  public user({ session, view }: HttpContext) {
+  public user({ view }: HttpContext) {
     view.share({
       title: 'Daftar Pengguna',
-      errors: session.flashMessages.get('errors') || {},
       pageHeader: true,
       btnModal: false,
       headerData: {},
