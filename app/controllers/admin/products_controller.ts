@@ -1,9 +1,11 @@
 import Category from '#models/category'
 import Product from '#models/product'
 import Store from '#models/store'
-import { createProductValidator } from '#validators/product'
+import { productValidator } from '#validators/product_validators/index'
 import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
+import app from '@adonisjs/core/services/app'
+import fs from 'node:fs'
 
 export default class ProductsController {
   /**
@@ -48,34 +50,39 @@ export default class ProductsController {
   /**
    * Fungsi untuk menyimpan data produk
    */
-  public async storeProduct({ session, request, response }: HttpContext) {
-    const payload = await request.validateUsing(createProductValidator)
-
+  public async storeProduct({ request, response, session }: HttpContext) {
     try {
-      let fileName: string | null = null
+      const payload = await request.validateUsing(productValidator)
+      let productPhoto: string | null = null
 
       if (payload.foto_produk) {
-        fileName = `${cuid()}.${payload.foto_produk.extname}`
-        await payload.foto_produk.move('public/uploads/foto_produk', { name: fileName })
+        productPhoto = `${cuid()}.${payload.foto_produk.extname}`
+        await payload.foto_produk.move('public/uploads/foto_produk', { name: productPhoto })
       }
 
-      await Product.create({
-        foto_produk: fileName ?? undefined,
+      const product = await Product.create({
         toko_id: payload.toko_id,
         kategori_id: payload.kategori_id,
         nama_produk: payload.nama_produk,
+        slug: payload.slug,
         deskripsi: payload.deskripsi,
+        foto_produk: productPhoto,
         harga: payload.harga,
+        status: payload.status as 'Tersedia' | 'Tidak tersedia',
         stok: payload.stok,
-        status: 'Disetujui',
       })
 
-      session.flash('success', { message: `Berhasil menambahkan produk baru.` })
-      return response.redirect().back()
-    } catch (error) {
-      session.flash('failed', {
-        message: `Gagal menambahkan produk baru. Periksa kembali input Anda.`,
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil menambahkan produk baru ${product.nama_produk}.`,
       })
+
+      return response.redirect().back()
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flashAll()
+      session.flash('failed', { type: 'alert-danger', maessage: 'Gagal menambahkan produk baru.' })
 
       return response.redirect().back()
     }
@@ -84,10 +91,89 @@ export default class ProductsController {
   /**
    * Fungsi untuk memperbarui data produk
    */
-  public async updateProduct() {}
+  public async updateProduct({ session, response, params, request }: HttpContext) {
+    const product = await Product.findOrFail(params.id)
+
+    try {
+      const payload = await request.validateUsing(productValidator)
+      let productPhoto: string | null = null
+
+      if (payload.foto_produk) {
+        if (payload.foto_produk) {
+          const oldPhotoPath = app.publicPath(`uploads/foto_produk/${payload.foto_produk}`)
+          if (fs.existsSync(oldPhotoPath)) {
+            fs.unlinkSync(oldPhotoPath)
+          }
+        }
+
+        productPhoto = `${cuid()}.${payload.foto_produk.extname}`
+        await payload.foto_produk.move('public/uploads/foto_produk', { name: productPhoto })
+
+        product.foto_produk = productPhoto
+      }
+
+      product.toko_id = payload.toko_id
+      product.kategori_id = payload.kategori_id
+      product.nama_produk = payload.nama_produk
+      product.slug = payload.slug
+      product.deskripsi = payload.deskripsi
+      product.foto_produk = productPhoto
+      product.harga = payload.harga
+      product.status = payload.status as 'Tersedia' | 'Tidak tersedia'
+      product.stok = payload.stok
+
+      await product.save()
+
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil memperbarui produk ${product.nama_produk}.`,
+      })
+      return response.redirect().back()
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flashAll()
+      session.flash('failed', {
+        type: 'alert-danger',
+        message: `Gagal memperbarui produk ${product.nama_produk}.`,
+      })
+
+      return response.redirect().back()
+    }
+  }
 
   /**
    * Fungsi untuk menghapus data produk
    */
-  public async deleteProduct() {}
+  public async deleteProduct({ session, params, response }: HttpContext) {
+    const product = await Product.findOrFail(params.id)
+    const productName = product.nama_produk
+
+    try {
+      if (product.foto_produk) {
+        const oldPhotoPath = app.publicPath(`uploads/foto_produk/${product.foto_produk}`)
+        if (fs.existsSync(oldPhotoPath)) {
+          fs.unlinkSync(oldPhotoPath)
+        }
+      }
+
+      await product.delete()
+
+      session.flash('success', {
+        type: 'alert-success',
+        message: `Berhasil menghapus produk ${productName}.`,
+      })
+
+      return response.redirect().back()
+    } catch (error: unknown) {
+      console.log(error)
+
+      session.flash('failed', {
+        type: 'alert-danger',
+        message: `Gagal menghapus produk ${product.nama_produk}.`,
+      })
+
+      return response.redirect().back()
+    }
+  }
 }

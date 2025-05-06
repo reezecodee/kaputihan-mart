@@ -144,7 +144,7 @@ export default class CategoriesController {
 
       session.flash('success', {
         type: 'alert-success',
-        message: `Berhasil menghapus kategori ${categoryName}`,
+        message: `Berhasil menghapus kategori ${categoryName}.`,
       })
 
       return response.redirect().back()

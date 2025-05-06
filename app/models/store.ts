@@ -34,7 +34,7 @@ export default class Store extends BaseModel {
   declare email: string
 
   @column()
-  declare foto_toko: string
+  declare foto_toko: string | null
 
   @column()
   declare status: 'Aktif' | 'Nonaktif'

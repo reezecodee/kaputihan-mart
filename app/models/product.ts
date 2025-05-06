@@ -53,7 +53,7 @@ export default class Product extends BaseModel {
   declare deskripsi: string
 
   @column()
-  declare foto_produk: string
+  declare foto_produk: string | null
 
   @column()
   declare harga: number

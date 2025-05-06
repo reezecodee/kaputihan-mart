@@ -10,6 +10,7 @@ const fields = {
   status: 'Status',
   stok: 'Stok',
   foto_produk: 'Foto produk',
+  slug: 'Slug',
 }
 
 vine.messagesProvider = new SimpleMessagesProvider(
@@ -63,5 +64,6 @@ export const productValidator = vine.compile(
       .file({ size: '1mb', extnames: ['jpg', 'png'] })
       .optional()
       .nullable(),
+    slug: vine.string().trim(),
   })
 )

@@ -58,7 +58,7 @@ export default class ManageUsersController {
         telepon: payload.telepon,
         password: payload.password,
         alamat: payload.alamat,
-        role: params.role,
+        role: payload.role as 'Super Admin' | 'Admin',
         foto: profilePhoto,
       })
 
