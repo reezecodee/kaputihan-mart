@@ -1,20 +1,12 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
 
-export default class RestrictingUserMiddleware {
+export default class OptionalAuthMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {
     /**
      * Middleware logic goes here (before the next call)
      */
-    if (!ctx.auth.isAuthenticated) {
-      return ctx.response.redirect().toRoute('login.show')
-    }
-
-    const user = ctx.auth.user
-
-    if (!user || (user.role !== 'Admin' && user.role !== 'Super Admin')) {
-      return ctx.response.redirect().toRoute('admin.dashboard')
-    }
+    await ctx.auth.check()
 
     /**
      * Call next method in the pipeline and return its output

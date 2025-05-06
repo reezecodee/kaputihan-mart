@@ -1,4 +1,4 @@
-@if(auth.user)
+@if(auth.isAuthenticated)
   <div
     class="offcanvas offcanvas-end"
     data-bs-scroll="true"
@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-@endif
+@end
 
 <div
   class="offcanvas offcanvas-end"
@@ -120,7 +120,7 @@
         class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-end justify-content-sm-end"
       >
         <ul class="d-flex justify-content-end list-unstyled m-0">
-          @if(auth.user)
+          @if(auth.isAuthenticated)
             <li>
               <a href="#" class="rounded-circle bg-light p-2 mx-1">
                 <svg width="24" height="24" viewBox="0 0 24 24">
@@ -129,30 +129,29 @@
               </a>
             </li>
             <li>
-              <a href="#" class="rounded-circle bg-light p-2 mx-1">
+              <a href="#" onclick="logout()" class="rounded-circle bg-light p-2 mx-1">
                 <svg
+                  data-slot="icon"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                   width="24"
                   height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-shield-exclamation"
                 >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path
-                    d="M15.04 19.745c-.942 .551 -1.964 .976 -3.04 1.255a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 .195 6.015"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
                   />
-                  <path d="M19 16v3" />
-                  <path d="M19 22v.01" />
+
                 </svg>
               </a>
             </li>
-          @endif
-          @if(auth.user)
+          @end
+          @if(auth.isAuthenticated)
             <li class="d-lg-none">
               <a
                 href="#"
@@ -166,7 +165,7 @@
                 </svg>
               </a>
             </li>
-          @endif
+          @end
           <li class="d-lg-none">
             <a
               href="#"
@@ -182,7 +181,7 @@
           </li>
         </ul>
 
-        @if(auth.user)
+        @if(auth.isAuthenticated)
           <div class="cart text-end d-none d-lg-block dropdown">
             <button
               class="border-0 bg-transparent d-flex flex-column gap-2 lh-1"
@@ -195,8 +194,8 @@
               <span class="cart-total fs-5 fw-bold">Rp.20.000</span>
             </button>
           </div>
-        @endif
-        @if(!auth.user)
+        @end
+        @if(!auth.isAuthenticated)
           <div class="text-end">
             <a href="{{ route('login.show') }}">
               <button
@@ -207,7 +206,7 @@
             </button>
             </a>
           </div>
-        @endif
+        @end
       </div>
 
     </div>
@@ -252,3 +251,7 @@
       </div>
     </div>
   </header>
+
+  <form action="{{ route('auth.logout') }}" method="post" id="logout-form" class="d-none">
+    {{ csrfField() }}
+  </form>

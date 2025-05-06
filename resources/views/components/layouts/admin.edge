@@ -54,7 +54,7 @@
           <div class="container-xl">
             @flashMessage('info')
               <div class="alert {{ $message.type }}">
-                {{ {{ $message.message }} }}
+                {{ $message.message }}
               </div>
             @end
             {{{ await $slots.main() }}}

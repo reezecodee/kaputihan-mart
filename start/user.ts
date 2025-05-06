@@ -25,4 +25,4 @@ router
       })
       .use(middleware.auth())
   })
-  .use(middleware.userGlobalVariable())
+  .use([middleware.userGlobalVariable(), middleware.optionalAuth()])

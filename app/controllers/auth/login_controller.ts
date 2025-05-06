@@ -24,10 +24,10 @@ export default class LoginController {
       const user = await User.verifyCredentials(email, password)
       await auth.use('web').login(user)
 
-      if (auth.user?.role === 'Super Admin' || auth.user?.role === 'Admin') {
+      if (user.role === 'Super Admin' || user.role === 'Admin') {
         session.flash('info', {
           type: 'alert-success',
-          message: `Selamat datang ${auth.user?.nama} di E-Commerce Desa Kaputihan.`,
+          message: `Selamat datang ${user.nama} di E-Commerce Desa Kaputihan.`,
         })
 
         return response.redirect().toRoute('admin.dashboard')
