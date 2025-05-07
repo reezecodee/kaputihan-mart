@@ -175,7 +175,7 @@
                     cols="20"
                     rows="5"
                   >{{ old('deskripsi') || '' }}</textarea>
-                  @inputError('kategori_id')
+                  @inputError('deskripsi')
                     @each(message in $messages)
                       <div class="invalid-feedback">
                         {{ message }}
@@ -206,21 +206,37 @@
               <div class="col-md-6">
                 <div class="mb-3 form-group">
                   <label class="form-label">Stok <span class="text-danger">*</span></label>
-                  <select
+                  <input
+                    type="number"
+                    class="form-control {{ flashMessages.has('errors.stok') ? 'is-invalid' : '' }}"
                     name="stok"
-                    class="form-select {{ flashMessages.has('errors.stok') ? 'is-invalid' : '' }}"
-                  >
-                    <option {{ !old('stok') ? 'selected' : '' }}>
-                      Pilih stok
+                    placeholder="Masukkan stok produk"
+                    value="{{ old('stok') || '' }}"
+                  />
+                  @inputError('stok')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3 form-group">
+                  <label class="form-label">Status <span class="text-danger">*</span></label>
+                  <select name="status" class="form-select {{ flashMessages.has('errors.status') ? 'is-invalid' : '' }}">
+                    <option selected>
+                      Pilih status
                     </option>
-                    <option value="Tersedia" {{ old('stok') == 'Tersedia' ? 'selected' : '' }}>
+                    <option value="Tersedia" {{ old('status') === 'Tersedia' ? 'selected' : '' }}>
                       Tersedia
                     </option>
-                    <option value="Tidak tersedia" {{ old('stok') == 'Tidak tersedia' ? 'selected' : '' }}>
+                    <option value="Tidak tersedia" {{ old('status') === 'Tidak tersedia' ? 'selected' : '' }}>
                       Tidak tersedia
                     </option>
                   </select>
-                  @inputError('stok')
+                  @inputError('status')
                     @each(message in $messages)
                       <div class="invalid-feedback">
                         {{ message }}

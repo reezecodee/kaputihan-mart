@@ -13,6 +13,7 @@ export default class extends BaseSeeder {
         password: '12345678',
         alamat: 'Jl. Raya Banjar - Sidaharja, Tambakreja, Lakbok, Ciamis, Jawa Barat',
         role: 'Super Admin',
+        admin_chat: 'Bukan',
       },
       {
         nama: 'Azfa Al Harits',
@@ -21,6 +22,7 @@ export default class extends BaseSeeder {
         password: '12345678',
         alamat: 'Jl. Raya Banjar - Sidaharja, Tambakreja, Lakbok, Ciamis, Jawa Barat',
         role: 'Admin',
+        admin_chat: 'Ya',
       },
       {
         nama: 'Amja Semdiri',
@@ -29,6 +31,7 @@ export default class extends BaseSeeder {
         password: '12345678',
         alamat: 'Jl. Raya Banjar - Sidaharja, Tambakreja, Lakbok, Ciamis, Jawa Barat',
         role: 'User',
+        admin_chat: 'Bukan',
       },
     ])
   }

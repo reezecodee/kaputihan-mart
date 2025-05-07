@@ -57,6 +57,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare role: 'Super Admin' | 'Admin' | 'User'
 
+  @column()
+  declare admin_chat: 'Ya' | 'Bukan'
+
   @column({ serializeAs: null })
   declare password: string
 

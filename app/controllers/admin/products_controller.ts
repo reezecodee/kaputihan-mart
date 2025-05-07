@@ -41,6 +41,7 @@ export default class ProductsController {
       url: '/admin/kelola-umkm/produk',
       product: await Product.query().where('slug', params.slug).firstOrFail(),
       categories: await Category.query().select(['id', 'nama_kategori']),
+      stores: await Store.query().select(['id', 'nama_toko']),
     })
 
     return view.render('pages/admin/manage-umkm/edit/edit-product')

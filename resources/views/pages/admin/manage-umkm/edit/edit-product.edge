@@ -53,9 +53,56 @@
           </div>
           <div class="col-md-6">
             <div class="mb-3 form-group">
+              <label class="form-label">Toko <span class="text-danger">*</span></label>
+              <select
+                name="toko_id"
+                class="form-select {{ flashMessages.has('errors.toko_id') ? 'is-invalid' : '' }}"
+              >
+                <option {{ !old('toko_id') ? 'selected' : '' }}>
+                  Pilih toko
+                </option>
+                @each((store) in stores)
+                  <option
+                    value="{{ store.id }}"
+                    {{ (old('toko_id') === store.id || product?.toko_id === store.id) ? 'selected' : '' }}
+                  >
+                    {{ store.nama_toko }}
+                  </option>
+                @endeach
+              </select>
+              @inputError('toko_id')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label class="form-label">Stok <span class="text-danger">*</span></label>
+              <input
+                type="number"
+                class="form-control {{ flashMessages.has('errors.stok') ? 'is-invalid' : '' }}"
+                name="stok"
+                placeholder="Masukkan stok produk"
+                value="{{ old('stok') || product.stok }}"
+              />
+              @inputError('stok')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
               <label class="form-label">Harga <span class="text-danger">*</span></label>
               <input
-                type="text"
+                type="number"
                 class="form-control {{ flashMessages.has('errors.harga') ? 'is-invalid' : '' }}"
                 name="harga"
                 placeholder="Masukkan nama toko"
@@ -72,19 +119,19 @@
           </div>
           <div class="col-md-6">
             <div class="mb-3 form-group">
-              <label class="form-label">Stok <span class="text-danger">*</span></label>
-              <select name="stok" class="form-select {{ flashMessages.has('errors.stok') ? 'is-invalid' : '' }}">
+              <label class="form-label">Status <span class="text-danger">*</span></label>
+              <select name="status" class="form-select {{ flashMessages.has('errors.status') ? 'is-invalid' : '' }}">
                 <option selected>
-                  Pilih stok
+                  Pilih status
                 </option>
-                <option value="Tersedia" {{ old('stok') || product.stok === 'Tersedia' ? 'selected' : '' }}>
+                <option value="Tersedia" {{ old('status') || product.status === 'Tersedia' ? 'selected' : '' }}>
                   Tersedia
                 </option>
-                <option value="Tidak tersedia" {{ old('stok') || product.stok === 'Tidak tersedia' ? 'selected' : '' }}>
+                <option value="Tidak tersedia" {{ old('status') || product.status === 'Tidak tersedia' ? 'selected' : '' }}>
                   Tidak tersedia
                 </option>
               </select>
-              @inputError('stok')
+              @inputError('status')
                 @each(message in $messages)
                   <div class="invalid-feedback">
                     {{ message }}
