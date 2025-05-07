@@ -1,3 +1,4 @@
+import { formatRupiah } from '#helpers/rupiah_helper'
 import Product from '#models/product'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -44,7 +45,7 @@ export default class ProductDatatablesController {
         kategori: product.category?.nama_kategori,
         nama_toko: product.store?.nama_toko,
         stok: product.stok,
-        harga: product.harga,
+        harga: formatRupiah(product.harga),
       })),
     })
   }

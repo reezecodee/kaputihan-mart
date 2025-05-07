@@ -34,11 +34,6 @@ router
           .group(() => {
             router.get('admin', [ManageUsersController, 'admin']).as('admin.admin')
             router.get('pengguna', [ManageUsersController, 'user']).as('admin.user')
-            // router.get('penjual', [ManageUsersController, 'seller']).as('admin.seller')
-
-            // router
-            //   .get('edit-penjual/:id', [ManageUsersController, 'editSeller'])
-            //   .as('admin.editSeller')
           })
           .prefix('kelola-pengguna')
 
@@ -58,7 +53,6 @@ router
         router.post('store/store', [StoresController, 'storeStore']).as('store.store')
         router.post('store/product', [ProductsController, 'storeProduct']).as('store.product')
 
-        // router.put('update/seller/:id', [ManageUsersController, 'updateSeller']).as('update.seller')
         router.put('update/store/:id', [StoresController, 'updateStore']).as('update.store')
         router.put('update/product/:id', [ProductsController, 'updateProduct']).as('update.product')
         router

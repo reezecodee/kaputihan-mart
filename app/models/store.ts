@@ -19,6 +19,9 @@ export default class Store extends BaseModel {
   declare product: HasMany<typeof Product>
 
   @column()
+  declare nama_pemilik: string
+
+  @column()
   declare nama_toko: string
 
   @column()

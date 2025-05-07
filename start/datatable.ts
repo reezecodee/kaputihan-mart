@@ -12,7 +12,7 @@ router
   .group(() => {
     router
       .get('user/:role', [UserDatatablesController, 'userDatatable'])
-      .where('role', /^(Admin|User|Seller)$/)
+      .where('role', /^(Admin|User|Super Admin)$/)
       .as('datatable.user')
 
     router

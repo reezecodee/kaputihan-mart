@@ -55,18 +55,18 @@
               data: "slug",
               render: function(data, type, row) {
                 return `
-              <div class="d-flex">
-                  <a href="/admin/kelola-umkm/edit-produk/${data}">
-                     <button class="btn btn-primary btn-edit me-1">Edit</button>
-                  </a>
-                  <form method="POST" action="/api/v1/destroy/category/${row.id}?_method=DELETE" id="${row.id}">
-                      {{ csrfField() }}
-                      <button type="button" onclick="submitForm('${row.id}')" class="btn btn-danger btn-delete">
-                          Hapus
-                      </button>
-                  </form>
-              </div>
-                  `;
+                  <div class="d-flex">
+                      <a href="/admin/kelola-umkm/edit-produk/${data}">
+                          <button class="btn btn-primary btn-edit me-1">Edit</button>
+                      </a>
+                      <form method="POST" action="/api/v1/destroy/category/${row.id}?_method=DELETE" id="${row.id}">
+                          {{ csrfField() }}
+                          <button type="button" onclick="submitForm('${row.id}')" class="btn btn-danger btn-delete">
+                              Hapus
+                          </button>
+                      </form>
+                  </div>
+                      `;
               },
               orderable: false
             } ]
@@ -91,7 +91,12 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
+        <form
+          action="{{ route('store.product') }}"
+          method="post"
+          enctype="multipart/form-data"
+          autocomplete="off"
+        >
           {{ csrfField() }}
           <div class="modal-body">
             <div class="row">
@@ -100,21 +105,27 @@
                   <label class="form-label">Nama produk <span class="text-danger">*</span></label>
                   <input
                     type="text"
-                    class="form-control {{ errors.nama_produk ? 'is-invalid' : '' }}"
+                    class="form-control {{ flashMessages.has('errors.nama_produk') ? 'is-invalid' : '' }}"
                     name="nama_produk"
                     placeholder="Masukkan nama produk"
-                    required
                     value="{{ old('nama_produk') || '' }}"
                   />
-                  @if(errors.nama_produk)
-                    <span class="invalid-feedback">{{ errors.nama_produk }}</span>
-                  @endif
+                  @inputError('nama_produk')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
                   <label class="form-label">Toko <span class="text-danger">*</span></label>
-                  <select name="toko_id" class="form-select {{ errors.toko_id ? 'is-invalid' : '' }}" required>
+                  <select
+                    name="toko_id"
+                    class="form-select {{ flashMessages.has('errors.toko_id') ? 'is-invalid' : '' }}"
+                  >
                     <option {{ !old('toko_id') ? 'selected' : '' }}>
                       Pilih toko
                     </option>
@@ -132,7 +143,10 @@
               <div class="col-md-6">
                 <div class="mb-3 form-group">
                   <label class="form-label">Kategori produk <span class="text-danger">*</span></label>
-                  <select name="kategori_id" class="form-select {{ errors.kategori_id ? 'is-invalid' : '' }}" required>
+                  <select
+                    name="kategori_id"
+                    class="form-select {{ flashMessages.has('errors.kategori_id') ? 'is-invalid' : '' }}"
+                  >
                     <option {{ !old('kategori_id') ? 'selected' : '' }}>
                       Pilih kategori
                     </option>
@@ -142,9 +156,13 @@
                       </option>
                     @endeach
                   </select>
-                  @if(errors.kategori_id)
-                    <span class="invalid-feedback">{{ errors.kategori_id }}</span>
-                  @endif
+                  @inputError('kategori_id')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-12">
@@ -152,15 +170,18 @@
                   <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
                   <textarea
                     name="deskripsi"
-                    class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}"
+                    class="form-control {{ flashMessages.has('errors.deskripsi') ? 'is-invalid' : '' }}"
                     placeholder="Masukkan deskripsi toko"
-                    required
                     cols="20"
                     rows="5"
                   >{{ old('deskripsi') || '' }}</textarea>
-                  @if(errors.deskripsi)
-                    <span class="invalid-feedback">{{ errors.deskripsi }}</span>
-                  @endif
+                  @inputError('kategori_id')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-6">
@@ -168,21 +189,27 @@
                   <label class="form-label">Harga <span class="text-danger">*</span></label>
                   <input
                     type="number"
-                    class="form-control {{ errors.harga ? 'is-invalid' : '' }}"
+                    class="form-control {{ flashMessages.has('errors.harga') ? 'is-invalid' : '' }}"
                     name="harga"
                     placeholder="Masukkan harga produk"
-                    required
                     value="{{ old('harga') || '' }}"
                   />
-                  @if(errors.harga)
-                    <span class="invalid-feedback">{{ errors.harga }}</span>
-                  @endif
+                  @inputError('harga')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
                   <label class="form-label">Stok <span class="text-danger">*</span></label>
-                  <select name="stok" class="form-select {{ errors.stok ? 'is-invalid' : '' }}" required>
+                  <select
+                    name="stok"
+                    class="form-select {{ flashMessages.has('errors.stok') ? 'is-invalid' : '' }}"
+                  >
                     <option {{ !old('stok') ? 'selected' : '' }}>
                       Pilih stok
                     </option>
@@ -193,9 +220,13 @@
                       Tidak tersedia
                     </option>
                   </select>
-                  @if(errors.stok)
-                    <span class="invalid-feedback">{{ errors.stok }}</span>
-                  @endif
+                  @inputError('stok')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-12">
@@ -206,14 +237,17 @@
                   <label class="form-label">Foto produk <span class="text-danger">*</span></label>
                   <input
                     type="file"
-                    class="form-control {{ errors.foto_produk ? 'is-invalid' : '' }}"
+                    class="form-control {{ flashMessages.has('errors.foto_produk') ? 'is-invalid' : '' }}"
                     name="foto_produk"
                     id="foto_produk"
-                    required
                   />
-                  @if(errors.foto_produk)
-                    <span class="invalid-feedback">{{ errors.foto_produk }}</span>
-                  @endif
+                  @inputError('foto_produk')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
             </div>

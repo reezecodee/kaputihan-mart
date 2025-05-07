@@ -11,7 +11,7 @@ export default class StoreDatatablesController {
 
     const columns: string[] = ['id', 'nama_pemilik', 'nama_toko', 'status']
 
-    const query = Store.query().preload('user')
+    const query = Store.query().select(['id', 'nama_pemilik', 'nama_toko', 'status'])
 
     if (searchValue) {
       query.where((builder) => {
@@ -31,7 +31,7 @@ export default class StoreDatatablesController {
       recordsFiltered: stores.total,
       data: stores.all().map((store) => ({
         id: store.id,
-        nama_pemilik: store.user?.nama,
+        nama_pemilik: store.nama_pemilik,
         nama_toko: store.nama_toko,
         status: store.status,
       })),

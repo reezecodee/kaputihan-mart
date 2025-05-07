@@ -1,7 +1,12 @@
 @layouts.admin()
   <div class="card">
     <div class="card-body">
-      <form action="{{ route('update.category', {id: category.id}) }}?_method=PUT" method="post">
+      <form
+        action="{{ route('update.category', {id: category.id}) }}?_method=PUT"
+        method="post"
+        enctype="multipart/form-data"
+        autocomplete="off"
+      >
         {{ csrfField() }}
         <div class="row">
           <div class="col-md-12">
@@ -9,15 +14,40 @@
               <label class="form-label">Nama kategori <span class="text-danger">*</span></label>
               <input
                 type="text"
-                class="form-control {{ errors.nama_kategori ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.nama_kategori') ? 'is-invalid' : '' }}"
                 name="nama_kategori"
                 placeholder="Masukkan nama kategori"
                 required
                 value="{{ old('nama_kategori') || category.nama_kategori }}"
               />
-              @if(errors.nama_kategori)
-                <span class="invalid-feedback">{{ errors.nama_kategori }}</span>
-              @endif
+              @inputError('nama_kategori')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="d-flex justify-content-center">
+              <img src="/svg/preview-product.svg" id="img-preview" class="h-25 w-25 my-1" alt="" srcset="" />
+            </div>
+            <div class="mb-3 form-group">
+              <label class="form-label">Foto kategori</label>
+              <input
+                type="file"
+                class="form-control {{ flashMessages.has('errors.foto_kategori') ? 'is-invalid' : '' }}"
+                name="foto_kategori"
+                id="foto_kategori"
+              />
+              @inputError('foto_kategori')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
         </div>

@@ -12,15 +12,18 @@
               <label class="form-label">Nama <span class="text-danger">*</span></label>
               <input
                 type="text"
-                class="form-control {{ errors.nama ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.nama') ? 'is-invalid' : '' }}"
                 name="nama"
                 placeholder="Masukkan nama Anda"
-                required
                 value="{{ old('nama') || auth.user.nama }}"
               />
-              @if(errors.nama)
-                <span class="invalid-feedback">{{ errors.nama }}</span>
-              @endif
+              @inputError('nama')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="col-md-4">
@@ -28,15 +31,18 @@
               <label class="form-label">Email <span class="text-danger">*</span></label>
               <input
                 type="email"
-                class="form-control {{ errors.email ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.email') ? 'is-invalid' : '' }}"
                 name="email"
                 placeholder="Masukkan email Anda"
-                required
                 value="{{ old('email') || auth.user.email }}"
               />
-              @if(errors.email)
-                <span class="invalid-feedback">{{ errors.email }}</span>
-              @endif
+              @inputError('email')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="col-md-4">
@@ -44,15 +50,18 @@
               <label class="form-label">Telepon <span class="text-danger">*</span></label>
               <input
                 type="number"
-                class="form-control {{ errors.telepon ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.telepon') ? 'is-invalid' : '' }}"
                 name="telepon"
                 placeholder="Masukkan telepon Anda"
-                required
                 value="{{ old('telepon') || auth.user.telepon }}"
               />
-              @if(errors.telepon)
-                <span class="invalid-feedback">{{ errors.telepon }}</span>
-              @endif
+              @inputError('telepon')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="col-md-12">
@@ -60,15 +69,19 @@
               <label class="form-label">Alamat <span class="text-danger">*</span></label>
               <textarea
                 name="alamat"
-                class="form-control {{ errors.alamat ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.alamat') ? 'is-invalid' : '' }}"
                 placeholder="Masukkan alamat Anda"
                 required
                 cols="20"
                 rows="5"
               >{{ old('alamat') || auth.user.alamat }}</textarea>
-              @if(errors.alamat)
-                <span class="invalid-feedback">{{ errors.alamat }}</span>
-              @endif
+              @inputError('alamat')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
         </div>
@@ -88,15 +101,18 @@
               <label class="form-label">Password lama <span class="text-danger">*</span></label>
               <input
                 type="text"
-                class="form-control {{ errors.old_password ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.old_password') ? 'is-invalid' : '' }}"
                 name="old_password"
                 placeholder="Masukkan password lama Anda"
-                required
                 value="{{ old('old_password') || '' }}"
               />
-              @if(errors.old_password)
-                <span class="invalid-feedback">{{ errors.old_password }}</span>
-              @endif
+              @inputError('old_password')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="col-md-4">
@@ -104,15 +120,18 @@
               <label class="form-label">Password baru <span class="text-danger">*</span></label>
               <input
                 type="password"
-                class="form-control {{ errors.new_password ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.new_password') ? 'is-invalid' : '' }}"
                 name="new_password"
                 placeholder="Masukkan password baru Anda"
-                required
                 value="{{ old('new_password') || '' }}"
               />
-              @if(errors.new_password)
-                <span class="invalid-feedback">{{ errors.new_password }}</span>
-              @endif
+              @inputError('new_password')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="col-md-4">
@@ -120,15 +139,18 @@
               <label class="form-label">Konfirmasi password <span class="text-danger">*</span></label>
               <input
                 type="password"
-                class="form-control {{ errors.new_password_confirmation ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.new_password_confirmation') ? 'is-invalid' : '' }}"
                 name="new_password_confirmation"
                 placeholder="Konfirmasi password baru Anda"
-                required
                 value="{{ old('new_password_confirmation') || '' }}"
               />
-              @if(errors.new_password_confirmation)
-                <span class="invalid-feedback">{{ errors.new_password_confirmation }}</span>
-              @endif
+              @inputError('new_password_confirmation')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
         </div>

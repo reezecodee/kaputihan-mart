@@ -76,7 +76,7 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="/api/v1/store/category" method="post">
+        <form action="/api/v1/store/category" method="post" autocomplete="off">
           {{ csrfField() }}
           <div class="modal-body">
             <div class="row">
@@ -85,15 +85,39 @@
                   <label class="form-label">Nama kategori <span class="text-danger">*</span></label>
                   <input
                     type="text"
-                    class="form-control {{ errors.nama_kategori ? 'is-invalid' : '' }}"
+                    class="form-control {{ flashMessages.has('errors.nama_kategori') ? 'is-invalid' : '' }}"
                     name="nama_kategori"
                     placeholder="Masukkan nama kategori"
-                    required
                     value="{{ old('nama_kategori') || '' }}"
                   />
-                  @if(errors.nama_kategori)
-                    <span class="invalid-feedback">{{ errors.message }}</span>
-                  @endif
+                  @inputError('nama_kategori')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="d-flex justify-content-center">
+                  <img src="/svg/preview-product.svg" id="img-preview" class="h-25 w-25 my-1" alt="" srcset="" />
+                </div>
+                <div class="mb-3 form-group">
+                  <label class="form-label">Foto kategori</label>
+                  <input
+                    type="file"
+                    class="form-control {{ flashMessages.has('errors.foto_kategori') ? 'is-invalid' : '' }}"
+                    name="foto_kategori"
+                    id="foto_kategori"
+                  />
+                  @inputError('foto_kategori')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
             </div>
@@ -134,4 +158,20 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById("foto_kategori")?.addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById("img-preview");
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "/svg/preview-product.svg";
+      }
+    });
+  </script>
 @end

@@ -36,8 +36,8 @@
               },
               orderable: false
             }, {
-              data: "nama_pemilik"
-            }, {
+              data: 'nama_pemilik'
+            },{
               data: "nama_toko"
             }, {
               data: "status"
@@ -45,18 +45,18 @@
               data: "id",
               render: function(data, type, row) {
                 return `
-                          <div class="d-flex">
-                              <a href="/admin/kelola-umkm/edit-toko/${data}">
-                              <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
-                              </a>
-                              <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
-                                  {{ csrfField() }}
-                                  <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
-                                      Hapus
-                                  </button>
-                              </form>
-                          </div>
-                              `;
+                  <div class="d-flex">
+                      <a href="/admin/kelola-umkm/edit-toko/${data}">
+                      <button class="btn btn-primary btn-edit me-1" data-id="${data}">Edit</button>
+                      </a>
+                      <form method="POST" action="/api/v1/destroy/store/${data}?_method=DELETE" id="${data}">
+                          {{ csrfField() }}
+                          <button type="button" onclick="submitForm('${data}')" class="btn btn-danger btn-delete">
+                              Hapus
+                          </button>
+                      </form>
+                  </div>
+                      `;
               },
               orderable: false
             } ]
@@ -81,7 +81,7 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{ route('store.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('store.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
           {{ csrfField() }}
           <div class="modal-body">
             <div class="row">
@@ -90,33 +90,37 @@
                   <label class="form-label">Nama toko <span class="text-danger">*</span></label>
                   <input
                     type="text"
-                    class="form-control {{ errors.nama_toko ? 'is-invalid' : '' }}"
+                    class="form-control {{ flashMessages.has('errors.nama_toko') ? 'is-invalid' : '' }}"
                     name="nama_toko"
                     placeholder="Masukkan nama toko"
-                    required
                     value="{{ old('nama_toko') || '' }}"
                   />
-                  @if(errors.nama_toko)
-                    <span class="invalid-feedback">{{ errors.nama_toko }}</span>
-                  @endif
+                  @inputError('nama_toko')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3 form-group">
-                  <label class="form-label">Pemilik <span class="text-danger">*</span></label>
-                  <select name="penjual_id" class="form-select {{ errors.penjual_id ? 'is-invalid' : '' }}" required>
-                    <option {{ !old('penjual_id') ? 'selected' : '' }}>
-                      Pilih pemilik
-                    </option>
-                    @each((owner) in owners)
-                      <option value="{{ owner.id }}" {{ old('penjual_id') == owner.id ? 'selected' : '' }}>
-                        {{ owner.nama }}
-                      </option>
-                    @endeach
-                  </select>
-                  @if(errors.penjual_id)
-                    <span class="invalid-feedback">{{ errors.penjual_id }}</span>
-                  @endif
+                  <label class="form-label">Nama pemilik <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control {{ flashMessages.has('errors.nama_pemilik') ? 'is-invalid' : '' }}"
+                    name="nama_pemilik"
+                    placeholder="Masukkan nama pemilik"
+                    value="{{ old('nama_pemilik') || '' }}"
+                  />
+                  @inputError('nama_pemilik')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-12">
@@ -124,21 +128,27 @@
                   <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
                   <textarea
                     name="deskripsi"
-                    class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}"
+                    class="form-control {{ flashMessages.has('errors.deskripsi') ? 'is-invalid' : '' }}"
                     placeholder="Masukkan deskripsi toko"
-                    required
                     cols="20"
                     rows="5"
                   >{{ old('deskripsi') || '' }}</textarea>
-                  @if(errors.deskripsi)
-                    <span class="invalid-feedback">{{ errors.deskripsi }}</span>
-                  @endif
+                  @inputError('deskripsi')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="mb-3 form-group">
                   <label class="form-label">Status <span class="text-danger">*</span></label>
-                  <select name="status" class="form-select {{ errors.status ? 'is-invalid' : '' }}" required>
+                  <select
+                    name="status"
+                    class="form-select {{ flashMessages.has('errors.status') ? 'is-invalid' : '' }}"
+                  >
                     <option selected>
                       Pilih status
                     </option>
@@ -149,9 +159,13 @@
                       Nonaktif
                     </option>
                   </select>
-                  @if(errors.status)
-                    <span class="invalid-feedback">{{ errors.status }}</span>
-                  @endif
+                  @inputError('status')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
               <div class="col-md-12">
@@ -164,13 +178,17 @@
                   <label class="form-label">Foto toko</label>
                   <input
                     type="file"
-                    class="form-control {{ errors.foto_toko ? 'is-invalid' : '' }}"
+                    class="form-control {{ flashMessages.has('errors.foto_toko') ? 'is-invalid' : '' }}"
                     name="foto_toko"
                     id="foto_toko"
                   />
-                  @if(errors.foto_toko)
-                    <span class="invalid-feedback">{{ errors.foto_toko }}</span>
-                  @endif
+                  @inputError('foto_toko')
+                    @each(message in $messages)
+                      <div class="invalid-feedback">
+                        {{ message }}
+                      </div>
+                    @end
+                  @end
                 </div>
               </div>
             </div>

@@ -81,7 +81,7 @@ export default class ProductsController {
       console.log(error)
 
       session.flashAll()
-      session.flash('info', { type: 'alert-danger', maessage: 'Gagal menambahkan produk baru.' })
+      session.flash('info', { type: 'alert-danger', message: 'Gagal menambahkan produk baru.' })
 
       return response.redirect().back()
     }

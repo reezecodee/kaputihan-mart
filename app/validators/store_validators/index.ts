@@ -2,6 +2,7 @@ import { uniqueRule } from '#validators/rules/unique_rule'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 
 const fields = {
+  nama_pemilik: 'Nama pemilik',
   nama_toko: 'Nama toko',
   deskripsi: 'Deskripsi',
   alamat: 'Alamat',
@@ -13,6 +14,10 @@ const fields = {
 
 vine.messagesProvider = new SimpleMessagesProvider(
   {
+    'nama_pemilik.required': '{{ field }} wajib diisi.',
+    'nama_pemilik.minLength': '{{ field }} minimal berisi 2 karakter.',
+    'nama_pemilik.maxLength': '{{ field }} maksimal berisi 20 karakter.',
+
     'nama_toko.required': '{{ field }} wajib diisi.',
     'nama_toko.minLength': '{{ field }} minimal berisi 2 karakter.',
     'nama_toko.maxLength': '{{ field }} maksimal berisi 20 karakter.',
@@ -50,6 +55,7 @@ vine.messagesProvider = new SimpleMessagesProvider(
 
 export const storeValidator = vine.compile(
   vine.object({
+    nama_pemilik: vine.string().trim().minLength(2).maxLength(20),
     nama_toko: vine.string().trim().minLength(2).maxLength(20),
     deskripsi: vine.string().trim().minLength(5).maxLength(30),
     alamat: vine.string().trim().minLength(20).maxLength(255),

@@ -1,0 +1,52 @@
+@layouts.admin()
+  <div class="card">
+    <div class="card-body">
+      <form action="?_method=PUT" method="post" autocomplete="off">
+        {{ csrfField() }}
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label class="form-label">Nama aplikasi <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ flashMessages.has('errors.nama_aplikasi') ? 'is-invalid' : '' }}"
+                name="nama_aplikasi"
+                placeholder="Masukkan nama aplikasi Anda"
+                value="{{ old('nama_aplikasi') || '' }}"
+              />
+              @inputError('nama_aplikasi')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label class="form-label">Singkatan <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ flashMessages.has('errors.singkatan') ? 'is-invalid' : '' }}"
+                name="singkatan"
+                placeholder="Masukkan singkatan aplikasi Anda"
+                value="{{ old('singkatan') || '' }}"
+              />
+              @inputError('singkatan')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary">Perbarui</button>
+        </div>
+      </form>
+    </div>
+  </div>
+@end

@@ -19,6 +19,7 @@ export default class ProfilesController {
   /**
    * Fungsi untuk memperbarui profile
    */
+  public async updateProfile() {}
   // public async updateProfile({ request, response, session, auth }: HttpContext) {
   //   const profile = await User.findOrFail(auth.user?.id)
 
@@ -45,6 +46,7 @@ export default class ProfilesController {
   /**
    * Fungsi untuk memperbarui password
    */
+  public async updatePassword() {}
   // public async updatePassword({ auth, request, session, response }: HttpContext) {
   //   const payload = await request.validateUsing(createPasswordValidator)
   //   const user = auth.user!

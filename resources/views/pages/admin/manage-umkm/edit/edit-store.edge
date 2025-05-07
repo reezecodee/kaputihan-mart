@@ -1,29 +1,54 @@
 @layouts.admin()
   <div class="card">
     <div class="card-body">
-      <form action="{{ route('update.store', {id: store.id}) }}?_method=PUT" method="post">
+      <form action="{{ route('update.store', {id: store.id}) }}?_method=PUT" method="post" autocomplete="off">
         {{ csrfField() }}
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label class="form-label">Nama pemilik <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control {{ flashMessages.has('errors.nama_pemilik') ? 'is-invalid' : '' }}"
+                name="nama_pemilik"
+                placeholder="Masukkan nama toko"
+                value="{{ old('nama_pemilik') || store.nama_pemilik }}"
+              />
+              @inputError('nama_pemilik')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
+            </div>
+          </div>
+          <div class="col-md-6">
             <div class="mb-3 form-group">
               <label class="form-label">Nama toko <span class="text-danger">*</span></label>
               <input
                 type="text"
-                class="form-control {{ errors.nama_toko ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.nama_toko') ? 'is-invalid' : '' }}"
                 name="nama_toko"
                 placeholder="Masukkan nama toko"
-                required
                 value="{{ old('nama_toko') || store.nama_toko }}"
               />
-              @if(errors.nama_toko)
-                <span class="invalid-feedback">{{ errors.nama_toko }}</span>
-              @endif
+              @inputError('nama_toko')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="col-md-12">
             <div class="mb-3 form-group">
               <label class="form-label">Status <span class="text-danger">*</span></label>
-              <select name="status" class="form-select {{ errors.status ? 'is-invalid' : '' }}" required>
+              <select
+                name="status"
+                class="form-select {{ flashMessages.has('errors.status') ? 'is-invalid' : '' }}"
+              >
                 <option selected>
                   Pilih status
                 </option>
@@ -34,9 +59,13 @@
                   Nonaktif
                 </option>
               </select>
-              @if(errors.status)
-                <span class="invalid-feedback">{{ errors.status }}</span>
-              @endif
+              @inputError('status')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="col-md-12">
@@ -44,15 +73,18 @@
               <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
               <textarea
                 name="deskripsi"
-                class="form-control {{ errors.deskripsi ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.deskripsi') ? 'is-invalid' : '' }}"
                 placeholder="Masukkan deskripsi toko"
-                required
                 cols="20"
                 rows="5"
               >{{ old('deskripsi') || store.deskripsi }}</textarea>
-              @if(errors.deskripsi)
-                <span class="invalid-feedback">{{ errors.deskripsi }}</span>
-              @endif
+              @inputError('deskripsi')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
           <div class="col-md-12">
@@ -65,13 +97,17 @@
               <label class="form-label">Foto toko</label>
               <input
                 type="file"
-                class="form-control {{ errors.foto_toko ? 'is-invalid' : '' }}"
+                class="form-control {{ flashMessages.has('errors.foto_toko') ? 'is-invalid' : '' }}"
                 name="foto_toko"
                 id="foto_toko"
               />
-              @if(errors.foto_toko)
-                <span class="invalid-feedback">{{ errors.foto_toko }}</span>
-              @endif
+              @inputError('foto_toko')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
           </div>
         </div>

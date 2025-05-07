@@ -7,6 +7,7 @@ export default class extends BaseSeeder {
   async run() {
     await Store.createMany([
       {
+        nama_pemilik: 'Slamet Santoso',
         nama_toko: 'Toko Pisang Pak Slamet',
         deskripsi: 'Menyediakan pisang berkualitas dari kebun terbaik di Tasikmalaya',
         alamat: 'Jl. Tanuwijaya, Empang Sari, Tawang, Kota Tasikmalaya, Jawa Barat',
@@ -16,6 +17,7 @@ export default class extends BaseSeeder {
         foto_toko: '/foto_toko/contoh.jpg',
       },
       {
+        nama_pemilik: 'Budi Santoso',
         nama_toko: 'Toko Sayuran Pak Budi',
         deskripsi: 'Menyediakan sayuran berkualitas dari kebun terbaik di Tasikmalaya',
         alamat: 'Jl. Tanuwijaya, Empang Sari, Tawang, Kota Tasikmalaya, Jawa Barat',
@@ -25,6 +27,7 @@ export default class extends BaseSeeder {
         foto_toko: '/foto_toko/contoh.jpg',
       },
       {
+        nama_pemilik: 'Ambajat Santoso',
         nama_toko: 'Toko Manggis Pak Ambajat',
         deskripsi: 'Menyediakan manggis berkualitas dari kebun terbaik di Tasikmalaya',
         alamat: 'Jl. Tanuwijaya, Empang Sari, Tawang, Kota Tasikmalaya, Jawa Barat',
