@@ -4,7 +4,9 @@ export default class DashboardController {
   /**
    * Fungsi untuk menampilkan halaman dashboard admin & super admin
    */
-  public dashboard({ view }: HttpContext) {
+  public async dashboard({ view, bouncer }: HttpContext) {
+    await bouncer.with('UserPolicy').denies('editAdminChat')
+
     view.share({
       title: 'Dashboard Admin',
       pageHeader: true,

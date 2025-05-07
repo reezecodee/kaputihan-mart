@@ -1,4 +1,5 @@
 import User from '#models/user'
+import UserPolicy from '#policies/user_policy'
 import { createUserValidator } from '#validators/user_validators/create'
 import { updateUserValidator } from '#validators/user_validators/update'
 import { cuid } from '@adonisjs/core/helpers'
@@ -162,6 +163,12 @@ export default class ManageUsersController {
       })
 
       return response.redirect().back()
+    }
+  }
+
+  public async editAdminChat({ bouncer, response }: HttpContext) {
+    if (await bouncer.with(UserPolicy).denies('editAdminChat')) {
+      return response.forbidden('Hanya Super Admin yang bisa mengubah Admin Chat.')
     }
   }
 }
