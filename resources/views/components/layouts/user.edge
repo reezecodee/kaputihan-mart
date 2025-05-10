@@ -136,6 +136,11 @@
     @!component('components/navigation/user/navbar')
 
     {{{ await $slots.main() }}}
+
+    @if(auth.isAuthenticated)
+      @!component('components/navigation/user/help')
+    @end
+
     @!component('components/navigation/user/footer')
 
     <script src="{{ asset('user/js/jquery-1.11.0.min.js') }}">

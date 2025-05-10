@@ -13,6 +13,7 @@ import Category from '#models/category'
 import { v4 as uuidv4 } from 'uuid'
 import slugifyImport from 'slugify'
 import Transaction from '#models/transaction'
+import Cart from '#models/cart'
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
@@ -21,6 +22,11 @@ export default class Product extends BaseModel {
     foreignKey: 'produk_id',
   })
   declare transaction: HasMany<typeof Transaction>
+
+  @hasMany(() => Cart, {
+    foreignKey: 'produk_id',
+  })
+  declare cart: HasMany<typeof Cart>
 
   @beforeCreate()
   public static assignUuid(product: Product) {

@@ -1,5 +1,6 @@
 import Category from '#models/category'
 import Product from '#models/product'
+import Cart from '#models/cart'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class HomeController {

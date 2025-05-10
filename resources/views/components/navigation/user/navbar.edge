@@ -13,21 +13,23 @@
       <div class="order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Keranjang Kamu</span>
-          <span class="badge bg-primary rounded-pill">3</span>
+          <span class="badge bg-primary rounded-pill">{{ cartCount }}</span>
         </h4>
         <ul class="list-group mb-3">
+          @each(cart in carts)
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">
-                Growers cider
+                {{ cart.product.nama_produk }}
               </h6>
-              <small class="text-body-secondary">Brief description</small>
+              <small class="text-body-secondary">x{{ cart.jumlah }}</small>
             </div>
-            <span class="text-body-secondary">$12</span>
+            <span class="text-body-secondary">{{ formatRupiah(cart.product.harga) }}</span>
           </li>
+          @endeach
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (Rp)</span>
-            <strong>Rp. 20</strong>
+            <strong>{{ formatRupiah(cartPriceTotal) }}</strong>
           </li>
         </ul>
       </div>
@@ -191,7 +193,7 @@
               aria-controls="offcanvasCart"
             >
               <span class="fs-6 text-muted dropdown-toggle">Total keranjang</span>
-              <span class="cart-total fs-5 fw-bold">Rp.20.000</span>
+              <span class="cart-total fs-5 fw-bold">{{ formatRupiah(cartPriceTotal) }}</span>
             </button>
           </div>
         @end
