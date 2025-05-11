@@ -21,7 +21,7 @@ router
       .group(() => {
         router.get('/profile-saya', [ProfilesController, 'profile']).as('user.profile')
         router.get('pusat-bantuan', [HelpsController, 'help']).as('user.help')
-        router.get('detail-laporan', [HelpsController, 'helpDetail']).as('user.helpDetail')
+        router.get('detail-laporan/:id', [HelpsController, 'helpDetail']).as('user.helpDetail')
       })
       .use(middleware.auth())
   })

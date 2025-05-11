@@ -1,3 +1,4 @@
+import { formatCreatedAt } from '#helpers/created_at_helper'
 import { formatRupiah } from '#helpers/rupiah_helper'
 import Cart from '#models/cart'
 import Category from '#models/category'
@@ -17,6 +18,7 @@ export default class UserGlobalVariableMiddleware {
         .orderBy('created_at', 'asc')
         .limit(10),
       formatRupiah,
+      formatCreatedAt,
     })
 
     if (ctx.auth.isAuthenticated) {
