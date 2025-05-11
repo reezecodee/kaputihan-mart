@@ -1,6 +1,16 @@
 @layouts.user()
   <section class="py-2">
     <div class="container-fluid">
+      <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('user.transaction') }}">
+          <button
+            class="me-2"
+            style="padding: 10px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
+          >
+            Riwayat Transaksi
+            </button>
+        </a>
+      </div>
       <div class="card">
         <div class="card-body">
           <h3 class="mb-4">

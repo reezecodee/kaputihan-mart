@@ -17,15 +17,15 @@
         </h4>
         <ul class="list-group mb-3">
           @each(cart in carts)
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">
-                {{ cart.product.nama_produk }}
-              </h6>
-              <small class="text-body-secondary">x{{ cart.jumlah }}</small>
-            </div>
-            <span class="text-body-secondary">{{ formatRupiah(cart.product.harga) }}</span>
-          </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">
+                  {{ cart.product.nama_produk }}
+                </h6>
+                <small class="text-body-secondary">x{{ cart.jumlah }}</small>
+              </div>
+              <span class="text-body-secondary">{{ formatRupiah(cart.product.harga) }}</span>
+            </li>
           @endeach
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (Rp)</span>

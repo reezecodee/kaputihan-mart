@@ -1,0 +1,70 @@
+@layouts.user()
+  <section class="py-2">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="mb-4">
+            Riwayat Transaksi
+          </h3>
+
+          <div class="d-flex flex-column gap-3">
+
+            @each(transaction in transactions)
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a style="text-decoration: none" href="{{ route('user.transactionDetail', {id: transaction.id}) }}">
+                      {{ transaction.product.nama_produk }}
+                    </a>
+                  </h5>
+                  <p class="mb-0 text-muted">
+                    📦 Jumlah beli: {{ transaction.jumlah_beli }}
+                  </p>
+                  <p class="mb-0 text-muted">
+                    📅 {{ formatCreatedAt(transaction.createdAt) }}
+                  </p>
+                  <span class="badge bg-success">{{ transaction.status }}</span>
+                </div>
+              </div>
+            @endeach
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Buat laporan
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                style="padding: 10px 20px; background-color: #f1c40f; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
+                data-bs-dismiss="modal"
+              >Batal</button>
+              <button
+                type="button"
+                style="padding: 10px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
+              >Buat laporan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+@end
