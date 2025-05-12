@@ -1,31 +1,56 @@
 @layouts.user()
-  <section class="py-2">
-    <div class="container-fluid">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="mb-4">
-            Detail Laporan
-          </h3>
+  <section class="py-5">
+    <div class="container">
+      <h3 class="mb-4">
+        <strong>Detail Transaksi</strong>
+      </h3>
 
-          <div class="d-flex flex-column gap-3">
+      <!-- Transaksi Information -->
+      <div class="row shadow-sm rounded-3 p-4 mb-4 border">
+        <div class="col-12 mb-4">
+          <h5 class="mb-2">Transaksi #12345</h5>
+          <p class="text-muted">Tanggal Transaksi: <strong>12 Mei 2025</strong></p>
+        </div>
 
-            <div class="card shadow-sm">
-              <div class="card-body">
+        <!-- Produk Information -->
+        <div class="col-12 mb-4">
+          <h6><strong>Produk</strong></h6>
+          <p class="text-muted">Produk A</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><strong>Harga:</strong> Rp 100.000</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><strong>Jumlah Beli:</strong> 2</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><strong>Biaya Admin:</strong> Rp 5.000</p>
+        </div>
 
-                <p class="mb-2">
-                  Pada tanggal 15 April 2025, saya menerima paket dengan nomor resi 123456789 yang dikirimkan oleh Toko Pisang Pak Budi. Setelah membuka kemasan, saya menemukan bahwa isi paket dalam kondisi rusak.
-                </p>
+        <!-- Alamat Pengiriman -->
+        <div class="col-12 mb-4">
+          <h6><strong>Alamat Pengiriman</strong></h6>
+          <p class="text-muted">Jl. Raya No. 123, Jakarta Selatan, DKI Jakarta, 12345</p>
+        </div>
 
-                <p class="mb-1 text-muted">
-                  📅 15 April 2025
-                </p>
-                <span class="badge bg-success">Selesai</span>
-              </div>
-            </div>
+        <!-- Status Pengiriman -->
+        <div class="col-12 mb-4">
+          <h6><strong>Status Pengiriman</strong></h6>
+          <p class="text-muted"><span class="badge bg-warning text-dark">Dalam Proses Pengiriman</span></p>
+        </div>
 
-          </div>
+        <!-- Total Pembayaran -->
+        <div class="col-12 d-flex justify-content-between">
+          <h5><strong>Total Pembayaran</strong></h5>
+          <h5><strong>Rp 250.000</strong></h5>
+        </div>
+
+        <!-- Kembali Button -->
+        <div class="col-12 mt-4 text-center">
+          <button class="btn btn-lg btn-primary w-100">Lihat Produk</button>
         </div>
       </div>
+
     </div>
   </section>
 @end
