@@ -1,4 +1,14 @@
 @layouts.user()
+  <style>
+    .star-rating {
+      color: #ffc107;
+    }
+    
+    .review-card {
+      border-left: 4px solid #007bff;
+      margin-bottom: 1rem;
+    }
+  </style>
   <section class="py-2" style="padding: 3rem 0; background-color: #fefefe;">
     <div class="container-fluid">
       <div class="row align-items-start">
@@ -18,11 +28,32 @@
             {{ product.deskripsi }}
           </p>
           <p style="margin-top: 0.2rem; font-size: 1.2rem; color: #d32f2f;">
-            <strong>Harga: {{ formatRupiah(product.harga) }}</strong>
+            <strong>Harga: <span id="totalHarga">{{ formatRupiah(product.harga) }}</span></strong>
           </p>
+
+          <div class="d-flex gap-2 align-items-center">
+            <div class="input-group mb-3" style="width: 150px;">
+              <button class="btn btn-outline-danger" type="button" onclick="decrement()">−</button>
+
+              <input
+                type="text"
+                id="jumlahBeli"
+                class="form-control text-center fw-bold"
+                value="1"
+                readonly
+                style="font-size: 1.1rem;"
+              />
+
+              <button class="btn btn-outline-success" type="button" onclick="increment()">+</button>
+            </div>
+            <p style="font-size: 0.9rem;">
+              Stok: <b>{{ product.stok }}</b>
+            </p>
+          </div>
+
           <div class="d-flex align-items-start mt-1">
             <img
-              src="https://www.svgrepo.com/show/496485/profile-circle.svg"
+              src="{{ product.foto_toko ? `uploads/foto_toko/${product.foto_toko}` : '/svg/profile-preview.svg' }}"
               alt="Foto Toko"
               class="rounded-circle me-3"
               style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #2ecc71;"
@@ -44,6 +75,8 @@
           <div class="d-flex">
             <button
               class="me-2"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
               style="padding: 10px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
             >
               Beli Sekarang
@@ -204,4 +237,189 @@
       </div>
     </div>
   </section>
+
+  <section class="py-5 bg-light">
+    <div class="container-fluid">
+      <div class="mb-4">
+        <h2 class="fw-bold mb-1">
+          Ulasan Produk
+        </h2>
+        <p class="text-muted">
+          10 ulasan terbaru terkait produk ini
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <div class="card review-card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <img src="/api/placeholder/50/50" class="rounded-circle me-3" alt="Profil Pengguna" />
+              <div>
+                <h6 class="mb-0">
+                  Ahmad Santoso
+                </h6>
+                <div class="star-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <p class="card-text text-muted">
+              Produk sangat berkualitas dan sesuai dengan deskripsi. Pengiriman cepat dan packaging rapi.
+            </p>
+            <small class="text-muted">2 hari yang lalu</small>
+          </div>
+        </div>
+
+        <div class="card review-card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <img src="/api/placeholder/50/50" class="rounded-circle me-3" alt="Profil Pengguna" />
+              <div>
+                <h6 class="mb-0">
+                  Siti Rahayu
+                </h6>
+                <div class="star-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <p class="card-text text-muted">
+              Sangat puas dengan kualitas produk. Warna dan bahan sesuai harapan. Akan recommend ke teman-teman.
+            </p>
+            <small class="text-muted">5 hari yang lalu</small>
+          </div>
+        </div>
+
+        <div class="card review-card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <img src="/api/placeholder/50/50" class="rounded-circle me-3" alt="Profil Pengguna" />
+              <div>
+                <h6 class="mb-0">
+                  Budi Pratama
+                </h6>
+                <div class="star-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <p class="card-text text-muted">
+              Bagus tapi ukurannya sedikit berbeda dari yang diharapkan. Perlu konfirmasi lebih detail sebelum membeli.
+            </p>
+            <small class="text-muted">1 minggu yang lalu</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Buat Pesanan
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="border rounded shadow-sm p-4 bg-white" style="max-width: 480px;">
+            <h5 class="mb-4">
+              🧾 Ringkasan Transaksi
+            </h5>
+
+            <ul class="list-unstyled mb-3">
+              <li>
+                <strong>Nama Produk:</strong>                <span id="namaProduk">Nasi Goreng Spesial</span>
+              </li>
+              <li>
+                <strong>Kategori:</strong>                <span id="kategori">Makanan</span>
+              </li>
+              <li>
+                <strong>Harga:</strong>                <span id="harga">25000</span>
+              </li>
+              <li>
+                <strong>Biaya Admin:</strong>                <span id="biayaAdmin">5000</span>
+              </li>
+              <li>
+                <strong>Jumlah Beli:</strong>                <span id="jumlah">2</span>
+              </li>
+              <li>
+                <strong>Alamat:</strong>                <span id="alamat">Jl. Merdeka No. 45, Bandung</span>
+              </li>
+              <li class="mt-2">
+                <strong>Total Bayar:</strong>                <span id="totalHarga">Rp -</span>
+              </li>
+            </ul>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            style="padding: 10px 20px; background-color: #f1c40f; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
+            data-bs-dismiss="modal"
+          >Batal</button>
+          <button
+            type="button"
+            style="padding: 10px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
+          >Chat Admin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MIN_QTY = 1;
+    
+    const MAX_QTY = {{ product.stok }}; // contoh: 10
+    
+    const price = 1e5; // ganti sesuai harga produk
+    
+    function increment() {
+      const input = document.getElementById("jumlahBeli");
+      let value = parseInt(input.value);
+      if (value < MAX_QTY) {
+        input.value = value + 1;
+        updateTotal();
+      }
+    }
+    
+    function decrement() {
+      const input = document.getElementById("jumlahBeli");
+      let value = parseInt(input.value);
+      if (value > MIN_QTY) {
+        input.value = value - 1;
+        updateTotal();
+      }
+    }
+    
+    function updateTotal() {
+      const jumlah = parseInt(document.getElementById("jumlahBeli").value);
+      const total = price * jumlah;
+      document.getElementById("totalHarga").innerText = `Rp ${total.toLocaleString("id-ID")}`;
+    }
+    
+    window.onload = updateTotal;
+  </script>
+
 @end
