@@ -23,9 +23,13 @@ export default class HelpsController {
   /**
    * Fungsi untuk menampilkan halaman detail laporan bantuan
    */
-  public helpDetail({ view }: HttpContext) {
+  public async helpDetail({ view, params }: HttpContext) {
     view.share({
       title: 'Detail Bantuan',
+      help: await Help.query()
+        .select(['judul', 'penjelasan', 'lampiran', 'status', 'created_at'])
+        .where('id', params.id)
+        .first(),
     })
 
     return view.render('pages/user/help-detail')

@@ -24,7 +24,17 @@
                 </h6>
                 <small class="text-body-secondary">x{{ cart.jumlah }}</small>
               </div>
+              <div>
               <span class="text-body-secondary">{{ formatRupiah(cart.product.harga) }}</span>
+              <div class="d-flex justify-content-end gap-2 mt-2">
+                  <form action="" method="post">
+                    <button type="submit" class="btn btn-sm btn-success text-white" style="background-color: #2ecc71">Beli</button>
+                  </form>
+                  <form action="" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger text-white" style="background-color: #e74c3c">Hapus</button>
+                  </form>
+                </div>
+                </div>
             </li>
           @endeach
           <li class="list-group-item d-flex justify-content-between">

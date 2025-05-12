@@ -25,21 +25,25 @@
               <div class="card-body">
                 <div class="d-flex justify-content-center">
                   <img
-                    src="https://www.cekidot.id/blog/wp-content/uploads/2023/05/paket-rusak.webp"
+                    src="/uploads/foto_lampiran/{{ help.lampiran }}"
                     alt="Bukti Laporan"
                     class="img-fluid rounded mb-3"
                     style="max-width: 25%; height: auto;"
                   />
                 </div>
 
+                <h5 class="mb-2">
+                  {{ help.judul }}
+                </h5>
+
                 <p class="mb-2">
-                  Pada tanggal 15 April 2025, saya menerima paket dengan nomor resi 123456789 yang dikirimkan oleh Toko Pisang Pak Budi. Setelah membuka kemasan, saya menemukan bahwa isi paket dalam kondisi rusak.
+                  {{ help.penjelasan }}
                 </p>
 
                 <p class="mb-1 text-muted">
-                  📅 15 April 2025
+                  📅 {{ formatCreatedAt(help.createdAt) }}
                 </p>
-                <span class="badge bg-success">Selesai</span>
+                <span class="badge bg-success">{{ help.status }}</span>
               </div>
             </div>
 

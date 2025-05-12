@@ -17,10 +17,29 @@ export default class TransactionsController {
     return view.render('pages/user/transaction')
   }
 
-  public async transactionDetail({ view, params }: HttpContext) {
+  public async transactionDetail({ view, params, response, session }: HttpContext) {
+    const transaction = await Transaction.query()
+      .select(['id', 'produk_id', 'jumlah_beli', 'status', 'created_at'])
+      .preload('product', (query) => {
+        query.select(['id', 'nama_produk', 'slug', 'harga'])
+      })
+      .where('id', params.id)
+      .first()
+
+    if (!transaction || !transaction.product) {
+      session.flash('failed', {
+        type: 'alert-danger',
+        message: 'Gagal menemukan produk atau transaksi',
+      })
+      return response.redirect().toRoute('user.transaction')
+    }
+
+    const totalPrice = transaction?.product.harga * transaction?.jumlah_beli + 5000
+
     view.share({
       title: 'Detail Riwayat Transaksi',
-      transaction: await Transaction.findOrFail(params.id),
+      transaction,
+      totalPrice,
     })
 
     return view.render('pages/user/transaction-detail')

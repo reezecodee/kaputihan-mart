@@ -20,30 +20,106 @@
           <!-- Foto Profil -->
           <div class="text-center mb-4">
             <img
-              src="https://www.svgrepo.com/show/496485/profile-circle.svg"
+              src="{{ auth.user.foto ? `uploads/foto_profile/${auth.user.foto}` : '/svg/profile-preview.svg' }}"
               alt="Foto Profil"
+              id="img-preview"
               class="rounded-circle shadow-sm"
-              style="width: 130px; height: 130px; object-fit: cover; border: 4px solid #3498db;"
+              style="width: 130px; height: 130px; object-fit: cover;"
             />
             <div class="mt-3">
-              <input type="file" class="form-control form-control-sm" style="max-width: 300px; margin: 0 auto;" />
+              <input
+                type="file"
+                name="foto"
+                id="foto"
+                accept=".png, .jpg"
+                class="form-control form-control-sm"
+                style="max-width: 300px; margin: 0 auto;"
+              />
             </div>
           </div>
 
-          <form>
-            <div class="mb-3">
-              <label for="name" class="form-label" style="font-weight: 500;">Nama Lengkap</label>
-              <input type="text" class="form-control" id="name" value="Nama Kamu" style="border-radius: 8px;" />
+          <form method="POST" enctype="multipart/form-data" action="">
+            <div class="form-group mb-3">
+              <label for="name" class="form-label" style="font-weight: 500;">Nama lengkap</label>
+              <input
+                type="text"
+                class="form-control {{ flashMessages.has('errors.nama') ? 'is-invalid' : '' }}"
+                name="nama"
+                id="name"
+                placeholder="Masukkan nama kamu"
+                value="{{ old('nama') || auth.user.nama }}"
+                style="border-radius: 8px;"
+              />
+              @inputError('nama')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
-
-            <div class="mb-3">
+            <div class="form-group mb-3">
               <label for="email" class="form-label" style="font-weight: 500;">Email</label>
-              <input type="email" class="form-control" id="email" value="kamu@email.com" style="border-radius: 8px;" />
+              <input
+                type="email"
+                class="form-control {{ flashMessages.has('errors.email') ? 'is-invalid' : '' }}"
+                name="email"
+                id="email"
+                placeholder="Masukkan email kamu"
+                value="{{ old('email') || auth.user.email }}"
+                style="border-radius: 8px;"
+              />
+              @inputError('email')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
+            </div>
+            <div class="form-group mb-3">
+              <label for="telepon" class="form-label" style="font-weight: 500;">Telepon</label>
+              <input
+                type="number"
+                class="form-control {{ flashMessages.has('errors.telepon') ? 'is-invalid' : '' }}"
+                name="telepon"
+                id="telepon"
+                placeholder="Masukkan nomor telepon kamu"
+                value="{{ old('telepon') || auth.user.telepon }}"
+                style="border-radius: 8px;"
+              />
+              @inputError('telepon')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
+            </div>
+            <div class="form-group mb-3">
+              <label for="alamat" class="form-label" style="font-weight: 500;">Alamat</label>
+              <textarea
+                name="alamat"
+                id="alamat"
+                cols="10"
+                rows="3"
+                class="form-control {{ flashMessages.has('errors.alamat') ? 'is-invalid' : '' }}"
+                placeholder="Masukkan alamat kamu"
+                style="border-radius: 8px;"
+              >{{ old('alamat') || auth.user.alamat }}</textarea>
+              @inputError('alamat')
+                @each(message in $messages)
+                  <div class="invalid-feedback">
+                    {{ message }}
+                  </div>
+                @end
+              @end
             </div>
 
             <div class="text-end">
               <button
                 class="me-2"
+                type="submit"
                 style="padding: 10px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
               >
                 Simpan Perubahan
@@ -54,4 +130,20 @@
       </div>
     </div>
   </section>
+
+  <script>
+    document.getElementById("foto")?.addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById("img-preview");
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "/svg/profile-preview.svg";
+      }
+    });
+  </script>
 @end
