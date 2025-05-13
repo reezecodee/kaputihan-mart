@@ -1,0 +1,38 @@
+@layouts.user()
+  <section class="py-2 overflow-hidden">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+            <h2 class="section-title">
+              Kategori Tersedia
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        @each(category in categories)
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+            <a
+              href="{{ route('user.productList', { categoryId: category.id }) }}"
+              class="text-decoration-none text-dark"
+            >
+              <div class="card h-100 text-center">
+                <img
+                  src="/uploads/foto_kategori/{{ category.foto_kategori }}"
+                  class="card-img-top"
+                  alt="{{ category.nama_kategori }}"
+                />
+                <div class="card-body p-2">
+                  <h6 class="card-title mb-0">
+                    {{ category.nama_kategori }}
+                  </h6>
+                </div>
+              </div>
+            </a>
+          </div>
+        @endeach
+      </div>
+    </div>
+  </section>
+@end

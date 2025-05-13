@@ -9,7 +9,9 @@ export default class HomeController {
   async home({ view }: HttpContext) {
     view.share({
       title: 'Selamat Datang di Toko UMKM Desa Kaputihan',
-      allCategories: await Category.query().select(['id', 'nama_kategori', 'foto_kategori']),
+      allCategories: await Category.query()
+        .select(['id', 'nama_kategori', 'foto_kategori'])
+        .limit(10),
       latestProducts: await Product.query()
         .select(['slug', 'nama_produk', 'stok', 'harga', 'foto_produk', 'kategori_id'])
         .where('status', 'Tersedia')

@@ -16,7 +16,7 @@ export default class UserGlobalVariableMiddleware {
       navCategories: await Category.query()
         .select(['id', 'nama_kategori'])
         .orderBy('created_at', 'asc')
-        .limit(10),
+        .limit(5),
       formatRupiah,
       formatCreatedAt,
     })

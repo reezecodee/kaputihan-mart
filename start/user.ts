@@ -7,6 +7,7 @@ const ProductsController = () => import('#controllers/user/products_controller')
 const StoreProfilesController = () => import('#controllers/user/store_profiles_controller')
 const HelpsController = () => import('#controllers/user/helps_controller')
 const TransactionsController = () => import('#controllers/user/transactions_controller')
+const CategoriesController = () => import('#controllers/user/categories_controller')
 
 router
   .group(() => {
@@ -20,6 +21,7 @@ router
     router
       .get('profile-toko/:id', [StoreProfilesController, 'storeProfile'])
       .as('user.storeProfile')
+    router.get('daftar-kategori', [CategoriesController, 'categoryList']).as('user.categoryList')
     router
       .group(() => {
         router.get('/profile-saya', [ProfilesController, 'profile']).as('user.profile')
