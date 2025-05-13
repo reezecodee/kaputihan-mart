@@ -42,10 +42,10 @@
           style="font-size: 0.95rem;"
         >
           <div class="mb-2">
-            <strong>📍 Lokasi:</strong>Desa Kaputihan, Kab. Tasikmalaya, Jawa Barat
+            <strong>📍 Lokasi:</strong> {{ store.alamat }}
           </div>
           <div class="mb-2">
-            <strong>📦 Produk:</strong>48 item
+            <strong>📦 Produk:</strong> {{ storeProducts.length }} produk
           </div>
         </div>
       </div>
@@ -64,7 +64,6 @@
             </h2>
 
             <div class="d-flex align-items-center">
-              <a href="#" class="btn-link text-decoration-none">Lihat Semua Produk →</a>
               <div class="swiper-buttons">
                 <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
                 <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
@@ -78,11 +77,11 @@
         <div class="col-md-12">
           <div class="products-carousel swiper">
             <div class="swiper-wrapper">
-              @each(product in latestProducts)
+              @each(product in storeProducts)
                 <div class="product-item swiper-slide">
                   <figure>
                     <a href="{{ route('user.productDetail', {slug: product.slug}) }}" title="{{ product.nama_produk }}">
-                      <img src="{{ asset('user/images/thumb-bananas.png') }}" class="tab-image" />
+                      <img src="/uploads/foto_produk/{{ product.foto_produk }}" class="tab-image" />
                     </a>
                   </figure>
                   <h3>

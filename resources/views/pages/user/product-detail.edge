@@ -104,7 +104,6 @@
             </h2>
 
             <div class="d-flex align-items-center">
-              <a href="#" class="btn-link text-decoration-none">View All Categories →</a>
               <div class="swiper-buttons">
                 <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
                 <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
@@ -118,11 +117,11 @@
         <div class="col-md-12">
           <div class="products-carousel swiper">
             <div class="swiper-wrapper">
-              @each(product in latestProducts)
+              @each(product in storeProducts)
                 <div class="product-item swiper-slide">
                   <figure>
                     <a href="{{ route('user.productDetail', {slug: product.slug}) }}" title="{{ product.nama_produk }}">
-                      <img src="{{ asset('user/images/thumb-bananas.png') }}" class="tab-image" />
+                      <img src="/uploads/foto_produk/{{ product.foto_produk }}" class="tab-image" />
                     </a>
                   </figure>
                   <h3>
@@ -177,7 +176,6 @@
             </h2>
 
             <div class="d-flex align-items-center">
-              <a href="#" class="btn-link text-decoration-none">View All Categories →</a>
               <div class="swiper-buttons">
                 <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
                 <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
@@ -191,11 +189,11 @@
         <div class="col-md-12">
           <div class="products-carousel swiper">
             <div class="swiper-wrapper">
-              @each(product in latestProducts)
+              @each(product in recommendedProducts)
                 <div class="product-item swiper-slide">
                   <figure>
                     <a href="{{ route('user.productDetail', {slug: product.slug}) }}" title="{{ product.nama_produk }}">
-                      <img src="{{ asset('user/images/thumb-bananas.png') }}" class="tab-image" />
+                      <img src="/uploads/foto_produk/{{ product.foto_produk }}" class="tab-image" />
                     </a>
                   </figure>
                   <h3>
@@ -250,77 +248,37 @@
       </div>
 
       <div class="d-flex flex-column">
-        <div class="card review-card shadow-sm">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-              <img src="/api/placeholder/50/50" class="rounded-circle me-3" alt="Profil Pengguna" />
-              <div>
-                <h6 class="mb-0">
-                  Ahmad Santoso
-                </h6>
-                <div class="star-rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
+        @each(review in reviews)
+          <div class="card review-card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-1">
+                <img
+                  src="{{ review.user.foto ? `/uploads/foto_profile/${review.user.foto}` : '/svg/profile-preview.svg' }}"
+                  class="rounded-circle me-2"
+                  alt="Profil Pengguna"
+                  width="60"
+                />
+                <div>
+                  <h6 class="mb-0">
+                   {{  review.user.nama }}
+                  </h6>
+                  <div class="star-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
                 </div>
               </div>
+              <p class="card-text text-muted">
+                {{ review.komentar }}
+              </p>
+              <small class="text-muted">{{ review.waktu }}</small>
             </div>
-            <p class="card-text text-muted">
-              Produk sangat berkualitas dan sesuai dengan deskripsi. Pengiriman cepat dan packaging rapi.
-            </p>
-            <small class="text-muted">2 hari yang lalu</small>
           </div>
-        </div>
-
-        <div class="card review-card shadow-sm">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-              <img src="/api/placeholder/50/50" class="rounded-circle me-3" alt="Profil Pengguna" />
-              <div>
-                <h6 class="mb-0">
-                  Siti Rahayu
-                </h6>
-                <div class="star-rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-            <p class="card-text text-muted">
-              Sangat puas dengan kualitas produk. Warna dan bahan sesuai harapan. Akan recommend ke teman-teman.
-            </p>
-            <small class="text-muted">5 hari yang lalu</small>
-          </div>
-        </div>
-
-        <div class="card review-card shadow-sm">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-              <img src="/api/placeholder/50/50" class="rounded-circle me-3" alt="Profil Pengguna" />
-              <div>
-                <h6 class="mb-0">
-                  Budi Pratama
-                </h6>
-                <div class="star-rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </div>
-              </div>
-            </div>
-            <p class="card-text text-muted">
-              Bagus tapi ukurannya sedikit berbeda dari yang diharapkan. Perlu konfirmasi lebih detail sebelum membeli.
-            </p>
-            <small class="text-muted">1 minggu yang lalu</small>
-          </div>
-        </div>
+        @endeach
+        
       </div>
     </div>
   </section>

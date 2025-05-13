@@ -11,7 +11,9 @@ const TransactionsController = () => import('#controllers/user/transactions_cont
 router
   .group(() => {
     router.get('/', [HomeController, 'home']).as('user.home')
-    router.get('daftar-produk/:id', [ProductsController, 'productList']).as('user.productList')
+    router
+      .get('daftar-produk/:categoryId', [ProductsController, 'productList'])
+      .as('user.productList')
     router
       .get('detail-produk/:slug', [ProductsController, 'productDetail'])
       .as('user.productDetail')

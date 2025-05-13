@@ -1,6 +1,5 @@
 import Category from '#models/category'
 import Product from '#models/product'
-import Cart from '#models/cart'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class HomeController {
@@ -10,10 +9,11 @@ export default class HomeController {
   async home({ view }: HttpContext) {
     view.share({
       title: 'Selamat Datang di Toko UMKM Desa Kaputihan',
-      allCategories: await Category.query().select(['id', 'nama_kategori']),
+      allCategories: await Category.query().select(['id', 'nama_kategori', 'foto_kategori']),
       latestProducts: await Product.query()
         .select(['slug', 'nama_produk', 'stok', 'harga', 'foto_produk', 'kategori_id'])
         .where('status', 'Tersedia')
+        .where('stok', '>', 0)
         .preload('category')
         .orderBy('created_at', 'asc')
         .limit(10),

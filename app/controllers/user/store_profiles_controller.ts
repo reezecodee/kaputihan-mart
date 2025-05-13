@@ -10,15 +10,16 @@ export default class StoreProfilesController {
     view.share({
       title: 'Profile Toko UMKM',
       store: await Store.query()
-        .select(['nama_toko', 'deskripsi'])
+        .select(['nama_toko', 'deskripsi', 'alamat'])
         .where('id', params.id)
         .firstOrFail(),
-      latestProducts: await Product.query()
+      storeProducts: await Product.query()
         .select(['slug', 'nama_produk', 'stok', 'harga', 'foto_produk', 'kategori_id'])
-        .where('status', 'Disetujui')
+        .where('status', 'Tersedia')
+        .where('stok', '>', 0)
+        .where('toko_id', params.id)
         .preload('category')
-        .orderBy('created_at', 'asc')
-        .limit(10),
+        .orderBy('created_at', 'asc'),
     })
 
     return view.render('pages/user/store-profile')

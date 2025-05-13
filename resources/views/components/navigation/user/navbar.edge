@@ -253,7 +253,7 @@
               <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
                 @each(category in navCategories)
                   <li class="nav-item {{ request.param('id') == category.id ? 'active' : '' }}">
-                    <a href="{{ route('user.productList', { id: category.id }) }}" class="nav-link">{{ category.nama_kategori }}</a>
+                    <a href="{{ route('user.productList', { categoryId: category.id }) }}" class="nav-link">{{ category.nama_kategori }}</a>
                   </li>
                 @endeach
               </ul>
