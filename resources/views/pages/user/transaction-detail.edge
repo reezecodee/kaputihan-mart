@@ -49,17 +49,17 @@
         </div>
         <div class="col-md-6 mb-3">
           <p>
-            <strong>Harga:</strong> {{ formatRupiah(transaction.product.harga) }}
+            <strong>Harga:</strong>{{ formatRupiah(transaction.product.harga) }}
           </p>
         </div>
         <div class="col-md-6 mb-3">
           <p>
-            <strong>Jumlah Beli:</strong> {{ transaction.jumlah_beli }}
+            <strong>Jumlah Beli:</strong>{{ transaction.jumlah_beli }}
           </p>
         </div>
         <div class="col-md-6 mb-3">
           <p>
-            <strong>Biaya Admin:</strong> Rp 5.000
+            <strong>Biaya Admin:</strong>Rp 5.000
           </p>
         </div>
 
@@ -94,9 +94,8 @@
             Berikan komentar
           </h5>
           <form action="" method="POST">
-
+            {{ csrfField() }}
             <div class="mb-3">
-              <label class="form-label d-block">Rating</label>
               <div class="rating">
                 <input type="radio" name="rating" id="star5" value="5" required />                <label for="star5">                  <i class="fas fa-star"></i></label>
                 <input type="radio" name="rating" id="star4" value="4" />                <label for="star4">                  <i class="fas fa-star"></i></label>
@@ -107,7 +106,6 @@
             </div>
 
             <div class="mb-3">
-              <label for="komentar" class="form-label">Komentar</label>
               <textarea
                 class="form-control"
                 style="border: 1px solid black"
@@ -115,6 +113,7 @@
                 name="komentar"
                 rows="4"
                 required
+                placeholder="Masukkan komentar produk"
               ></textarea>
             </div>
 
