@@ -14,7 +14,7 @@
       <div class="row align-items-start">
         <div class="col-lg-6">
           <img
-            src="{{ asset('user/images/thumb-bananas.png') }}"
+            src="/uploads/foto_produk/{{ product.foto_produk }}"
             alt="{{ product.nama_produk }}"
             class="mb-3"
             style="width: 100%; max-width: 450px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
@@ -121,7 +121,7 @@
                 <div class="product-item swiper-slide">
                   <figure>
                     <a href="{{ route('user.productDetail', {slug: product.slug}) }}" title="{{ product.nama_produk }}">
-                      <img src="/uploads/foto_produk/{{ product.foto_produk }}" class="tab-image" />
+                      <img src="/uploads/foto_produk/{{ product.foto_produk }}" class="tab-image rounded" />
                     </a>
                   </figure>
                   <h3>
@@ -193,7 +193,7 @@
                 <div class="product-item swiper-slide">
                   <figure>
                     <a href="{{ route('user.productDetail', {slug: product.slug}) }}" title="{{ product.nama_produk }}">
-                      <img src="/uploads/foto_produk/{{ product.foto_produk }}" class="tab-image" />
+                      <img src="/uploads/foto_produk/{{ product.foto_produk }}" class="tab-image rounded" />
                     </a>
                   </figure>
                   <h3>
@@ -306,25 +306,25 @@
 
             <ul class="list-unstyled mb-3">
               <li>
-                <strong>Nama Produk:</strong>                <span id="namaProduk">Nasi Goreng Spesial</span>
+                <strong>Nama Produk:</strong>                <span id="namaProduk">Pisang Ambon Budidaya Desa Kaputihan</span>
               </li>
               <li>
-                <strong>Kategori:</strong>                <span id="kategori">Makanan</span>
+                <strong>Kategori:</strong>                <span id="kategori">Buah-buahan</span>
               </li>
               <li>
-                <strong>Harga:</strong>                <span id="harga">25000</span>
+                <strong>Harga:</strong>                <span id="harga">100000</span>
               </li>
               <li>
                 <strong>Biaya Admin:</strong>                <span id="biayaAdmin">5000</span>
               </li>
               <li>
-                <strong>Jumlah Beli:</strong>                <span id="jumlah">2</span>
+                <strong>Jumlah Beli:</strong>                <span id="jumlah">1</span>
               </li>
               <li>
                 <strong>Alamat:</strong>                <span id="alamat">Jl. Merdeka No. 45, Bandung</span>
               </li>
               <li class="mt-2">
-                <strong>Total Bayar:</strong>                <span id="totalHarga">Rp -</span>
+                <strong>Total Bayar:</strong>                <span id="totalHarga">Rp 105000-</span>
               </li>
             </ul>
 
